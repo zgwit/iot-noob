@@ -50,3 +50,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/iot-noob.si4project

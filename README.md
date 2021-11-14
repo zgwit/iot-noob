@@ -5,100 +5,26 @@
 2. Arduino对硬件进行了封装，无需关心过多底层的东西，专注于上层逻辑即可
 
 
-
 ## 配置文件
+系统通过加载和解析配置文件完成初始化，同样远端可以通过修改配置文件来实现系统配置。配置文件使用常用的JSON数据格式，虽然效率低，但是比较通过，能够方便与APP和后台对接。鉴于ESP32的RAM和ROM都很小，不便于处理较大的JSON文件，我们将部分内容进行拆分，避免内存占用突增。
 
-### 项目配置 project.json
-```json
-{
-    "name": "示例项目",
-    "version": "1.0",
-    "enable": true
-}
-```
+| 配置 | 文件路径 | 内容 |
+|----|----|----|
+| 项目 | project.json | name, version, enable |
+| 变量 | variables.json | name, type, label, unit, default |
+| 命令 | commands.json | name, label, args, execute:[target, variable, value] |
+| 报警 | alarms.json | variable, compare, value, value2?, timeout, resetInterval, resetTimes |
+| 策略 | reactors.json | variable, compare, value, value2?, commands:[target, command, value?] |
+| 定时任务 | jobs.json | type, interval, crontab, commands:[同上] | 
+| 设备 | devices/${id}.json | name, slave, element |
+| 设备采集 | devices/${id}/collectors.json | type, interval, crontab, code, address, length |
+| 设备定时任务 | devices/${id}/jobs.json | type, interval, crontab, commands:[command, value?] |
+| 元件 | elements/${id}.json | name, slave, version, url,  |
+| 元件变量 | elements/${id}/variables.json | name, label, unit, default |
+| 元件点位 | elements/${id}/sheets.json | name, label, unit, default, code, address, type, le, precision, readable, writable |
+| 元件命令 | elements/${id}/commands.json | name, variable, value |
+| 元件采集 | elements/${id}/collectors.json | type, interval, crontab, code, address, length |
+| 元件报警 | elements/${id}/alarms.json | variable, compare, value, value2?, timeout, resetInterval, resetTimes |
+| 元件定时任务 | elements/${id}/jobs.json | type, interval, crontab, commands:[command, value?] |
 
-### 变量 var/[name].json
-```json
-{
-    "type": "uint8",
-    "label": "数量",
-    "default": 1,
-    "unit": "个"
-}
-```
-
-
-### 命令 cmd/[name].json
-```json
-{
-    "label": "名称",
-    "args": 0,
-    "task": [
-        {
-            "type":"set",
-            "variable": "count",
-            "value": 1
-        },
-        {
-            "type":"expression",
-            "variable": "count",
-            "value": "$1"
-        },
-        {
-            "type":"command",
-            "variable": "recovery",
-            "value": "$1"
-        }
-    ]
-}
-```
-
-
-### 设备 dev/[name].json
-```json
-{
-    "slave": 1,
-    "element": "元件名（ID）",
-    "enable": true
-}
-```
-
-
-
-### 采集器 dev/[name]/scan/xxx.json
-```json
-{
-    "slave": 1,
-    "element": "元件名（ID）",
-    "enable": true
-}
-```
-
-
-### 元件库 elem/[name].json
-```json
-{
-    "name": "元件名称",
-    "collectors": [],
-    "validators": [],
-    "slave": {
-        "default": 1,
-        "address": 0
-    },
-    "map": [
-        {
-            "name": "var1",
-            "label": "变量",
-            "code": 3,
-            "address": 0,
-            "type": "uint16",
-            "le": false,
-            "precision": 0,
-            "default": 0,
-            "readable": true,
-            "writable": true
-        }
-    ]
-}
-```
 
