@@ -1,5 +1,19 @@
 #pragma once
 
+
+
+class CommandDefine: Define
+{
+public:
+    std::string name;
+    std::string label;
+
+    std::vector<InstructionDefine> instructions;
+
+    bool Parse(JsonDocument &doc);
+};
+
+
 class Command
 {
 private:
