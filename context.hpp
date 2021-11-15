@@ -5,11 +5,13 @@
 #include <stddef.h>
 #include <string.h>
 
+#include "variant.hpp"
+
 class Context
 {
 private:
     /* data */
-    std::map<String, Variant> _props;
+    std::map<std::string, Variant*> _props;
 
 public:
     Context(/* args */);

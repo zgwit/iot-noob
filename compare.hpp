@@ -18,11 +18,15 @@ public:
         OP_NB,
     } OP;
 
-    OP ParseOperator(const char *op);
-}
+    OP op;
+    std::string variable;
+    double value1;
+    double value2;
 
-Compare::OP
-Compare::ParseOperator(const char *op)
+    OP ParseOperator(const char* op);
+};
+
+Compare::OP Compare::ParseOperator(const char *op)
 {
     if (!strcmp(op, "lt") || !strcmp(op, "<"))
         return OP_LT;

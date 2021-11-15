@@ -1,27 +1,19 @@
 #pragma once
 
-class Reactor
+#include "define.hpp"
+#include "compare.hpp"
+
+class Reactor: Proto
 {
-private:
-    /* data */
-    std::string type; // gt lt
-    std::string expression;
-    std::string variable;
-    std::string operator;
-    double value;
-    double value2;
-
-
-
 public:
-    Reactor(/* args */);
-    ~Reactor();
+    Compare compare;
+
 };
 
-Reactor::Reactor(/* args */)
-{
-}
+class ReactorInstance {
+public:
+    Reactor* proto;
 
-Reactor::~Reactor()
-{
-}
+
+};
+

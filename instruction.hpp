@@ -1,7 +1,7 @@
 #pragma once
 
 #include "define.hpp"
-#include "variable.hpp"
+#include "variant.hpp"
 
 class Instruction: Proto
 {

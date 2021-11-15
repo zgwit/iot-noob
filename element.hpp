@@ -23,10 +23,10 @@ public:
     std::string version;
     ElementSlave slave;
 
-    std::vector<Variable> variables;
-    std::vector<Sheet> sheets;
-    std::vector<Collector> collectors;
-    std::vector<Command> commands;
-    std::vector<Alarm> alarms;
-    std::vector<Job> jobs;
+    std::vector<Variable*> variables;
+    std::vector<Sheet*> sheets;
+    std::vector<Collector*> collectors;
+    std::vector<Command*> commands;
+    std::vector<Alarm*> alarms;
+    std::vector<Job*> jobs;
 };

@@ -2,6 +2,10 @@
 
 #include <ctype.h>
 
+#include "variable.hpp"
+#include "variant.hpp"
+#include "context.hpp"
+
 class Expression
 {
 private:

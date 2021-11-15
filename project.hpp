@@ -45,9 +45,3 @@ ProjectInstance::ProjectInstance(/* args */)
 ProjectInstance::~ProjectInstance()
 {
 }
-
-bool ProjectInstance::Parse(JsonDocument &doc) {
-    
-
-
-}

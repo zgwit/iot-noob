@@ -9,7 +9,7 @@ public:
     std::string crontab;
     uint16_t interval;
 
-    std::vector<Command> commands;
+    std::vector<Command*> commands;
 };
 
 class JobInstance
