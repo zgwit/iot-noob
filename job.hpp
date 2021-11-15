@@ -2,30 +2,30 @@
 
 #include "define.hpp"
 
-class JobDef : Define
+class Job : Proto
 {
 public:
     std::string type;
     std::string crontab;
     uint16_t interval;
-    
-    std::vector<CommandDef> commands;
+
+    std::vector<Command> commands;
 };
 
-class Job
+class JobInstance
 {
 private:
-    JobDef *def;
+    Job* proto;
     
 public:
-    Job(/* args */);
-    ~Job();
+    JobInstance(/* args */);
+    ~JobInstance();
 };
 
-Job::Job(/* args */)
+JobInstance::JobInstance(/* args */)
 {
 }
 
-Job::~Job()
+JobInstance::~JobInstance()
 {
 }

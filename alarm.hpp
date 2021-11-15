@@ -2,7 +2,7 @@
 
 #include "define.hpp"
 
-class AlarmDef : Define
+class Alarm : Proto
 {
 public:
     std::string name;
@@ -16,10 +16,10 @@ public:
     bool Parse(JsonDocument &doc);
 };
 
-class Alarm
+class AlarmInstance
 {
 public:
-    AlarmDef* def;
+    Alarm* proto;
 
     Variable *variablePtr;
 
@@ -28,14 +28,14 @@ public:
     unsigned int resetTimes;
 
 public:
-    Alarm(/* args */);
+    AlarmInstance(/* args */);
     ~Alarm();
 };
 
-Alarm::Alarm(/* args */)
+AlarmInstance::AlarmInstance(/* args */)
 {
 }
 
-Alarm::~Alarm()
+AlarmInstance::~AlarmInstance()
 {
 }

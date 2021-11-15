@@ -2,31 +2,13 @@
 
 #include "define.hpp"
 
-class CommandDef: Define
+class Command: Proto
 {
 public:
     std::string name;
     std::string label;
 
-    std::vector<InstructionDefine> instructions;
+    std::vector<Instruction> instructions;
 
     bool Parse(JsonDocument &doc);
 };
-
-
-class Command
-{
-private:
-    /* data */
-public:
-    Command(/* args */);
-    ~Command();
-};
-
-Command::Command(/* args */)
-{
-}
-
-Command::~Command()
-{
-}

@@ -1,8 +1,9 @@
 #pragma once
 
 #include "define.hpp"
+#include "element.hpp"
 
-class DeviceDef: Define
+class Device: Proto
 {
 public:
     std::string name;
@@ -13,21 +14,24 @@ public:
 
 
 
-class Device
+class DeviceInstance
 {
 private:
-    DeviceDef* def;
+    Device* proto;
+    Element* element;
+
+    //TODO 上下文，采集器，定时器 等
 
 
 public:
-    Device(/* args */);
-    ~Device();
+    DeviceInstance(/* args */);
+    ~DeviceInstance();
 };
 
-Device::Device(/* args */)
+DeviceInstance::DeviceInstance(/* args */)
 {
 }
 
-Device::~Device()
+DeviceInstance::~DeviceInstance()
 {
 }

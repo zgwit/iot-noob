@@ -10,7 +10,7 @@
 
 #include <ArduinoJson.hpp>
 
-virtual class Define
+virtual class Proto
 {
 public:
     virtual bool Parse(JsonDocument &doc);

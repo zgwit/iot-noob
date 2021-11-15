@@ -16,17 +16,17 @@ class ElementSlave
     bool writable;
 };
 
-class ElementDef : Define
+class Element : Proto
 {
 public:
     std::string name;
     std::string version;
     ElementSlave slave;
 
-    std::vector<VariableDef> variables;
-    std::vector<SheetDef> sheets;
-    std::vector<CollectorDef> collectors;
-    std::vector<CommandDef> commands;
-    std::vector<AlarmDef> alarms;
-    std::vector<JobDef> jobs;
+    std::vector<Variable> variables;
+    std::vector<Sheet> sheets;
+    std::vector<Collector> collectors;
+    std::vector<Command> commands;
+    std::vector<Alarm> alarms;
+    std::vector<Job> jobs;
 };

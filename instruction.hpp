@@ -3,7 +3,7 @@
 #include "define.hpp"
 #include "variable.hpp"
 
-class InstructionDef: Define
+class Instruction: Proto
 {
 public:
     std::string target;

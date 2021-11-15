@@ -4,5 +4,5 @@
 
 void FileSystem_Init();
 
-#define FileSystem LittleFS
+#Proto FileSystem LittleFS
 // inline FS* FS_Get() { return LittleFS; }

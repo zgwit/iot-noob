@@ -2,7 +2,7 @@
 
 #include "define.hpp"
 
-class SheetDef : Define
+class SheetDef : Proto
 {
 public:
     std::string name;
@@ -24,7 +24,7 @@ public:
 class Sheet
 {
 private:
-    SheetDef *define;
+    SheetDef *Proto;
 
     /* data */
 public:

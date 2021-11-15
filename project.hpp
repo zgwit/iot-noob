@@ -8,24 +8,24 @@
 #include "job.hpp"
 #include "reactor.hpp"
 
-class ProjectDef {
+class Project {
 public:
     std::string name;
     std::string version;
 
-    std::vector<VariableDef> variables;
-    std::vector<CommandDef> commands;
-    std::vector<AlarmDef> alarms;
-    std::vector<JobDef> jobs;
-    std::vector<ReactorDef> reactors; 
+    std::vector<Variable> variables;
+    std::vector<Command> commands;
+    std::vector<Alarm> alarms;
+    std::vector<Job> jobs;
+    std::vector<Reactor> reactors; 
 
     bool Parse(JsonDocument &doc);
 };
 
-class Project
+class ProjectInstance
 {
 private:
-    ProjectDef* def;
+    Project* proto;
 
     std::vector<Variable> variables;
     std::vector<Command> commands;
@@ -34,19 +34,19 @@ private:
     std::vector<Reactor> reactors;
 
 public:
-    Project(/* args */);
-    ~Project();
+    ProjectInstance(/* args */);
+    ~ProjectInstance();
 };
 
-Project::Project(/* args */)
+ProjectInstance::ProjectInstance(/* args */)
 {
 }
 
-Project::~Project()
+ProjectInstance::~ProjectInstance()
 {
 }
 
-bool Project::Parse(JsonDocument &doc) {
+bool ProjectInstance::Parse(JsonDocument &doc) {
     
 
 

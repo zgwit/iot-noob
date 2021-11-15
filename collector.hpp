@@ -2,7 +2,7 @@
 
 #include "define.hpp"
 
-class CollectorDef: Define
+class Collector: Proto
 {
 public:
     std::string type;
@@ -19,20 +19,20 @@ public:
 
 
 
-class Collector
+class CollectorInstance
 {
 private:
-    CollectorDef* def;
+    Collector* proto;
     
 public:
-    Collector(/* args */);
-    ~Collector();
+    CollectorInstance(/* args */);
+    ~CollectorInstance();
 };
 
-Collector::Collector(/* args */)
+CollectorInstance::CollectorInstance(/* args */)
 {
 }
 
-Collector::~Collector()
+CollectorInstance::~CollectorInstance()
 {
 }
