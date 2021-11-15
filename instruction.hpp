@@ -3,7 +3,7 @@
 #include "define.hpp"
 #include "variable.hpp"
 
-class InstructionDefine: Define
+class InstructionDef: Define
 {
 public:
     std::string target;
@@ -12,25 +12,3 @@ public:
 
     bool Parse(JsonDocument &doc);
 };
-
-
-class Instruction
-{
-private:
-    InstructionDefine* define;
-
-    Variable* variablePtr;
-
-    /* data */
-public:
-    Instruction(/* args */);
-    ~Instruction();
-};
-
-Instruction::Instruction(/* args */)
-{
-}
-
-Instruction::~Instruction()
-{
-}

@@ -2,7 +2,7 @@
 
 #include "define.hpp"
 
-class CollectorDefine: Define
+class CollectorDef: Define
 {
 public:
     std::string type;
@@ -22,7 +22,7 @@ public:
 class Collector
 {
 private:
-    CollectorDefine* define;
+    CollectorDef* def;
     
 public:
     Collector(/* args */);

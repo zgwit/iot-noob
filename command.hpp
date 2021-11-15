@@ -1,8 +1,8 @@
 #pragma once
 
+#include "define.hpp"
 
-
-class CommandDefine: Define
+class CommandDef: Define
 {
 public:
     std::string name;

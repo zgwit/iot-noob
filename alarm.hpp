@@ -1,9 +1,8 @@
 #pragma once
-#include <string>
-#include <stdint.h>
+
 #include "define.hpp"
 
-class AlarmDefine : Define
+class AlarmDef : Define
 {
 public:
     std::string name;
@@ -20,7 +19,7 @@ public:
 class Alarm
 {
 public:
-    AlarmDefine *define;
+    AlarmDef* def;
 
     Variable *variablePtr;
 

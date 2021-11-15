@@ -1,8 +1,6 @@
 #pragma once
 
-#include <vector>
-
-#include <ArduinoJson.hpp>
+#include "define.hpp"
 
 #include "variable.hpp"
 #include "command.hpp"
@@ -10,11 +8,24 @@
 #include "job.hpp"
 #include "reactor.hpp"
 
+class ProjectDef {
+public:
+    std::string name;
+    std::string version;
+
+    std::vector<VariableDef> variables;
+    std::vector<CommandDef> commands;
+    std::vector<AlarmDef> alarms;
+    std::vector<JobDef> jobs;
+    std::vector<ReactorDef> reactors; 
+
+    bool Parse(JsonDocument &doc);
+};
+
 class Project
 {
 private:
-    std::string name;
-    std::string version;
+    ProjectDef* def;
 
     std::vector<Variable> variables;
     std::vector<Command> commands;
@@ -25,8 +36,6 @@ private:
 public:
     Project(/* args */);
     ~Project();
-
-    bool Parse(JsonDocument &doc);
 };
 
 Project::Project(/* args */)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include "define.hpp"
 
 #include "job.hpp"
 #include "collector.hpp"
@@ -9,26 +9,24 @@
 #include "variable.hpp"
 #include "sheet.hpp"
 
-class Element
+class ElementSlave
 {
-private:
-    /* data */
-    std::vector<Variable> variables;
-    std::vector<Sheet> sheets;
-    std::vector<Collector> collectors;
-    std::vector<Command> commands;
-    std::vector<Alarm> alarms;
-    std::vector<Job> jobs;
-
-public:
-    Element(/* args */);
-    ~Element();
+    uint8_t origin;
+    uint16_t address;
+    bool writable;
 };
 
-Element::Element(/* args */)
+class ElementDef : Define
 {
-}
+public:
+    std::string name;
+    std::string version;
+    ElementSlave slave;
 
-Element::~Element()
-{
-}
+    std::vector<VariableDef> variables;
+    std::vector<SheetDef> sheets;
+    std::vector<CollectorDef> collectors;
+    std::vector<CommandDef> commands;
+    std::vector<AlarmDef> alarms;
+    std::vector<JobDef> jobs;
+};
