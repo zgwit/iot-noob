@@ -3,49 +3,7 @@
 #include <map>
 #include <stdint.h>
 #include <stddef.h>
-
-typedef enum {
-    VariantTypeNone,
-    VariantTypeBool,
-    VariantTypeInt8,
-    VariantTypeUint8,
-    VariantTypeInt16,
-    VariantTypeUint16,
-    VariantTypeInt32,
-    VariantTypeUint32,
-    VariantTypeFloat,
-    VariantTypeDouble,
-    VariantTypeString,
-    VariantTypeArray,
-    VariantTypeObject,
-
-} VariantType;
-
-class Variant
-{
-private:
-    /* data */
-    union {
-        bool asBoolean;
-        float asFloat;
-        double asDouble;
-
-    } data;
-
-public:
-    Variant(/* args */);
-    ~Variant();
-};
-
-Variant::Variant(/* args */)
-{
-}
-
-Variant::~Variant()
-{
-}
-
-
+#include <string.h>
 
 class Context
 {
@@ -59,7 +17,7 @@ public:
 
     void getModified();
 
-    void setProperty(const char *name, void *value);
+    void Set(const char *name, void *value);
 };
 
 Context::Context(/* args */)
