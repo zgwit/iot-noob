@@ -12,8 +12,8 @@ private:
         OP_DOT, // .
 
         OP_NEG,   // - 负
-        OP_L_NOT, // ！ 非
-        OP_NOT,   // ~ 反
+        OP_NOT, // ！ 非
+        OP_BIT_NOT,   // ~ 反
 
         OP_ADD, // +
         OP_SUB, // -
@@ -32,14 +32,14 @@ private:
         OP_GT, // >
         OP_GE, // >=
 
-        OP_AND, // &
-        OP_OR,  // |
-        OP_XOR, // ^
+        OP_BIT_AND, // &
+        OP_BIT_OR,  // |
+        OP_BIT_XOR, // ^
 
-        OP_L_AND, // &&
-        OP_L_OR,  // ||
+        OP_AND, // &&
+        OP_OR,  // ||
 
-        OP_LET,   // =
+        OP_ASSIGN,   // =
         OP_COMMA, // ,
 
         OP_VAR,
