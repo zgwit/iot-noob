@@ -155,9 +155,7 @@
     <ClCompile Include="context.cpp" />
     <ClCompile Include="device.cpp" />
     <ClCompile Include="element.cpp" />
-    <ClCompile Include="ethernet.cpp" />
     <ClCompile Include="expression.cpp" />
-    <ClCompile Include="windows/fs.cpp" />
     <ClCompile Include="instruction.cpp" />
     <ClCompile Include="iot-noob.cpp" />
     <ClCompile Include="job.cpp" />
@@ -169,7 +167,11 @@
     <ClCompile Include="sheet.cpp" />
     <ClCompile Include="variable.cpp" />
     <ClCompile Include="variant.cpp" />
-    <ClCompile Include="wifi.cpp" />
+    <ClCompile Include="windows\ethernet.cpp" />
+    <ClCompile Include="windows\fs.cpp" />
+    <ClCompile Include="windows\serial.cpp" />
+    <ClCompile Include="windows\socket.cpp" />
+    <ClCompile Include="windows\wifi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="agent.hpp" />
@@ -191,7 +193,9 @@
     <ClInclude Include="ota.hpp" />
     <ClInclude Include="project.hpp" />
     <ClInclude Include="reactor.hpp" />
+    <ClInclude Include="serial.hpp" />
     <ClInclude Include="sheet.hpp" />
+    <ClInclude Include="socket.hpp" />
     <ClInclude Include="variable.hpp" />
     <ClInclude Include="variant.hpp" />
     <ClInclude Include="wifi.hpp" />
