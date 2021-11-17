@@ -48,9 +48,6 @@
     <ClCompile Include="expression.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="fs.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="instruction.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -82,6 +79,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="wifi.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="windows/fs.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

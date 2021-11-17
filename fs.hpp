@@ -6,13 +6,13 @@ class FileNode{
 public:
     std::string name;
     time_t last;
-    size_t length;
+    size_t size;
     bool isDirectory;
 };
 
 void fs_init();
 
-pointer<std::vector<FileNode>> fs_dir(std::string path);
+pointer<std::vector<FileNode>> fs_list(std::string path);
 bool fs_exists(const char *path);
 void fs_remove(const char *path);
 void fs_rename(const char *src, const char *dest);
