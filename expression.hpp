@@ -1,6 +1,8 @@
 #pragma once
 
-#include <ctype.h>
+#include "define.hpp"
+
+#include "tinyexpr/tinyexpr.h"
 
 #include "variable.hpp"
 #include "variant.hpp"
@@ -9,47 +11,7 @@
 class Expression
 {
 private:
-    typedef enum
-    {
-        OP_NONE,
-
-        OP_DOT, // .
-
-        OP_NEG,   // - 负
-        OP_NOT, // ！ 非
-        OP_BIT_NOT,   // ~ 反
-
-        OP_ADD, // +
-        OP_SUB, // -
-
-        OP_MUL, // *
-        OP_DIV, // /
-        OP_REM, // % MOD
-
-        OP_SHL, // <<
-        OP_SHR, // >>
-
-        OP_LT, // <
-        OP_LE, // <=
-        OP_EQ, // ==
-        OP_NE, // !=
-        OP_GT, // >
-        OP_GE, // >=
-
-        OP_BIT_AND, // &
-        OP_BIT_OR,  // |
-        OP_BIT_XOR, // ^
-
-        OP_AND, // &&
-        OP_OR,  // ||
-
-        OP_ASSIGN,   // =
-        OP_COMMA, // ,
-
-        OP_VAR,
-        OP_CONST,
-        OP_CALL,
-    } OP;
+    te_expr* _expr;
 
 private:
     /* data */
@@ -58,13 +20,7 @@ public:
     ~Expression();
 
     bool Parse(const char *expr);
-    Variant *Eval(Context &ctx);
-
-private:
-    size_t cursor;
-    size_t total;
-    char peek();
-    char next();
+    double Eval(Context &ctx);
 
 };
 
@@ -74,8 +30,23 @@ Expression::Expression(/* args */)
 
 Expression::~Expression()
 {
+    te_free(_expr);
 }
 
-Variant *Expression::Eval(Context &ctx)
+bool Expression::Parse(const char* expr)
 {
+    int err;
+    //释放历史
+    if (_expr) te_free(_expr);
+
+    _expr = te_compile(expr, NULL, 0, &err);
+    if (_expr)
+        return true;
+    else
+        return false;
+}
+
+double Expression::Eval(Context &ctx)
+{
+    return te_eval(_expr);
 }

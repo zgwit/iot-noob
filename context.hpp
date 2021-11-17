@@ -1,17 +1,21 @@
 #pragma once
 
-#include <map>
-#include <stdint.h>
-#include <stddef.h>
-#include <string.h>
+#include "define.hpp"
+#include "tinyexpr/tinyexpr.h"
 
-#include "variant.hpp"
+extern "C" {
+    double _max(double a, double b) { return a > b ? a : b; };
+    double _min(double a, double b) { return a < b ? a : b; };
+    double _if(double a, double b, double c) { return a > 0 ? b : c; };
+}
+
 
 class Context
 {
 private:
     /* data */
-    std::map<std::string, Variant*> _props;
+    std::map<std::string, double> _props;
+    te_variable* variable;
 
 public:
     Context(/* args */);
