@@ -1,5 +1,10 @@
+#include "fs.hpp"
 
-#include<LittleFS.h>
+
+#ifndef WIN32
+#include <LittleFS.h>
+#endif
+
 
 void FileSystem_Init() {
     LittleFS.begin();

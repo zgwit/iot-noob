@@ -1,5 +1,8 @@
 #pragma once
 
+#include "define.hpp"
+
+
 class Agent
 {
 private:

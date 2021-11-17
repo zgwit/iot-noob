@@ -19,7 +19,7 @@ public:
     std::vector<Job> jobs;
     std::vector<Reactor> reactors; 
 
-    bool Parse(JsonDocument &doc);
+    bool Parse(JsonObject& obj);
 };
 
 class ProjectInstance

@@ -10,5 +10,5 @@ public:
     std::string variable;
     Variant value;
 
-    bool Parse(JsonDocument &doc);
+    bool Parse(JsonObject& obj);
 };

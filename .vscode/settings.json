@@ -56,7 +56,16 @@
         "ratio": "cpp",
         "mutex": "cpp",
         "thread": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "bit": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "xmemory": "cpp",
+        "xstddef": "cpp",
+        "xstring": "cpp",
+        "xtr1common": "cpp",
+        "xtree": "cpp",
+        "xutility": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

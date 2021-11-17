@@ -14,7 +14,7 @@ public:
     uint16_t length;
 
 
-    bool Parse(JsonDocument &doc);
+    bool Parse(JsonObject& obj);
 };
 
 

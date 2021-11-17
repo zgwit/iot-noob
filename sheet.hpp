@@ -18,7 +18,7 @@ public:
     bool readable;
     bool writable;
 
-    bool Parse(JsonDocument &doc) override;
+    bool Parse(JsonObject& obj) override;
 };
 
 class Sheet

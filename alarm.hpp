@@ -1,19 +1,20 @@
 #pragma once
 
 #include "define.hpp"
+#include "variable.hpp"
 
 class Alarm : Proto
 {
 public:
     std::string name;
-    unsigned int level;
     std::string variable;
 
+    unsigned int level;
     unsigned int timeout;
     unsigned int resetInterval;
     unsigned int resetTotal;
 
-    bool Parse(JsonDocument &doc);
+    bool Parse(JsonObject& obj);
 };
 
 class AlarmInstance
@@ -29,7 +30,7 @@ public:
 
 public:
     AlarmInstance(/* args */);
-    ~Alarm();
+    ~AlarmInstance();
 };
 
 AlarmInstance::AlarmInstance(/* args */)

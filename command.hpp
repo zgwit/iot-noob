@@ -11,5 +11,5 @@ public:
 
     std::vector<Instruction*> instructions;
 
-    bool Parse(JsonDocument &doc);
+    bool Parse(JsonObject& obj);
 };
