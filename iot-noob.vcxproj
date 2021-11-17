@@ -169,7 +169,7 @@
     <ClCompile Include="variant.cpp" />
     <ClCompile Include="windows\ethernet.cpp" />
     <ClCompile Include="windows\fs.cpp" />
-    <ClCompile Include="windows\serial.cpp" />
+    <ClCompile Include="windows\rs485.cpp" />
     <ClCompile Include="windows\socket.cpp" />
     <ClCompile Include="windows\wifi.cpp" />
   </ItemGroup>

@@ -75,13 +75,13 @@
     <ClCompile Include="variant.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="windows/fs.cpp">
+    <ClCompile Include="windows\fs.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="windows\ethernet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="windows\serial.cpp">
+    <ClCompile Include="windows\rs485.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="windows\socket.cpp">
