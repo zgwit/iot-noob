@@ -4,3 +4,6 @@
 [submodule "libmodbus"]
 	path = libmodbus
 	url = https://github.com/stephane/libmodbus
+[submodule "tinyexpr"]
+	path = tinyexpr
+	url = https://github.com/codeplea/tinyexpr
