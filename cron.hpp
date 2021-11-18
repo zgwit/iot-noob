@@ -28,6 +28,8 @@ public:
 			}
 			it.tick = cron_next(&it.expr, now);
 		}
+		//按照时间排序
+		//crons.sort([](cron_item& a, cron_item& b) {	return a.tick < b.tick;	});
 	}
 
 private:
@@ -42,9 +44,6 @@ Cron::Cron()
 Cron::~Cron()
 {
 	//crons.front().expr;
-	//按照时间排序
-	crons.sort([](cron_item& a, cron_item& b) {
-		return a.tick < b.tick;
-	});
+	
 
 }
