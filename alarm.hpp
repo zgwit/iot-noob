@@ -3,11 +3,16 @@
 #include "define.hpp"
 #include "variable.hpp"
 
+
 class Alarm : Proto
 {
 public:
     std::string name;
     std::string variable;
+    bool enable;
+
+    std::vector<RangeTime> times;
+    RangeWeek weeks;
 
     unsigned int level;
     unsigned int timeout;

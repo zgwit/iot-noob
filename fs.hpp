@@ -7,18 +7,18 @@ public:
     std::string name;
     time_t last;
     size_t size;
-    bool isDirectory;
+    bool isDir;
 };
 
-void fs_init();
+bool fs_init();
 
-pointer<std::vector<FileNode>> fs_list(std::string path);
+Pointer<std::vector<FileNode>> fs_list(const char *path);
 bool fs_exists(const char *path);
-void fs_remove(const char *path);
-void fs_rename(const char *src, const char *dest);
-void fs_mkdir(const char *path);
-void fs_rmdir(const char *path);
+bool fs_remove(const char *path);
+bool fs_rename(const char *src, const char *dest);
+bool fs_mkdir(const char *path);
+bool fs_rmdir(const char *path);
 
-//TODO 以下设计不合理
+//TODO 以下设计不合理，待优化
 const uint8_t *file_read(const char *path);
-void file_write(const char *path, const uint8_t *buffer);
+bool file_write(const char *path, const uint8_t *buffer);

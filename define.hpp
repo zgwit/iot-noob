@@ -15,7 +15,7 @@
 #include <algorithm>
 
 
-#define pointer std::shared_ptr
+#define Pointer std::shared_ptr
 
 
 #define ARDUINOJSON_ENABLE_STD_STRING
@@ -27,3 +27,12 @@ class Proto
 public:
     virtual bool Parse(JsonObject& obj) = 0;
 };
+
+
+typedef struct RangeTime {
+    uint16_t start;
+    uint16_t end;
+}RangeTime;
+
+typedef uint16_t RangeWeek;
+#define testRangeWeek(r,d) ((0x1<<d)&r)
