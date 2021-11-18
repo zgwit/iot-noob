@@ -7,3 +7,6 @@
 [submodule "tinyexpr"]
 	path = tinyexpr
 	url = https://github.com/codeplea/tinyexpr
+[submodule "ccronexpr"]
+	path = ccronexpr
+	url = https://github.com/staticlibs/ccronexpr
