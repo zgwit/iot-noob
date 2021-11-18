@@ -32,4 +32,5 @@ JobInstance::JobInstance(/* args */)
 
 JobInstance::~JobInstance()
 {
+    //proto->commands.data();
 }
