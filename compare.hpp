@@ -5,6 +5,20 @@
 class CompareProfile
 {
 public:
+
+    std::string variable;
+    std::string compare;
+    double value1;
+    double value2;
+
+    bool Parse(cJSON* json);
+};
+
+class Compare
+{
+public:
+    CompareProfile* profile;
+
     enum class OP
     {
         NONE = 0,
@@ -18,18 +32,28 @@ public:
         NB,
     };
 
-    OP op;
+    OP compare;
 
-    std::string variable;
-    double value1;
-    double value2;
+    double* variable;
 
+
+public:
+    Compare();
+    ~Compare();
+
+private:
     OP ParseOperator(const char* op);
-
-    bool Parse(cJSON* json);
 };
 
-Compare::OP Compare::ParseOperator(const char *op)
+Compare::Compare()
+{
+}
+
+Compare::~Compare()
+{
+}
+
+Compare::OP Compare::ParseOperator(const char* op)
 {
     if (!strcmp(op, "lt") || !strcmp(op, "<"))
         return OP::LT;

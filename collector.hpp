@@ -5,15 +5,16 @@
 class CollectorProfile
 {
 public:
-    std::string type;`
+    bool enable;
 
-    uint16_t interval;
+    std::string type; // interal, crontab
+
+    uint16_t interval; // seconds
     std::string crontab;
 
     uint8_t code;
     uint16_t address;
     uint16_t length;
-
 
     bool Parse(cJSON* json);
 };

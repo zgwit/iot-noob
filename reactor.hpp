@@ -2,33 +2,34 @@
 
 #include "define.hpp"
 #include "compare.hpp"
-
+#include "command.hpp"
 
 class ReactorProfile
 {
 public:
-    //std::string name;
     bool enable;
 
-    std::vector<CompareProfile> compare;
+    std::vector<CompareProfile> compares;
 
-    std::vector<RangeTime> times;
-    RangeWeek weeks;
+    std::vector<DailyRange> dailyRanges;
+    WeekRange weekRange;
 
-    unsigned int level;
-    unsigned int timeout;
-    unsigned int resetInterval;
-    unsigned int resetTotal;
+    int delay;
+
+    StatusReset reset;
 
     std::vector<InvokeProfile> commands;
 
     bool Parse(cJSON* json);
 };
 
+
 class Reactor {
 public:
     ReactorProfile* profile;
 
-
+    time_t start;
+    bool reported;
+    unsigned int resetTimes;
 };
 

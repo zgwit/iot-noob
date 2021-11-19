@@ -1,18 +1,23 @@
 #pragma once
 
 #include "define.hpp"
+#include "command.hpp"
 
 class JobProfile
 {
 public:
+    bool enable;
+
     std::string type; //daily, crontab
 
-    uint16_t minues; //daily ÁãµãÆğ·ÖÖÓÊı
-    uint16_t weeks; //daily Ã¿ÖÜÉúĞ§ÈÕ
+    uint16_t daily; //daily é›¶ç‚¹èµ·åˆ†é’Ÿæ•°
+    WeekRange weekRange; //daily æ¯å‘¨ç”Ÿæ•ˆæ—¥
 
     std::string crontab; //crontab
 
     std::vector<InvokeProfile> commands;
+
+    bool Parse(cJSON* json);
 };
 
 class Job

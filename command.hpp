@@ -24,3 +24,24 @@ public:
 
     bool Parse(cJSON *json);
 };
+
+class Command
+{
+public:
+    CommandProfile* profile;
+
+
+	Command();
+	~Command();
+
+private:
+
+};
+
+Command::Command()
+{
+}
+
+Command::~Command()
+{
+}

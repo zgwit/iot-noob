@@ -2,36 +2,43 @@
 
 #include "define.hpp"
 #include "element.hpp"
+#include "context.hpp"
 
-class Device: Proto
+class DeviceProfile
 {
 public:
+    bool enable;
+
     std::string name;
     uint8_t slave;
     std::string element;
 
+    bool Parse(cJSON* json);
 };
 
 
 
-class DeviceInstance
+class Device
 {
 private:
-    Device* proto;
-    Element* element;
+    DeviceProfile* profile;
+    ElementProfile* element;
 
     //TODO 上下文，采集器，定时器 等
+    Context context;
+    std::map<std::string, Command*> commands;
+
 
 
 public:
-    DeviceInstance(/* args */);
-    ~DeviceInstance();
+    Device(/* args */);
+    ~Device();
 };
 
-DeviceInstance::DeviceInstance(/* args */)
+Device::Device(/* args */)
 {
 }
 
-DeviceInstance::~DeviceInstance()
+Device::~Device()
 {
 }

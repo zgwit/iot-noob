@@ -17,4 +17,27 @@ public:
     bool Parse(cJSON* json);
 };
 
+class Instruction
+{
+private:
+    InstructionProfile* profile;
+
+public:
+	Instruction(InstructionProfile* profile);
+	~Instruction();
+
+private:
+
+};
+
+Instruction::Instruction(InstructionProfile* p)
+{
+    profile = p;
+    //TODO ±‡“Î±Ì¥Ô Ω
+}
+
+Instruction::~Instruction()
+{
+}
+
 

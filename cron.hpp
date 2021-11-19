@@ -6,11 +6,12 @@ extern "C" {
 	#include "ccronexpr/ccronexpr.h"
 }
 
-typedef struct {
+class CronJob{
+public:
 	cron_expr expr;
 	time_t tick;
-	void* callback;
-}cron_item;
+	std::function<void()> callback;
+};
 
 class Cron
 {
@@ -24,18 +25,30 @@ public:
 			if (it.tick < now) {
 				it.expr;
 				//执行回调
-				//it.callback();
+				it.callback();
 			}
 			it.tick = cron_next(&it.expr, now);
 		}
+
 		//按照时间排序
 		//crons.sort([](cron_item& a, cron_item& b) {	return a.tick < b.tick;	});
 	}
 
+	CronJob* Create(const char* crontab, std::function<void()> callback) {
+		//CronJob
+		crons.push_back()
+	}
+
+	bool Cancel(CronJob& job) {
+		crons.remove(job);
+	}
+
 private:
-	std::list<cron_item> crons;
+	std::list<CronJob> crons;
 
 };
+
+Cron Cron;
 
 Cron::Cron()
 {

@@ -12,7 +12,8 @@
 #include <numeric>
 #include <algorithm>
 
-#include "cjson/cJSON.h"
+#include "json.hpp"
+//#include "cjson/cJSON.h"
 
 
 #define Pointer std::shared_ptr
@@ -25,13 +26,29 @@ public:
 };
 
 
-typedef struct RangeTime {
+struct DailyRange {
     uint16_t start;
     uint16_t end;
-}RangeTime;
 
-typedef uint16_t RangeWeek;
-#define testRangeWeek(r,d) ((0x1<<d)&r)
+    bool Parse(cJSON* json) {
+        json_get_int(this, json, start);
+        json_get_int(this, json, end);
+    }
+};
+
+typedef uint16_t WeekRange;
+#define testWeekRange(r,d) ((0x1<<d)&r)
+
+struct StatusReset {
+    unsigned int interval;
+    unsigned int total;
+
+    bool Parse(cJSON* json) {
+        json_get_int(this, json, interval);
+        json_get_int(this, json, total);
+    }
+};
+
 
 
 

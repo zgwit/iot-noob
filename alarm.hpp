@@ -7,20 +7,20 @@
 class AlarmProfile
 {
 public:
-    std::string name;
-    std::string content;
-    
     bool enable;
 
-    std::vector<CompareProfile> compare;
-
-    std::vector<RangeTime> times;
-    RangeWeek weeks;
-
+    std::string name;
     unsigned int level;
-    unsigned int timeout;
-    unsigned int resetInterval;
-    unsigned int resetTotal;
+    
+
+    std::vector<CompareProfile> compares;
+
+    std::vector<DailyRange> dailyRanges;
+    WeekRange weekRange;
+
+    unsigned int delay;
+
+    StatusReset reset;
 
     bool Parse(cJSON* json);
 };
@@ -29,9 +29,7 @@ public:
 class Alarm
 {
 public:
-    Alarm* proto;
-
-    Variable *variablePtr;
+    AlarmProfile* profile;
 
     time_t start;
     bool reported;

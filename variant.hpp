@@ -10,7 +10,7 @@
 class Variant
 {
 public:
-    typedef enum
+    enum class Type
     {
         NONE,
         BOOL,
@@ -24,7 +24,7 @@ public:
         STRING,
         ARRAY,
         OBJECT,
-    } Type;
+    };
 
 private:
     union
@@ -61,26 +61,26 @@ Variant::~Variant()
 Variant::Type Variant::ParseType(const char *name)
 {
     if (!strcmp(name, "bool"))
-        return BOOL;
+        return Type::BOOL;
     if (!strcmp(name, "byte"))
-        return BYTE;
+        return Type::BYTE;
     if (!strcmp(name, "word"))
-        return WORD;
+        return Type::WORD;
     if (!strcmp(name, "dword"))
-        return DWORD;
+        return Type::DWORD;
     if (!strcmp(name, "int"))
-        return INT;
+        return Type::INT;
     if (!strcmp(name, "dint"))
-        return DINT;
+        return Type::DINT;
     if (!strcmp(name, "float"))
-        return FLOAT;
+        return Type::FLOAT;
     if (!strcmp(name, "double"))
-        return DOUBLE;
+        return Type::DOUBLE;
     if (!strcmp(name, "string"))
-        return STRING;
+        return Type::STRING;
     if (!strcmp(name, "array"))
-        return ARRAY;
+        return Type::ARRAY;
     if (!strcmp(name, "object"))
-        return OBJECT;
-    return NONE;
+        return Type::OBJECT;
+    return Type::NONE;
 }
