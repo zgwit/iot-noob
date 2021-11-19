@@ -12,7 +12,7 @@ public:
 
 bool fs_init();
 
-Pointer<std::vector<FileNode>> fs_list(const char *path);
+void fs_list(const char *path);
 bool fs_exists(const char *path);
 bool fs_remove(const char *path);
 bool fs_rename(const char *src, const char *dest);

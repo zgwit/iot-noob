@@ -3,7 +3,7 @@
 #include "define.hpp"
 #include "variant.hpp"
 #include "point.hpp"
-#include "device.hpp"
+//#include "device.hpp"
 
 
 class InstructionProfile
@@ -24,8 +24,8 @@ class Instruction
 private:
     InstructionProfile* profile;
 
-    Device* device;
-    Point* point;
+    //Device* device;
+    //Point* point;
 
 public:
 	Instruction(InstructionProfile* profile);

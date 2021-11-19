@@ -2,8 +2,7 @@
 
 bool CompareProfile::Parse(cJSON* json)
 {
-    if (!json)
-        return false;
+    if (!json) return false;
 
 	json_get_string(this, json, device);
 	json_get_string(this, json, variable);

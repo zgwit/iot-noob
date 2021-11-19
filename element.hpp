@@ -11,8 +11,9 @@
 
 class ElementSlave
 {
-    uint8_t origin;
-    uint16_t address;
+public:
+    int value;
+    int address;
     bool writable;
 
     bool Parse(cJSON* json);

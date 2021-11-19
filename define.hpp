@@ -11,6 +11,7 @@
 #include <list>
 #include <numeric>
 #include <algorithm>
+#include <functional>
 
 #include "json.hpp"
 //#include "cjson/cJSON.h"
@@ -30,7 +31,7 @@ struct DailyRange {
     uint16_t start;
     uint16_t end;
 
-    bool Parse(cJSON* json) {
+    void Parse(cJSON* json) {
         json_get_int(this, json, start);
         json_get_int(this, json, end);
     }
@@ -43,7 +44,7 @@ struct StatusReset {
     unsigned int interval;
     unsigned int total;
 
-    bool Parse(cJSON* json) {
+    void Parse(cJSON* json) {
         json_get_int(this, json, interval);
         json_get_int(this, json, total);
     }

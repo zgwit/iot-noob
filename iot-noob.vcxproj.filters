@@ -66,7 +66,7 @@
     <ClCompile Include="reactor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="sheet.cpp">
+    <ClCompile Include="point.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="variable.cpp">
@@ -88,6 +88,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="windows\wifi.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cron.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -149,7 +152,7 @@
     <ClInclude Include="reactor.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="sheet.hpp">
+    <ClInclude Include="point.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="variable.hpp">
@@ -165,6 +168,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="wifi.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cron.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,9 +27,9 @@ public:
     Context(/* args */);
     ~Context();
 
-    void getModified();
+    //void getModified();
 
-    void Set(const char *name, void *value);
+    //void Set(const char *name, void *value);
 };
 
 Context::Context(/* args */)

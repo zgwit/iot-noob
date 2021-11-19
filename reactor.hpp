@@ -18,7 +18,7 @@ public:
 
     StatusReset reset;
 
-    std::vector<InvokeProfile> commands;
+    std::vector<InvokeProfile> invokes;
 
     bool Parse(cJSON* json);
 };

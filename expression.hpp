@@ -40,10 +40,7 @@ bool Expression::Parse(const char* expr)
     if (_expr) te_free(_expr);
 
     _expr = te_compile(expr, NULL, 0, &err);
-    if (_expr)
-        return true;
-    else
-        return false;
+    return _expr != nullptr;
 }
 
 double Expression::Eval(Context &ctx)

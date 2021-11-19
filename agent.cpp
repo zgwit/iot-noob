@@ -2,17 +2,17 @@
 
 //using namespace std;
 
-typedef void (*AgentHandler)(JsonDocument &req, JsonDocument &resp);
+typedef void (*AgentHandler)(cJSON *req, cJSON *resp);
 
 class AgentNode
 {
 public:
   std::vector<AgentHandler> handlers;
   //AgentHandler _handler;
-  std::map<String, AgentNode *> childrens;
+  std::map<std::string, AgentNode *> childrens;
 
 public:
-  void Route(String path, AgentHandler handler)
+  void Route(std::string path, AgentHandler handler)
   {
     if (path == "")
     {
@@ -21,9 +21,9 @@ public:
       return;
     }
 
-    int c = path.indexOf('/');
-    String node = path.substring(0, c);
-    String next = path.substring(c);
+    int c = path.find_first_of('/');
+    std::string node = path.substr(0, c);
+    std::string next = path.substr(c);
     if (childrens.find(node) == childrens.end())
     {
       childrens[node] = new AgentNode();
@@ -31,7 +31,7 @@ public:
     childrens[node]->Route(next, handler);
   }
 
-  void Walk(String path, JsonDocument &req, JsonDocument &resp)
+  void Walk(std::string path, cJSON* req, cJSON* resp)
   {
     if (path == "")
     {
@@ -44,9 +44,9 @@ public:
       return;
     }
 
-    int c = path.indexOf('/');
-    String node = path.substring(0, c);
-    String next = path.substring(c);
+    int c = path.find_first_of('/');
+    std::string node = path.substr(0, c);
+    std::string next = path.substr(c);
     auto iter = childrens.find(node);
     if (iter == childrens.end())
     {
@@ -58,7 +58,7 @@ public:
 
 AgentNode root;
 
-void sysInfo(JsonDocument &req, JsonDocument &resp)
+void sysInfo(cJSON* req, cJSON* resp)
 {
 }
 
@@ -67,15 +67,8 @@ void Agent_Init()
   root.Route("sys/info", sysInfo);
 }
 
-void AgentHandle(Stream &stream)
+void AgentHandle() //(Stream &stream)
 {
-  DynamicJsonDocument request(1024);
-  StaticJsonDocument<200> response;
-  deserializeJson(request, stream);
-  String path = request["path"];
-  response["path"] = path;
-  root.Walk(path, request, response);
-  String output;
-  serializeJson(response, output);
+
   //return output;
 }

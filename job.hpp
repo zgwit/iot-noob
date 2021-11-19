@@ -15,7 +15,7 @@ public:
 
     std::string crontab; //crontab
 
-    std::vector<InvokeProfile> commands;
+    std::vector<InvokeProfile> invokes;
 
     bool Parse(cJSON* json);
 };
