@@ -1,15 +1,18 @@
 #pragma once
 
 #include "define.hpp"
-#include "variable.hpp"
+#include "compare.hpp"
 
 
-class Alarm : Proto
+class AlarmProfile
 {
 public:
     std::string name;
-    std::string variable;
+    std::string content;
+    
     bool enable;
+
+    std::vector<CompareProfile> compare;
 
     std::vector<RangeTime> times;
     RangeWeek weeks;
@@ -19,10 +22,11 @@ public:
     unsigned int resetInterval;
     unsigned int resetTotal;
 
-    bool Parse(JsonObject& obj);
+    bool Parse(cJSON* json);
 };
 
-class AlarmInstance
+
+class Alarm
 {
 public:
     Alarm* proto;
@@ -34,14 +38,14 @@ public:
     unsigned int resetTimes;
 
 public:
-    AlarmInstance(/* args */);
-    ~AlarmInstance();
+    Alarm(/* args */);
+    ~Alarm();
 };
 
-AlarmInstance::AlarmInstance(/* args */)
+Alarm::Alarm(/* args */)
 {
 }
 
-AlarmInstance::~AlarmInstance()
+Alarm::~Alarm()
 {
 }

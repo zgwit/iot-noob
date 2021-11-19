@@ -3,12 +3,18 @@
 #include "define.hpp"
 #include "variant.hpp"
 
-class Instruction: Proto
+
+class InstructionProfile
 {
 public:
     std::string target;
     std::string variable;
-    Variant value;
 
-    bool Parse(JsonObject& obj);
+    double value;
+
+    std::string expr;
+
+    bool Parse(cJSON* json);
 };
+
+

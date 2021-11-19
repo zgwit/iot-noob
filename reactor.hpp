@@ -3,16 +3,31 @@
 #include "define.hpp"
 #include "compare.hpp"
 
-class Reactor: Proto
+
+class ReactorProfile
 {
 public:
-    Compare compare;
+    //std::string name;
+    bool enable;
 
+    std::vector<CompareProfile> compare;
+
+    std::vector<RangeTime> times;
+    RangeWeek weeks;
+
+    unsigned int level;
+    unsigned int timeout;
+    unsigned int resetInterval;
+    unsigned int resetTotal;
+
+    std::vector<InvokeProfile> commands;
+
+    bool Parse(cJSON* json);
 };
 
-class ReactorInstance {
+class Reactor {
 public:
-    Reactor* proto;
+    ReactorProfile* profile;
 
 
 };

@@ -2,35 +2,34 @@
 
 #include "define.hpp"
 
-class Job : Proto
+class JobProfile
 {
 public:
-    std::string type; //interval, daily, crontab
-    uint32_t interval; //interval ms
+    std::string type; //daily, crontab
 
     uint16_t minues; //daily 零点起分钟数
     uint16_t weeks; //daily 每周生效日
 
     std::string crontab; //crontab
 
-    std::vector<Command*> commands;
+    std::vector<InvokeProfile> commands;
 };
 
-class JobInstance
+class Job
 {
 private:
-    Job* proto;
+    JobProfile* profile;
     
 public:
-    JobInstance(/* args */);
-    ~JobInstance();
+    Job(/* args */);
+    ~Job();
 };
 
-JobInstance::JobInstance(/* args */)
+Job::Job(/* args */)
 {
 }
 
-JobInstance::~JobInstance()
+Job::~Job()
 {
     //proto->commands.data();
 }

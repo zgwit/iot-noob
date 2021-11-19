@@ -8,24 +8,24 @@
 #include "job.hpp"
 #include "reactor.hpp"
 
-class Project {
+class ProjectProfile {
 public:
     std::string name;
     std::string version;
 
-    std::vector<Variable> variables;
-    std::vector<Command> commands;
-    std::vector<Alarm> alarms;
-    std::vector<Job> jobs;
-    std::vector<Reactor> reactors; 
+    std::vector<VariableProfile> variables;
+    std::vector<CommandProfile> commands;
+    std::vector<AlarmProfile> alarms;
+    std::vector<JobProfile> jobs;
+    std::vector<ReactorProfile> reactors; 
 
-    bool Parse(JsonObject& obj);
+    bool Parse(cJSON* json);
 };
 
-class ProjectInstance
+class Project
 {
 private:
-    Project* proto;
+    ProjectProfile* profile;
 
     std::vector<Variable> variables;
     std::vector<Command> commands;
@@ -34,14 +34,14 @@ private:
     std::vector<Reactor> reactors;
 
 public:
-    ProjectInstance(/* args */);
-    ~ProjectInstance();
+    Project(/* args */);
+    ~Project();
 };
 
-ProjectInstance::ProjectInstance(/* args */)
+Project::Project(/* args */)
 {
 }
 
-ProjectInstance::~ProjectInstance()
+Project::~Project()
 {
 }

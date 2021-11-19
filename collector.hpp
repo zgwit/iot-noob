@@ -2,37 +2,38 @@
 
 #include "define.hpp"
 
-class Collector: Proto
+class CollectorProfile
 {
 public:
-    std::string type;
-    std::string crontab;
+    std::string type;`
+
     uint16_t interval;
+    std::string crontab;
 
     uint8_t code;
     uint16_t address;
     uint16_t length;
 
 
-    bool Parse(JsonObject& obj);
+    bool Parse(cJSON* json);
 };
 
 
 
-class CollectorInstance
+class Collector
 {
 private:
-    Collector* proto;
+    CollectorProfile* profile;
     
 public:
-    CollectorInstance(/* args */);
-    ~CollectorInstance();
+    Collector(/* args */);
+    ~Collector();
 };
 
-CollectorInstance::CollectorInstance(/* args */)
+Collector::Collector(/* args */)
 {
 }
 
-CollectorInstance::~CollectorInstance()
+Collector::~Collector()
 {
 }

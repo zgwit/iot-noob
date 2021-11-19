@@ -1,5 +1,11 @@
 #pragma once
 
+class VariableProfile {
+public:
+    std::string name;
+    
+};
+
 class Variable
 {
 private:

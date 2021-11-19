@@ -3,13 +3,24 @@
 #include "define.hpp"
 #include "instruction.hpp"
 
-class Command: Proto
+
+class CommandProfile
 {
 public:
     std::string name;
     std::string label;
+    unsigned int argc;
 
-    std::vector<Instruction*> instructions;
+    std::vector<InstructionProfile> instructions;
 
-    bool Parse(JsonObject& obj);
+    bool Parse(cJSON *json);
+};
+
+class InvokeProfile
+{
+public:
+    std::string command;
+    std::vector<double> argv;
+
+    bool Parse(cJSON *json);
 };

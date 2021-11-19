@@ -2,47 +2,50 @@
 
 #include "define.hpp"
 
-class Compare : Proto
+class CompareProfile
 {
 public:
-    typedef enum
+    enum class OP
     {
-        OP_NONE,
-        OP_LT,
-        OP_LE,
-        OP_EQ,
-        OP_NE,
-        OP_GT,
-        OP_GE,
-        OP_BT,
-        OP_NB,
-    } OP;
+        NONE = 0,
+        LT,
+        LE,
+        EQ,
+        NE,
+        GT,
+        GE,
+        BT,
+        NB,
+    };
 
     OP op;
+
     std::string variable;
     double value1;
     double value2;
 
     OP ParseOperator(const char* op);
+
+    bool Parse(cJSON* json);
 };
 
 Compare::OP Compare::ParseOperator(const char *op)
 {
     if (!strcmp(op, "lt") || !strcmp(op, "<"))
-        return OP_LT;
+        return OP::LT;
     if (!strcmp(op, "le") || !strcmp(op, "<="))
-        return OP_LE;
+        return OP::LE;
     if (!strcmp(op, "eq") || !strcmp(op, "=="))
-        return OP_EQ;
+        return OP::EQ;
     if (!strcmp(op, "ne") || !strcmp(op, "!="))
-        return OP_NE;
+        return OP::NE;
     if (!strcmp(op, "gt") || !strcmp(op, ">"))
-        return OP_GT;
+        return OP::GT;
     if (!strcmp(op, "ge") || !strcmp(op, ">="))
-        return OP_GE;
+        return OP::GE;
     if (!strcmp(op, "bt") || !strcmp(op, "~"))
-        return OP_BT;
+        return OP::BT;
     if (!strcmp(op, "nb") || !strcmp(op, "!~"))
-        return OP_NB;
-    return OP_NONE;
+        return OP::NB;
+    return OP::NONE;
 }
