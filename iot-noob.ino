@@ -10,7 +10,7 @@
 #include "wifi.hpp"
 
 void setup(){
-  FileSystem_Init();
+  fs_init();
   WiFi_Init();
 
 }
