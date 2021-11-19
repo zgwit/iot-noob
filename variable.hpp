@@ -4,6 +4,7 @@ class VariableProfile {
 public:
     std::string name;
     double value;
+    std::string expr;
 
     bool Parse(cJSON* json);
 };

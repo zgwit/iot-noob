@@ -14,43 +14,46 @@ enum DataType {
     DOUBLE,
 };
 
-class SheetProfile
+class PointProfile
 {
 public:
     std::string name;
     std::string label;
     std::string unit;
+    double value; //默认值
 
-    DataType type;
+    std::string type;
+    //DataType type;
 
     std::string crontab;
-    uint16_t interval;
+    int interval;
 
-    uint8_t code;
-    uint16_t address;
-    uint8_t precision;
-    bool le;
+    int code;
+    int address;
+    int precision;
+
+    bool littleEndian;
     bool readable;
     bool writable;
 
     bool Parse(cJSON* json);
 };
 
-class Sheet
+class Point
 {
 private:
-    SheetProfile *profile;
+    PointProfile *profile;
 
     /* data */
 public:
-    Sheet(/* args */);
-    ~Sheet();
+    Point(/* args */);
+    ~Point();
 };
 
-Sheet::Sheet(/* args */)
+Point::Point(/* args */)
 {
 }
 
-Sheet::~Sheet()
+Point::~Point()
 {
 }

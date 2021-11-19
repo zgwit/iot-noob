@@ -7,7 +7,7 @@
 #include "command.hpp"
 #include "alarm.hpp"
 #include "variable.hpp"
-#include "sheet.hpp"
+#include "point.hpp"
 
 class ElementSlave
 {
@@ -26,7 +26,7 @@ public:
     ElementSlave slave;
 
     std::vector<VariableProfile> variables;
-    std::vector<SheetProfile> sheets;
+    std::vector<PointProfile> points;
     std::vector<CollectorProfile> collectors;
     std::vector<CommandProfile> commands;
     std::vector<AlarmProfile> alarms;

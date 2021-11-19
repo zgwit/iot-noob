@@ -5,11 +5,12 @@
 class CompareProfile
 {
 public:
-
+    std::string device;
     std::string variable;
+
     std::string compare;
-    double value1;
-    double value2;
+
+    double value;
 
     bool Parse(cJSON* json);
 };
@@ -61,15 +62,11 @@ Compare::OP Compare::ParseOperator(const char* op)
         return OP::LE;
     if (!strcmp(op, "eq") || !strcmp(op, "=="))
         return OP::EQ;
-    if (!strcmp(op, "ne") || !strcmp(op, "!="))
+    if (!strcmp(op, "ne") || !strcmp(op, "!=") || !strcmp(op, "<>"))
         return OP::NE;
     if (!strcmp(op, "gt") || !strcmp(op, ">"))
         return OP::GT;
     if (!strcmp(op, "ge") || !strcmp(op, ">="))
         return OP::GE;
-    if (!strcmp(op, "bt") || !strcmp(op, "~"))
-        return OP::BT;
-    if (!strcmp(op, "nb") || !strcmp(op, "!~"))
-        return OP::NB;
     return OP::NONE;
 }

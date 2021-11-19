@@ -2,13 +2,15 @@
 
 #include "define.hpp"
 #include "variant.hpp"
+#include "point.hpp"
+#include "device.hpp"
 
 
 class InstructionProfile
 {
 public:
-    std::string target;
-    std::string variable;
+    std::string device;
+    std::string point;
 
     double value;
 
@@ -21,6 +23,9 @@ class Instruction
 {
 private:
     InstructionProfile* profile;
+
+    Device* device;
+    Point* point;
 
 public:
 	Instruction(InstructionProfile* profile);

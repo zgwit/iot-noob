@@ -8,16 +8,7 @@ bool CommandProfile::Parse(cJSON* json)
 	json_get_string(this, json, name);
 	json_get_string(this, json, label);
 	json_get_int(this, json, argc);
-
-	auto _instructions = json_get(json, instructions);
-	if (json_is_array(_instructions)) {
-		instructions.resize(json_array_size(_instructions));
-		auto iter = instructions.begin();
-		json_array_foreach(_instructions, ins) {
-			iter->Parse(ins);
-			iter++;
-		}
-	}
+	json_get_object_array(this, json, instructions);
 
 	return true;
 }
@@ -28,14 +19,7 @@ bool InvokeProfile::Parse(cJSON* json)
 		return false;
 
 	json_get_string(this, json, command);
-	auto _argv = json_get(json, argv);
-	if (json_is_array(_argv)) {
-		argv.resize(json_array_size(_argv));
-		auto iter = argv.begin();
-		json_array_foreach(_argv, v) {
-			*iter = cJSON_GetNumberValue(v);
-		}
-	}
+	json_get_number_array(this, json, argv);
 
 	return true;
 }
