@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="iot-noob.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="agent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="cron.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

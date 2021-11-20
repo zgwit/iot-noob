@@ -158,7 +158,6 @@
     <ClCompile Include="element.cpp" />
     <ClCompile Include="expression.cpp" />
     <ClCompile Include="instruction.cpp" />
-    <ClCompile Include="iot-noob.cpp" />
     <ClCompile Include="job.cpp" />
     <ClCompile Include="modbus.cpp" />
     <ClCompile Include="mqtt.cpp" />
@@ -170,6 +169,7 @@
     <ClCompile Include="variant.cpp" />
     <ClCompile Include="windows\ethernet.cpp" />
     <ClCompile Include="windows\fs.cpp" />
+    <ClCompile Include="windows\main.cpp" />
     <ClCompile Include="windows\rs485.cpp" />
     <ClCompile Include="windows\socket.cpp" />
     <ClCompile Include="windows\wifi.cpp" />
