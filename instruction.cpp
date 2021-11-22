@@ -12,3 +12,16 @@ bool InstructionProfile::Parse(cJSON* json)
 
     return true;
 }
+
+
+Instruction::Instruction(InstructionProfile* p)
+{
+	profile = p;
+	//TODO ±‡“Î±Ì¥Ô Ω
+}
+
+Instruction::~Instruction()
+{
+}
+
+

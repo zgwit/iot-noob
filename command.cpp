@@ -21,3 +21,13 @@ bool InvokeProfile::Parse(cJSON* json)
 
 	return true;
 }
+
+
+
+Command::Command()
+{
+}
+
+Command::~Command()
+{
+}

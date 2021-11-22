@@ -22,7 +22,10 @@ public:
 class ElementProfile
 {
 public:
-    std::string name;
+    std::string uuid;
+    std::vector<std::string> tags;
+
+    std::string label;
     std::string version;
     ElementSlave slave;
 

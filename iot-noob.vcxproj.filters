@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ccronexpr">
+      <UniqueIdentifier>{c2cd9c80-5a90-480a-8d55-31086f91fdaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tinyexpr">
+      <UniqueIdentifier>{84c11227-1323-4846-919a-79c13d1321d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cjson">
+      <UniqueIdentifier>{e639fd76-5393-48b9-a008-ec8386c490f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="agent.cpp">
@@ -63,14 +72,20 @@
     <ClCompile Include="variable.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="variant.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="cron.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="windows\main.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ccronexpr\ccronexpr.c">
+      <Filter>ccronexpr</Filter>
+    </ClCompile>
+    <ClCompile Include="cjson\cJSON.c">
+      <Filter>cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyexpr\tinyexpr.c">
+      <Filter>tinyexpr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +116,6 @@
     <ClInclude Include="element.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ethernet.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="expression.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -128,14 +140,20 @@
     <ClInclude Include="variable.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="variant.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="cron.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="json.hpp">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ccronexpr\ccronexpr.h">
+      <Filter>ccronexpr</Filter>
+    </ClInclude>
+    <ClInclude Include="cjson\cJSON.h">
+      <Filter>cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyexpr\tinyexpr.h">
+      <Filter>tinyexpr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

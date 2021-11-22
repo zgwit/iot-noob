@@ -20,3 +20,13 @@ bool PointProfile::Parse(cJSON* json)
 
 	return true;
 }
+
+
+Point::Point(/* args */)
+{
+}
+
+Point::~Point()
+{
+}
+

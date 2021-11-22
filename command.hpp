@@ -9,7 +9,7 @@ class CommandProfile
 public:
     std::string name;
     std::string label;
-    unsigned int argc;
+    int argc;
 
     std::vector<InstructionProfile> instructions;
 
@@ -37,11 +37,3 @@ public:
 private:
 
 };
-
-Command::Command()
-{
-}
-
-Command::~Command()
-{
-}

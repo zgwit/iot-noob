@@ -42,8 +42,8 @@ typedef uint16_t WeekRange;
 #define testWeekRange(r,d) ((0x1<<d)&r)
 
 struct StatusReset {
-    unsigned int interval;
-    unsigned int total;
+    int interval;
+    int total;
 
     void Parse(cJSON* json) {
         json_get_int(this, json, interval);

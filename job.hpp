@@ -29,12 +29,3 @@ public:
     Job(/* args */);
     ~Job();
 };
-
-Job::Job(/* args */)
-{
-}
-
-Job::~Job()
-{
-    //proto->commands.data();
-}

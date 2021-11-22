@@ -5,7 +5,7 @@ bool AlarmProfile::Parse(cJSON* json)
 	if (!json) return false;
 
 	json_get_bool(this, json, enable);
-	json_get_string(this, json, name);
+	json_get_string(this, json, label);
 	json_get_int(this, json, level);
 	json_get_object_array(this, json, compares);
 	json_get_object_array(this, json, dailyRanges);
@@ -14,4 +14,12 @@ bool AlarmProfile::Parse(cJSON* json)
 	json_get_object(this, json, reset);
 
 	return true;
+}
+
+Alarm::Alarm(/* args */)
+{
+}
+
+Alarm::~Alarm()
+{
 }

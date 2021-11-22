@@ -14,3 +14,12 @@ bool CollectorProfile::Parse(cJSON* json)
 
 	return true;
 }
+
+
+Collector::Collector(/* args */)
+{
+}
+
+Collector::~Collector()
+{
+}

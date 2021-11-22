@@ -9,12 +9,12 @@ public:
 
     std::string type; // interal, crontab
 
-    uint16_t interval; // seconds
+    int interval; // seconds
     std::string crontab;
 
-    uint8_t code;
-    uint16_t address;
-    uint16_t length;
+    int code;
+    int address;
+    int length;
 
     bool Parse(cJSON* json);
 };
@@ -30,11 +30,3 @@ public:
     Collector(/* args */);
     ~Collector();
 };
-
-Collector::Collector(/* args */)
-{
-}
-
-Collector::~Collector()
-{
-}

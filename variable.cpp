@@ -11,3 +11,13 @@ bool VariableProfile::Parse(cJSON* json)
 
 	return true;
 }
+
+
+Variable::Variable(/* args */)
+{
+}
+
+Variable::~Variable()
+{
+}
+

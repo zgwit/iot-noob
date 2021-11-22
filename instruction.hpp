@@ -1,7 +1,6 @@
 #pragma once
 
 #include "define.hpp"
-#include "variant.hpp"
 #include "point.hpp"
 //#include "device.hpp"
 
@@ -9,7 +8,7 @@
 class InstructionProfile
 {
 public:
-    std::string device;
+    std::string device; // "名称" "@tag" "#uuid"
     std::string point;
 
     double value;
@@ -34,15 +33,3 @@ public:
 private:
 
 };
-
-Instruction::Instruction(InstructionProfile* p)
-{
-    profile = p;
-    //TODO 编译表达式
-}
-
-Instruction::~Instruction()
-{
-}
-
-

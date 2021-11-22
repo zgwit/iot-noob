@@ -13,3 +13,14 @@ bool JobProfile::Parse(cJSON* json)
 
 	return true;
 }
+
+
+Job::Job(/* args */)
+{
+}
+
+Job::~Job()
+{
+	//proto->commands.data();
+}
+

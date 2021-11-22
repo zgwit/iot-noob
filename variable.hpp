@@ -20,11 +20,3 @@ public:
     Variable(/* args */);
     ~Variable();
 };
-
-Variable::Variable(/* args */)
-{
-}
-
-Variable::~Variable()
-{
-}

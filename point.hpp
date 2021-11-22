@@ -49,11 +49,3 @@ public:
     Point(/* args */);
     ~Point();
 };
-
-Point::Point(/* args */)
-{
-}
-
-Point::~Point()
-{
-}

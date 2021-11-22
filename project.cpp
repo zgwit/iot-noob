@@ -16,3 +16,13 @@ bool ProjectProfile::Parse(cJSON* json)
 
 	return true;
 }
+
+
+Project::Project(/* args */)
+{
+}
+
+Project::~Project()
+{
+}
+

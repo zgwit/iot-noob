@@ -11,3 +11,12 @@ bool DeviceProfile::Parse(cJSON* json)
 
 	return true;
 }
+
+
+Device::Device(/* args */)
+{
+}
+
+Device::~Device()
+{
+}

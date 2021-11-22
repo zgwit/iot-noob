@@ -9,8 +9,8 @@ class AlarmProfile
 public:
     bool enable;
 
-    std::string name;
-    unsigned int level;
+    std::string label;
+    int level;
     
 
     std::vector<CompareProfile> compares;
@@ -18,7 +18,7 @@ public:
     std::vector<DailyRange> dailyRanges;
     WeekRange weekRange;
 
-    unsigned int delay;
+    int delay;
 
     StatusReset reset;
 
@@ -40,10 +40,3 @@ public:
     ~Alarm();
 };
 
-Alarm::Alarm(/* args */)
-{
-}
-
-Alarm::~Alarm()
-{
-}

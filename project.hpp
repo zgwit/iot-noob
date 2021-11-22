@@ -43,11 +43,3 @@ public:
     Project(/* args */);
     ~Project();
 };
-
-Project::Project(/* args */)
-{
-}
-
-Project::~Project()
-{
-}

@@ -22,12 +22,12 @@ public:
 	void loop() {
 		time_t now = time(nullptr);
 		for (auto it : crons) {
-			if (it.tick < now) {
-				it.expr;
+			if (it->tick < now) {
+				it->expr;
 				//执行回调
-				it.callback();
+				it->callback();
 			}
-			it.tick = cron_next(&it.expr, now);
+			it->tick = cron_next(&it->expr, now);
 		}
 
 		//按照时间排序
@@ -36,27 +36,16 @@ public:
 
 	CronJob* Create(const char* crontab, std::function<void()> callback) {
 		//CronJob
-		crons.push_back()
+		//crons.push_back()
 	}
 
-	bool Cancel(CronJob& job) {
+	bool Cancel(CronJob* job) {
 		crons.remove(job);
 	}
 
 private:
-	std::list<CronJob> crons;
+	std::list<CronJob*> crons;
 
 };
 
-Cron Cron;
-
-Cron::Cron()
-{
-}
-
-Cron::~Cron()
-{
-	//crons.front().expr;
-	
-
-}
+//Cron cron;

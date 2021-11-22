@@ -45,28 +45,3 @@ public:
 private:
     OP ParseOperator(const char* op);
 };
-
-Compare::Compare()
-{
-}
-
-Compare::~Compare()
-{
-}
-
-Compare::OP Compare::ParseOperator(const char* op)
-{
-    if (!strcmp(op, "lt") || !strcmp(op, "<"))
-        return OP::LT;
-    if (!strcmp(op, "le") || !strcmp(op, "<="))
-        return OP::LE;
-    if (!strcmp(op, "eq") || !strcmp(op, "=="))
-        return OP::EQ;
-    if (!strcmp(op, "ne") || !strcmp(op, "!=") || !strcmp(op, "<>"))
-        return OP::NE;
-    if (!strcmp(op, "gt") || !strcmp(op, ">"))
-        return OP::GT;
-    if (!strcmp(op, "ge") || !strcmp(op, ">="))
-        return OP::GE;
-    return OP::NONE;
-}
