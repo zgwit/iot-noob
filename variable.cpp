@@ -7,7 +7,6 @@ bool VariableProfile::Parse(cJSON* json)
 
 	json_get_string(this, json, name);
 	json_get_number(this, json, value);
-	json_get_string(this, json, expr);
 
 	return true;
 }

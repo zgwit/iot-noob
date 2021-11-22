@@ -1,5 +1,6 @@
 #include "collector.hpp"
 
+
 bool CollectorProfile::Parse(cJSON* json)
 {
 	if (!json) return false;
@@ -11,6 +12,7 @@ bool CollectorProfile::Parse(cJSON* json)
 	json_get_int(this, json, code);
 	json_get_int(this, json, address);
 	json_get_int(this, json, length);
+	json_get_object_array(this, json, calculators);
 
 	return true;
 }

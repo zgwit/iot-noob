@@ -6,8 +6,7 @@
 class VariableProfile {
 public:
     std::string name;
-    double value;
-    std::string expr;
+    double value; //д╛хож╣
 
     bool Parse(cJSON* json);
 };
@@ -16,6 +15,7 @@ class Variable
 {
 private:
     /* data */
+
 public:
     Variable(/* args */);
     ~Variable();
