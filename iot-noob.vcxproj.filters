@@ -51,12 +51,6 @@
     <ClCompile Include="modbus.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mqtt.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ota.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="project.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -70,21 +64,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="variant.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\fs.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ethernet.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\rs485.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\socket.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\wifi.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="cron.cpp">
@@ -128,9 +107,6 @@
     <ClInclude Include="expression.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="fs.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="instruction.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -138,12 +114,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="modbus.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mqtt.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ota.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="project.hpp">
@@ -159,15 +129,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="variant.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="serial.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="socket.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="wifi.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="cron.hpp">
