@@ -42,6 +42,8 @@ public:
     Compare();
     ~Compare();
 
+    bool Eval();
+
 private:
     OP ParseOperator(const char* op);
 };

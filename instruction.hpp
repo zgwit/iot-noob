@@ -16,7 +16,7 @@ struct DeviceTarget
 class InstructionProfile
 {
 public:
-    std::string device; // "Ãû³Æ" "@tag" "#uuid"
+    std::string device; // "$name" "@tag" "#uuid"
 
     std::string point;
 
