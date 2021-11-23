@@ -1,40 +1,9 @@
 #pragma once
 
 #include "define.hpp"
+#include "filter.hpp"
+#include "calculator.hpp"
 
-
-class CalculatorProfile {
-public:
-    std::string variable;
-    std::string expression;
-
-    void Parse(cJSON* json)
-    {
-        json_get_string(this, json, variable);
-        json_get_string(this, json, expression);
-    }
-};
-
-class Calculator {
-public:
-    CalculatorProfile* profile;
-
-
-};
-
-
-class FilterProfile
-{
-public:
-    std::string algorithm;
-    std::vector<double> arguments;
-
-    void Parse(cJSON* json)
-    {
-        json_get_string(this, json, algorithm);
-        json_get_number_array(this, json, arguments);
-    }
-};
 
 
 
@@ -52,8 +21,10 @@ public:
     int address;
     int length;
 
+    //ÂË²¨Æ÷
     FilterProfile filter;
 
+    //¼ÆËãÆ÷
     std::vector<CalculatorProfile> calculators;
 
     bool Parse(cJSON* json);
