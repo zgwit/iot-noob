@@ -23,6 +23,21 @@ public:
 };
 
 
+class FilterProfile
+{
+public:
+    std::string algorithm;
+    std::vector<double> arguments;
+
+    void Parse(cJSON* json)
+    {
+        json_get_string(this, json, algorithm);
+        json_get_number_array(this, json, arguments);
+    }
+};
+
+
+
 class CollectorProfile
 {
 public:
@@ -36,6 +51,8 @@ public:
     int code;
     int address;
     int length;
+
+    FilterProfile filter;
 
     std::vector<CalculatorProfile> calculators;
 
