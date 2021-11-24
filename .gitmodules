@@ -7,6 +7,3 @@
 [submodule "ccronexpr"]
 	path = ccronexpr
 	url = https://github.com/staticlibs/ccronexpr
-[submodule "tinyexpr"]
-	path = tinyexpr
-	url = https://github.com/zgwit/tinyexpr
