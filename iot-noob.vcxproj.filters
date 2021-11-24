@@ -87,6 +87,15 @@
     <ClCompile Include="tinyexpr\tinyexpr.c">
       <Filter>tinyexpr</Filter>
     </ClCompile>
+    <ClCompile Include="filter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="aggregator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="agent.hpp">
@@ -154,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="tinyexpr\tinyexpr.h">
       <Filter>tinyexpr</Filter>
+    </ClInclude>
+    <ClInclude Include="filter.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="aggregator.hpp">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

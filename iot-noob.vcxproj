@@ -148,7 +148,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="agent.cpp" />
+    <ClCompile Include="aggregator.cpp" />
     <ClCompile Include="alarm.cpp" />
+    <ClCompile Include="calculator.cpp" />
     <ClCompile Include="ccronexpr\ccronexpr.c" />
     <ClCompile Include="cjson\cJSON.c" />
     <ClCompile Include="collector.cpp" />
@@ -159,6 +161,7 @@
     <ClCompile Include="device.cpp" />
     <ClCompile Include="element.cpp" />
     <ClCompile Include="expression.cpp" />
+    <ClCompile Include="filter.cpp" />
     <ClCompile Include="instruction.cpp" />
     <ClCompile Include="job.cpp" />
     <ClCompile Include="modbus.cpp" />
@@ -171,7 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="agent.hpp" />
+    <ClInclude Include="aggregator.hpp" />
     <ClInclude Include="alarm.hpp" />
+    <ClInclude Include="calculator.hpp" />
     <ClInclude Include="ccronexpr\ccronexpr.h" />
     <ClInclude Include="cjson\cJSON.h" />
     <ClInclude Include="collector.hpp" />
@@ -183,6 +188,7 @@
     <ClInclude Include="device.hpp" />
     <ClInclude Include="element.hpp" />
     <ClInclude Include="expression.hpp" />
+    <ClInclude Include="filter.hpp" />
     <ClInclude Include="instruction.hpp" />
     <ClInclude Include="job.hpp" />
     <ClInclude Include="json.hpp" />
