@@ -10,4 +10,5 @@ Filter::~Filter()
 
 double Filter::Push(double value)
 {
+	return 0;
 }
