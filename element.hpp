@@ -32,6 +32,7 @@ public:
     std::vector<VariableProfile> variables;
     std::vector<PointProfile> points;
     std::vector<CollectorProfile> collectors;
+    std::vector<CalculatorProfile> calculators;
     std::vector<CommandProfile> commands;
     std::vector<AlarmProfile> alarms;
     std::vector<JobProfile> jobs;

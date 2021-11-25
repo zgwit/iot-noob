@@ -21,12 +21,6 @@ public:
     int address;
     int length;
 
-    //ÂË²¨Æ÷
-    FilterProfile filter;
-
-    //¼ÆËãÆ÷
-    std::vector<CalculatorProfile> calculators;
-
     bool Parse(cJSON* json);
 };
 

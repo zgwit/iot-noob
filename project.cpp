@@ -9,6 +9,7 @@ bool ProjectProfile::Parse(cJSON* json)
 
 	json_get_object_array(this, json, devices);
 	json_get_object_array(this, json, variables);
+	json_get_object_array(this, json, aggregators);
 	json_get_object_array(this, json, commands);
 	json_get_object_array(this, json, alarms);
 	json_get_object_array(this, json, jobs);

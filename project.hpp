@@ -5,6 +5,7 @@
 #include "context.hpp"
 #include "device.hpp"
 #include "variable.hpp"
+#include "aggregator.hpp"
 #include "command.hpp"
 #include "alarm.hpp"
 #include "job.hpp"
@@ -17,6 +18,7 @@ public:
 
     std::vector<DeviceProfile> devices;
     std::vector<VariableProfile> variables;
+    std::vector<AggregatorProfile> aggregators;
     std::vector<CommandProfile> commands;
     std::vector<AlarmProfile> alarms;
     std::vector<JobProfile> jobs;

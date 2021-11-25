@@ -1,6 +1,7 @@
 #pragma once
 
 #include "define.hpp"
+#include "filter.hpp"
 
 enum DataType {
     NONE = 0,
@@ -35,6 +36,9 @@ public:
     bool littleEndian;
     bool readable;
     bool writable;
+
+    //滤波器
+    FilterProfile filter;
 
     bool Parse(cJSON* json);
 };

@@ -25,6 +25,7 @@ bool ElementProfile::Parse(cJSON* json)
 	json_get_object_array(this, json, variables);
 	json_get_object_array(this, json, points);
 	json_get_object_array(this, json, collectors);
+	json_get_object_array(this, json, calculators);
 	json_get_object_array(this, json, commands);
 	json_get_object_array(this, json, alarms);
 	json_get_object_array(this, json, jobs);
