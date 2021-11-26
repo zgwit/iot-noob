@@ -22,21 +22,21 @@
 | 配置 | 文件路径 | 内容 |
 |----|----|----|
 | 项目 | project.json | name, version, enable |
-| 变量 | variables.json | name, type, label, unit, default |
-| 命令 | commands.json | name, label, args, execute:[target, variable, value] |
-| 报警 | alarms.json | variable, compare, value, value2?, timeout, resetInterval, resetTimes |
-| 策略 | reactors.json | variable, compare, value, value2?, commands:[target, command, value?] |
-| 定时任务 | jobs.json | type, interval, crontab, commands:[同上] | 
-| 设备 | devices/${id}.json | name, slave, element |
+| 变量 | variables.json | name, type, label, unit, value |
+| 命令 | commands.json | name, label, argc, instructions:[device, point, value, arg] |
+| 报警 | alarms.json | compares, dailyRanges, weekRange, delay, reset:{interval, times} |
+| 策略 | reactors.json | variable, compares, invokes:[command, argv] |
+| 定时任务 | jobs.json | type, daily, week, crontab, invokes:[command, argv] | 
+| 设备 | devices.json | id, name, slave, element |
 | 设备采集 | devices/${id}/collectors.json | type, interval, crontab, code, address, length |
-| 设备定时任务 | devices/${id}/jobs.json | type, interval, crontab, commands:[command, value?] |
-| 元件 | elements/${id}.json | name, slave, version, url,  |
-| 元件变量 | elements/${id}/variables.json | name, label, unit, default |
-| 元件点位 | elements/${id}/sheets.json | name, label, unit, default, code, address, type, le, precision, readable, writable |
-| 元件命令 | elements/${id}/commands.json | name, variable, value |
+| 设备定时任务 | devices/${id}/jobs.json | type, interval, crontab, invokes:[command, argv] |
+| 元件 | elements.json | id, name, slave, version, url,  |
+| 元件变量 | elements/${id}/variables.json | name, label, unit, value |
+| 元件点位 | elements/${id}/points.json | name, label, unit, value, code, address, type, le, precision |
+| 元件命令 | elements/${id}/commands.json | name, point, instructions:[point, value, arg] |
 | 元件采集 | elements/${id}/collectors.json | type, interval, crontab, code, address, length |
-| 元件报警 | elements/${id}/alarms.json | variable, compare, value, value2?, timeout, resetInterval, resetTimes |
-| 元件定时任务 | elements/${id}/jobs.json | type, interval, crontab, commands:[command, value?] |
+| 元件报警 | elements/${id}/alarms.json |  compares, delay, reset:{interval, times} |
+| 元件定时任务 | elements/${id}/jobs.json | type, interval, crontab, invokes:[command, argv] |
 
 
 # 通讯协议（NOOB）

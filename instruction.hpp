@@ -22,7 +22,8 @@ public:
 
     double value;
 
-    std::string expr;
+    int arg;
+    //std::string expr;
 
     bool Parse(cJSON* json);
 };
