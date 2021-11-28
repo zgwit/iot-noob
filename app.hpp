@@ -11,7 +11,7 @@
 #include "job.hpp"
 #include "reactor.hpp"
 
-class ProjectProfile {
+class AppProfile {
 public:
     std::string name;
     std::string version;
@@ -27,21 +27,22 @@ public:
     bool Parse(cJSON* json);
 };
 
-class Project
+class App
 {
 private:
-    ProjectProfile* profile;
+    AppProfile* profile;
 
     Context context;
 
     std::vector<Device*> devices;
-    std::vector<Variable> variables;
-    std::vector<Command> commands;
-    std::vector<Alarm> alarms;
-    std::vector<Job> jobs;
-    std::vector<Reactor> reactors;
+    std::vector<Variable*> variables;
+    std::vector<Aggregator*> aggregators;
+    std::vector<Command*> commands;
+    std::vector<Alarm*> alarms;
+    std::vector<Job*> jobs;
+    std::vector<Reactor*> reactors;
 
 public:
-    Project(/* args */);
-    ~Project();
+    App(/* args */);
+    ~App();
 };

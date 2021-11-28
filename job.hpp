@@ -2,6 +2,7 @@
 
 #include "define.hpp"
 #include "command.hpp"
+#include "cron.hpp"
 
 #include "ccronexpr/ccronexpr.h"
 #include <sstream>
@@ -27,6 +28,8 @@ class Job
 {
 private:
     JobProfile* profile;
+
+    CronJob* job;
 
     cron_expr crontab;
     

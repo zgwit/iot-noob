@@ -1,6 +1,6 @@
 #include "app.hpp"
 
-bool ProjectProfile::Parse(cJSON* json)
+bool AppProfile::Parse(cJSON* json)
 {
 	if (!json) return false;
 
@@ -19,11 +19,18 @@ bool ProjectProfile::Parse(cJSON* json)
 }
 
 
-Project::Project(/* args */)
+App::App(/* args */)
 {
 }
 
-Project::~Project()
+App::~App()
 {
+	for (auto& it : devices) delete it;
+	for (auto& it : variables) delete it;
+	for (auto& it : aggregators) delete it;
+	for (auto& it : commands) delete it;
+	for (auto& it : alarms) delete it;
+	for (auto& it : jobs) delete it;
+	for (auto& it : reactors) delete it;
 }
 

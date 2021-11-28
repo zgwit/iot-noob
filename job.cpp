@@ -22,5 +22,6 @@ Job::Job(/* args */)
 Job::~Job()
 {
 	//proto->commands.data();
+	//Cron.Cancel(job);
 }
 
