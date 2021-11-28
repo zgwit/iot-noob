@@ -24,7 +24,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="agent.cpp">
+    <ClCompile Include="noob.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="alarm.cpp">
@@ -45,9 +45,6 @@
     <ClCompile Include="device.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="element.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="expression.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -60,7 +57,7 @@
     <ClCompile Include="modbus.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="project.cpp">
+    <ClCompile Include="app.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="reactor.cpp">
@@ -98,7 +95,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="agent.hpp">
+    <ClInclude Include="noob.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="alarm.hpp">
@@ -122,9 +119,6 @@
     <ClInclude Include="device.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="element.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="expression.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -137,7 +131,7 @@
     <ClInclude Include="modbus.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="project.hpp">
+    <ClInclude Include="app.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="reactor.hpp">

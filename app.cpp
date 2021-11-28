@@ -1,4 +1,4 @@
-#include "project.hpp"
+#include "app.hpp"
 
 bool ProjectProfile::Parse(cJSON* json)
 {
