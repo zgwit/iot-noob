@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="condition.cpp" />
     <ClCompile Include="noob.cpp" />
     <ClCompile Include="aggregator.cpp" />
     <ClCompile Include="alarm.cpp" />
@@ -155,7 +156,6 @@
     <ClCompile Include="cjson\cJSON.c" />
     <ClCompile Include="collector.cpp" />
     <ClCompile Include="command.cpp" />
-    <ClCompile Include="compare.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="cron.cpp" />
     <ClCompile Include="device.cpp" />
@@ -172,6 +172,7 @@
     <ClCompile Include="windows\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="condition.hpp" />
     <ClInclude Include="noob.hpp" />
     <ClInclude Include="aggregator.hpp" />
     <ClInclude Include="alarm.hpp" />
@@ -180,7 +181,6 @@
     <ClInclude Include="cjson\cJSON.h" />
     <ClInclude Include="collector.hpp" />
     <ClInclude Include="command.hpp" />
-    <ClInclude Include="compare.hpp" />
     <ClInclude Include="context.hpp" />
     <ClInclude Include="cron.hpp" />
     <ClInclude Include="define.hpp" />

@@ -36,9 +36,6 @@
     <ClCompile Include="command.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="compare.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="context.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -93,6 +90,9 @@
     <ClCompile Include="aggregator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="condition.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="noob.hpp">
@@ -105,9 +105,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="command.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="compare.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="context.hpp">
@@ -165,6 +162,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="aggregator.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="condition.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
