@@ -1,7 +1,7 @@
 #pragma once
 
 #include "define.hpp"
-#include "compare.hpp"
+#include "condition.hpp"
 
 
 class AlarmProfile
@@ -9,11 +9,10 @@ class AlarmProfile
 public:
     bool enable;
 
-    std::string label;
+    std::string message;
     int level;
     
-
-    std::vector<CompareProfile> compares;
+    ConditionProfile condition;
 
     std::vector<DailyRange> dailyRanges;
     WeekRange weekRange;

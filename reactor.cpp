@@ -5,7 +5,7 @@ bool ReactorProfile::Parse(cJSON* json)
 	if (!json) return false;
 
 	json_get_bool(this, json, enable);
-	json_get_object_array(this, json, compares);
+	json_get_object(this, json, condition);
 	json_get_object_array(this, json, dailyRanges);
 	json_get_int(this, json, weekRange);
 	json_get_int(this, json, delay);

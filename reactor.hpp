@@ -1,7 +1,7 @@
 #pragma once
 
 #include "define.hpp"
-#include "compare.hpp"
+#include "condition.hpp"
 #include "command.hpp"
 
 class ReactorProfile
@@ -9,7 +9,7 @@ class ReactorProfile
 public:
     bool enable;
 
-    std::vector<CompareProfile> compares;
+    ConditionProfile condition;
 
     std::vector<DailyRange> dailyRanges;
     WeekRange weekRange;

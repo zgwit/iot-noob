@@ -15,6 +15,9 @@ public:
 
 class Cron
 {
+private:
+	std::list<CronJob*> crons;
+
 public:
 	Cron();
 	~Cron();
@@ -42,9 +45,6 @@ public:
 	bool Cancel(CronJob* job) {
 		crons.remove(job);
 	}
-
-private:
-	std::list<CronJob*> crons;
 
 };
 

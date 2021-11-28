@@ -18,8 +18,8 @@ public:
     Expression(/* args */);
     ~Expression();
 
-    bool Parse(const char *expr);
-    double Eval(Context &ctx);
+    bool Parse(const char *expr, const Context& ctx);
+    double Evaluate();
 
 };
 

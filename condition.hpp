@@ -8,12 +8,24 @@ public:
     std::string device;
     std::string variable;
 
-    std::string compare;
+    std::string type;
 
     double value;
 
     bool Parse(cJSON* json);
 };
+
+class ConditionProfile
+{
+public:
+    //bool both;
+    std::string type; //and or
+    std::vector<CompareProfile> compares;
+    std::vector<ConditionProfile> children;
+
+    bool Parse(cJSON* json);
+};
+
 
 class Compare
 {
@@ -46,4 +58,17 @@ public:
 
 private:
     OP ParseOperator(const char* op);
+};
+
+class Condition
+{
+public:
+    bool both;
+
+public:
+    Condition();
+    ~Condition();
+
+private:
+
 };

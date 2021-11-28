@@ -10,7 +10,7 @@ Expression::~Expression()
     te_free(_expr);
 }
 
-bool Expression::Parse(const char* expr)
+bool Expression::Parse(const char* expr, const Context& ctx)
 {
     int err;
     // Õ∑≈¿˙ ∑
@@ -20,7 +20,7 @@ bool Expression::Parse(const char* expr)
     return _expr != nullptr;
 }
 
-double Expression::Eval(Context& ctx)
+double Expression::Evaluate()
 {
     return te_eval(_expr);
 }

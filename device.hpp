@@ -38,7 +38,7 @@ public:
 
 class Device
 {
-private:
+public:
     DeviceProfile* profile;
 
     //TODO 上下文，采集器，定时器 等

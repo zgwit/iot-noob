@@ -25,6 +25,15 @@ public:
         }
     }
 
+
+    double GetValue(const std::string& name) {
+        auto iter = _props.find(name);
+        if (iter != _props.end()) {
+            return iter->second->value;
+        }
+        return NAN;
+    }
+
     void Set(const std::string& name, Variable* var) {
         auto iter = _props.find(name);
         if (iter != _props.end() && iter->second != var) {
