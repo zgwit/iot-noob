@@ -2,6 +2,7 @@
 
 #include "define.hpp"
 #include "condition.hpp"
+#include "daily.hpp"
 
 
 class AlarmProfile
@@ -11,11 +12,11 @@ public:
 
     std::string message;
     int level;
+
     
     ConditionProfile condition;
 
-    std::vector<DailyRange> dailyRanges;
-    WeekRange weekRange;
+    DailyRange range;
 
     int delay;
 

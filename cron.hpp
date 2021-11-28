@@ -6,6 +6,7 @@ extern "C" {
 	#include "ccronexpr/ccronexpr.h"
 }
 
+
 class CronJob{
 public:
 	cron_expr expr;
@@ -24,7 +25,7 @@ public:
 
 	void loop() {
 		time_t now = time(nullptr);
-		for (auto it : crons) {
+		for (auto &it : crons) {
 			if (it->tick < now) {
 				it->expr;
 				//Ö´ÐÐ»Øµ÷
@@ -40,10 +41,29 @@ public:
 	CronJob* Create(const char* crontab, std::function<void()> callback) {
 		//CronJob
 		//crons.push_back()
+		auto job = new CronJob();
+		const char* error = nullptr;
+		cron_parse_expr(crontab, &job->expr, &error);
+		if (error) {
+			delete job;
+			return nullptr;
+		}
+
+		job->callback = callback;
+		crons.push_back(job);
+
+		return job;
 	}
 
 	bool Cancel(CronJob* job) {
 		crons.remove(job);
+		delete job;
+	}
+
+	~Cron() {
+		for (auto& it : crons) {
+			delete it;
+		}
 	}
 
 };

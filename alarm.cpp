@@ -8,8 +8,7 @@ bool AlarmProfile::Parse(cJSON* json)
 	json_get_string(this, json, message);
 	json_get_int(this, json, level);
 	json_get_object(this, json, condition);
-	json_get_object_array(this, json, dailyRanges);
-	json_get_int(this, json, weekRange);
+	json_get_object(this, json, range);
 	json_get_int(this, json, delay);
 	json_get_object(this, json, reset);
 

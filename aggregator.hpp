@@ -41,61 +41,11 @@ public:
 
     AggregatorProfile* profile;
 
+    Variable* as;
     AggregatorType type;
     std::vector<AggregatorItem> items;
 
 
-    void Execute() {
-        double val = 0;
-        switch (type)
-        {
-        case Aggregator::AggregatorType::SUM:
-            for (auto& it : items)
-                if (!it.expression || it.expression->Evaluate())
-                        val += it.variable->value;
-            break;
-        case Aggregator::AggregatorType::COUNT:
-            for (auto& it : items)
-                if (!it.expression || it.expression->Evaluate())
-                    val += 1;
-            break;
-        case Aggregator::AggregatorType::AVG:
-            for (auto& it : items)
-                if (!it.expression || it.expression->Evaluate())
-                    val += it.variable->value;
-            val /= items.size();
-            break;
-        case Aggregator::AggregatorType::MIN:
-            val = DBL_MAX;
-            for (auto& it : items)
-                if (!it.expression || it.expression->Evaluate())
-                    if (it.variable->value < val)
-                        val = it.variable->value;
-            break;
-        case Aggregator::AggregatorType::MAX:
-            val = DBL_MIN;
-            for (auto& it : items)
-                if (!it.expression || it.expression->Evaluate())
-                    if (it.variable->value > val)
-                        val = it.variable->value;
-            break;
-        case Aggregator::AggregatorType::FIRST:
-            for (auto& it : items)
-                if (!it.expression || it.expression->Evaluate()) {
-                    val = it.variable->value;
-                    break;
-                }
-            break;
-        case Aggregator::AggregatorType::LAST:
-            for (auto it = items.rbegin(); it != items.rend(); ++it)
-                if (!it->expression || it->expression->Evaluate()) {
-                    val = it->variable->value;
-                    break;
-                }
-            break;
-        default:
-            break;
-        }
-    }
+    void Execute();
 
 };

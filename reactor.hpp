@@ -3,6 +3,7 @@
 #include "define.hpp"
 #include "condition.hpp"
 #include "command.hpp"
+#include "cron.hpp"
 
 class ReactorProfile
 {
@@ -11,8 +12,7 @@ public:
 
     ConditionProfile condition;
 
-    std::vector<DailyRange> dailyRanges;
-    WeekRange weekRange;
+    DailyRange range;
 
     int delay;
 
