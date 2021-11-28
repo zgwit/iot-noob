@@ -1,6 +1,7 @@
 #pragma once
 
 #include "define.hpp"
+#include "variable.hpp"
 
 class CompareProfile
 {
@@ -41,20 +42,30 @@ public:
         NE,
         GT,
         GE,
-        BT,
-        NB,
     };
 
     OP compare;
 
-    double* variable;
+    Variable* variable;
 
 
 public:
     Compare();
     ~Compare();
 
-    bool Eval();
+    bool Evaluate() {
+        switch (compare)
+        {
+        case OP::LT: return variable->value < profile->value; 
+        case OP::LE: return variable->value <= profile->value; 
+        case OP::EQ: return variable->value == profile->value; 
+        case OP::NE: return variable->value != profile->value;
+        case OP::GT: return variable->value > profile->value;
+        case OP::GE: return variable->value >= profile->value;
+        default:
+            return false;
+        }
+    }
 
 private:
     OP ParseOperator(const char* op);
@@ -64,10 +75,32 @@ class Condition
 {
 public:
     bool both;
+    std::vector<Compare*> compares;
+    std::vector<Condition*> children;
 
 public:
     Condition();
     ~Condition();
+
+    bool Evaluate() {
+        if (both) {
+            for (auto& it : compares)
+                if (!it->Evaluate())
+                    return false;
+            for (auto& it : children)
+                if (!it->Evaluate())
+                    return false;
+            return true;
+        }else{
+            for (auto& it : compares)
+                if (it->Evaluate())
+                    return true;
+            for (auto& it : children)
+                if (it->Evaluate())
+                    return true;
+            return false;
+        }
+    }
 
 private:
 

@@ -28,7 +28,7 @@ App::~App()
 	for (auto& it : devices) delete it;
 	for (auto& it : variables) delete it;
 	for (auto& it : aggregators) delete it;
-	for (auto& it : commands) delete it;
+	for (auto& it : commands) delete it.second;
 	for (auto& it : alarms) delete it;
 	for (auto& it : jobs) delete it;
 	for (auto& it : reactors) delete it;

@@ -12,7 +12,7 @@ class CollectorProfile
 public:
     bool enable;
 
-    std::string type; // interal, crontab
+    std::string type; // interval, clock, crontab
 
     int interval; // seconds
     std::string crontab;
@@ -30,6 +30,7 @@ class Collector
 {
 private:
     CollectorProfile* profile;
+
     
 public:
     Collector(/* args */);

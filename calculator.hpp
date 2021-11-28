@@ -1,6 +1,8 @@
 #pragma once
 
 #include "define.hpp"
+#include "variable.hpp"
+#include "expression.hpp"
 
 
 class CalculatorProfile {
@@ -19,5 +21,10 @@ class Calculator {
 public:
     CalculatorProfile* profile;
 
+    Variable* variable;
+    Expression* expression;
 
+    void Evaluate() {
+        variable->value = expression->Evaluate();
+    }
 };

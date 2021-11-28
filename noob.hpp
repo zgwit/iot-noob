@@ -3,20 +3,20 @@
 #include "define.hpp"
 
 
-class Agent
+class Noob
 {
 private:
   /* data */
 public:
-  Agent(/* args */);
-  ~Agent();
+	Noob(/* args */);
+  ~Noob();
 };
 
-Agent::Agent(/* args */)
+Noob::Noob(/* args */)
 {
 }
 
-Agent::~Agent()
+Noob::~Noob()
 {
 }
 

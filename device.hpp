@@ -43,11 +43,26 @@ public:
 
     //TODO 上下文，采集器，定时器 等
     Context context;
-    std::map<std::string, Command> commands;
+
+    std::vector<Variable*> variables;
+    std::vector<Collector*> collectors;
+    std::vector<Calculator*> calculators;
+    //std::vector<Command*> commands;
+    std::map<std::string, Command*> commands;
+    std::vector<Alarm*> alarms;
+    std::vector<Job*> jobs;
 
 
 
 public:
     Device(/* args */);
-    ~Device();
+    ~Device() {
+        for (auto& it : variables) delete it;
+        for (auto& it : collectors) delete it;
+        for (auto& it : calculators) delete it;
+        for (auto& it : commands) delete it.second;
+        for (auto& it : alarms) delete it;
+        for (auto& it : jobs) delete it;
+
+    }
 };

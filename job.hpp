@@ -28,6 +28,7 @@ class Job
 {
 private:
     JobProfile* profile;
+    Invoke* invoke;
 
     CronJob* job;
 

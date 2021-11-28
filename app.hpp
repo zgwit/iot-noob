@@ -37,7 +37,7 @@ private:
     std::vector<Device*> devices;
     std::vector<Variable*> variables;
     std::vector<Aggregator*> aggregators;
-    std::vector<Command*> commands;
+    std::vector<std::string, Command*> commands;
     std::vector<Alarm*> alarms;
     std::vector<Job*> jobs;
     std::vector<Reactor*> reactors;

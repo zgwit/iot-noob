@@ -16,6 +16,28 @@ public:
     bool Parse(cJSON *json);
 };
 
+
+class Command
+{
+public:
+    CommandProfile* profile;
+
+    std::vector<Instruction> instructions;
+
+
+	Command();
+	~Command();
+
+    void Execute(const std::vector<double>& argv) {
+        for (auto& it : instructions) {
+            it.Execute(argv);
+        }
+    }
+
+private:
+
+};
+
 class InvokeProfile
 {
 public:
@@ -25,15 +47,14 @@ public:
     bool Parse(cJSON *json);
 };
 
-class Command
-{
+class Invoke {
 public:
-    CommandProfile* profile;
+    InvokeProfile* profile;
 
+    Command* command;
 
-	Command();
-	~Command();
-
-private:
+    void Execute() {
+        command->Execute(profile->argv);
+    }
 
 };
