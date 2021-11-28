@@ -93,6 +93,9 @@
     <ClCompile Include="condition.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="daily.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="noob.hpp">
@@ -165,6 +168,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="condition.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="daily.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
