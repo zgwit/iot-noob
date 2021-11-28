@@ -21,8 +21,8 @@ public:
     std::vector<AggregatorProfile> aggregators;
     std::vector<CommandProfile> commands;
     std::vector<AlarmProfile> alarms;
-    std::vector<JobProfile> jobs;
     std::vector<ReactorProfile> reactors; 
+    std::vector<JobProfile> jobs;
 
     bool Parse(cJSON* json);
 };

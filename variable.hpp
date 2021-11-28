@@ -13,6 +13,11 @@ public:
 
 class Variable
 {
+public:
+    VariableProfile* profile;
+
+    double value;
+
 private:
     /* data */
 

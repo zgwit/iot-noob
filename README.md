@@ -16,12 +16,12 @@
 
 
 
-# 项目配置
+# 应用配置
 系统通过加载和解析配置文件完成初始化，同样远端可以通过修改配置文件来实现系统配置。配置文件使用常用的JSON数据格式，虽然效率低，但是比较通过，能够方便与APP和后台对接。鉴于ESP32的RAM和ROM都很小，不便于处理较大的JSON文件，我们将部分内容进行拆分，避免内存占用突增。
 
 | 配置 | 文件路径 | 内容 |
 |----|----|----|
-| 项目 | project.json | name, version, enable |
+| 应用 | app.json | name, version, enable |
 | 变量 | variables.json | name, type, label, unit, value |
 | 命令 | commands.json | name, label, argc, instructions:[device, point, value, arg] |
 | 报警 | alarms.json | compares, dailyRanges, weekRange, delay, reset:{interval, times} |
@@ -69,9 +69,9 @@
 | 1 | CONNECT | 上行 | 鉴权 | json |
 | 2 | HEARTBEAT | 上行 | 心跳 |-|
 | 3 | QUERY | 下行 | 查询 |json|
-| 4 | STATUS | 上行 | 状态 |json|
-| 5 | UPDATE | 下行 | 修改 |json|
-| 6 | CONTROL | 下行 | 控制 |json|
+| 4 | UPDATE | 下行 | 修改 |json|
+| 5 | CONTROL | 下行 | 控制命令 |json|
+| 6 | REPORT | 上行 | 上报状态 |json|
 | 7 | EVENT | 上行 | 事件 |json|
 | 8 | ALARM | 上行 | 报警 |json|
 | 9 | LOG | 上行 | 日志 |string|
