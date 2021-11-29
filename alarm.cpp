@@ -15,10 +15,13 @@ bool AlarmProfile::Parse(cJSON* json)
 	return true;
 }
 
-Alarm::Alarm(/* args */)
+Alarm::Alarm(AlarmProfile* profile, const Context& ctx)
 {
+	condition = new Condition(&profile->condition, ctx);
+
 }
 
 Alarm::~Alarm()
 {
+	delete condition;
 }

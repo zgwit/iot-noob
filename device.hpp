@@ -65,4 +65,6 @@ public:
         for (auto& it : jobs) delete it;
 
     }
+
+    Variable* findVariable(const std::string &name){}
 };

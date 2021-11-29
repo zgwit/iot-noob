@@ -2,6 +2,7 @@
 
 #include "define.hpp"
 #include "variable.hpp"
+#include "context.hpp"
 
 class CompareProfile
 {
@@ -79,7 +80,7 @@ public:
     std::vector<Condition*> children;
 
 public:
-    Condition();
+    Condition(ConditionProfile* profile, const Context& ctx);
     ~Condition();
 
     bool Evaluate() {

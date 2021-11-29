@@ -12,16 +12,10 @@ public:
     std::string variable; //device context: var point calc
     std::string as; //app context, variable
 
-    void Parse(cJSON* json)
-    {
-        json_get_string(this, json, device);
-        json_get_string(this, json, query);
-        json_get_string(this, json, group);
-        json_get_string(this, json, variable);
-        json_get_string(this, json, as);
-    }
+    void Parse(cJSON* json);
 };
 
+class App;
 class Device;
 
 class AggregatorItem {
@@ -33,19 +27,17 @@ public:
 
 class Aggregator {
 public:
-    enum class AggregatorType
+    enum class Type
     {
         NONE,SUM,COUNT,AVG,MIN,MAX,FIRST,LAST
     };
 
-
-    AggregatorProfile* profile;
-
-    Variable* as;
-    AggregatorType type;
+    Type type;
     std::vector<AggregatorItem> items;
 
+    Variable* as;
+
+    Aggregator(AggregatorProfile* profile, App* app);
 
     void Execute();
-
 };

@@ -29,14 +29,25 @@ public:
 class Alarm
 {
 public:
-    AlarmProfile* profile;
+    //AlarmProfile* profile;
+    Condition* condition;
+
 
     time_t start;
     bool reported;
     unsigned int resetTimes;
 
 public:
-    Alarm(/* args */);
+    Alarm(AlarmProfile* profile, const Context& ctx);
     ~Alarm();
+
+    void Enable(bool enable = false){}
+    void Start() {}
+    void Stop() {}
+
+    void Execute() {
+        condition->Evaluate();
+
+    }
 };
 

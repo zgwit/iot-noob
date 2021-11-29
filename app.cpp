@@ -19,7 +19,8 @@ bool AppProfile::Parse(cJSON* json)
 }
 
 
-App::App(/* args */)
+
+App::App(AppProfile* profile)
 {
 }
 

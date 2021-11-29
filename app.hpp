@@ -30,19 +30,20 @@ public:
 class App
 {
 private:
-    AppProfile* profile;
-
+    //AppProfile* profile;
     Context context;
 
     std::vector<Device*> devices;
     std::vector<Variable*> variables;
     std::vector<Aggregator*> aggregators;
-    std::vector<std::string, Command*> commands;
+    std::map<std::string, Command*> commands;
     std::vector<Alarm*> alarms;
     std::vector<Job*> jobs;
     std::vector<Reactor*> reactors;
 
 public:
-    App(/* args */);
+    App(AppProfile* profile);
     ~App();
+
+    void findDevice(const std::string& name, std::vector<Device*>& devices) {}
 };

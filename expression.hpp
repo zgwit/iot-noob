@@ -15,10 +15,10 @@ private:
 private:
     /* data */
 public:
-    Expression(/* args */);
+    Expression(const std::string& expr, const Context& ctx);
     ~Expression();
 
-    bool Parse(const char *expr, const Context& ctx);
+    //bool Parse(const char *expr, const Context& ctx);
     double Evaluate();
 
 };
