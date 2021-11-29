@@ -2,26 +2,25 @@
 
 #include "define.hpp"
 
-
-class VariableProfile {
-public:
-    std::string name;
-    double value; //默认值
-
-    bool Parse(cJSON* json);
-};
-
 class Variable
 {
 public:
-    VariableProfile* profile;
+    std::string name;
+    double _default; //默认值
 
     double value;
-
-private:
-    /* data */
 
 public:
     Variable(/* args */);
     ~Variable();
+
+    void Load(cJSON* json) {
+        name = json_get_string(json, "name");
+        _default = json_get_number(json, "default");
+        value = _default;
+    }
+
+    void Reset() {
+        value = _default;
+    }
 };

@@ -2,24 +2,41 @@
 
 #include "cjson/cJSON.h"
 
-#define json_get(json, name) cJSON_GetObjectItem(json, #name)
+#define json_get(json, name) cJSON_GetObjectItem(json, name)
 
-#define json_get_int(to, json, name) {	\
+#define json_get_string(json, name) \
+	cJSON_GetStringValue(json_get(json, name))
+
+#define json_get_number(json, name) \
+	cJSON_GetNumberValue(json_get(json, name))
+
+inline int json_get_int(cJSON* json, const char* name) {
+	auto item = cJSON_GetObjectItem(json, name);
+	if (cJSON_IsNumber(item))
+		return item->valueint;
+	return 0;
+}
+
+#define json_get_bool(json, name) \
+	(bool)cJSON_IsTrue(json_get(json, name))
+
+#define json_member_get_int(to, json, name) {	\
 		auto item = cJSON_GetObjectItem(json, #name); \
 		if (cJSON_IsNumber(item)) to->name = item->valueint; \
 	}
 
-#define json_get_number(to, json, name) {	\
+
+#define json_member_get_number(to, json, name) {	\
 		auto item = cJSON_GetObjectItem(json, #name); \
 		if (cJSON_IsNumber(item)) to->name = item->valuedouble; \
 	}
 
-#define json_get_string(to, json, name) {	\
+#define json_member_get_string(to, json, name) {	\
 		auto item = cJSON_GetObjectItem(json, #name); \
 		if (cJSON_IsString(item)) to->name = item->valuestring; \
 	}
 
-#define json_get_bool(to, json, name) {	\
+#define json_member_get_bool(to, json, name) {	\
 		auto item = cJSON_GetObjectItem(json, #name); \
 		if (cJSON_IsBool(item)) to->name = (bool)item->valueint; \
 	}
@@ -29,7 +46,7 @@
 		if (cJSON_IsObject(item)) to->name.Parse(item); \
 	}
 
-#define json_get_bool_array(to, json, name) { \
+#define json_member_get_bool_array(to, json, name) { \
 		auto arr = cJSON_GetObjectItem(json, #name);\
 		if (cJSON_IsArray(arr)) { \
 			vec.resize(cJSON_GetArraySize(arr));\
@@ -42,7 +59,7 @@
 		}\
 	}
 
-#define json_get_int_array(to, json, name) { \
+#define json_member_get_int_array(to, json, name) { \
 		auto arr = cJSON_GetObjectItem(json, #name);\
 		if (cJSON_IsArray(arr)) { \
 			to->name.resize(cJSON_GetArraySize(arr));\
@@ -55,7 +72,7 @@
 		}\
 	}
 
-#define json_get_number_array(to, json, name) { \
+#define json_member_get_number_array(to, json, name) { \
 		auto arr = cJSON_GetObjectItem(json, #name);\
 		if (cJSON_IsArray(arr)) { \
 			to->name.resize(cJSON_GetArraySize(arr));\
@@ -69,7 +86,7 @@
 	}
 
 
-#define json_get_string_array(to, json, name) { \
+#define json_member_get_string_array(to, json, name) { \
 		auto arr = cJSON_GetObjectItem(json, #name);\
 		if (cJSON_IsArray(arr)) { \
 			to->name.resize(cJSON_GetArraySize(arr));\

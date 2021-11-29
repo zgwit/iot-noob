@@ -13,45 +13,60 @@ struct DeviceTarget
 };*/
 
 
-class InstructionProfile
-{
-public:
-    std::string device; // "$name" "@tag" "#uuid"
-
-    std::string point;
-
-    double value;
-
-    int arg;
-    //std::string expr;
-
-    int delay; //—”≥Ÿ÷¥––
-
-    bool Parse(cJSON* json);
-};
-
 //±‹√‚Œ¥…˘√˜
+class App;
 class Device;
+
+class InstructionTarget {
+public:
+    Device* device;
+    Point* point;
+};
 
 class Instruction
 {
 private:
-    InstructionProfile* profile;
+    double value;
+    int arg;
+    int delay; //—”≥Ÿ÷¥––
 
-    std::list<Device*> devices;
-    PointProfile* point;
+    //std::vector<Device*> devices;
+    //PointProfile* point;
+    std::vector<InstructionTarget> targets;
 
 public:
-	Instruction(InstructionProfile* profile);
+	Instruction();
 	~Instruction();
 
-    void Execute(const std::vector<double>& argv) {
-        double val = profile->value;
-        if (profile->arg > 0 && profile->arg < argv.size()) {
-            val = argv[profile->arg];
+    void Load(cJSON* json, App* app, Device* dev) {
+        std::string  name = json_get_string(json, "device");
+        std::string  point = json_get_string(json, "point");
+
+        std::vector<Device*> devices;
+        if (app) {
+            app->findDevice(name, devices);
+        } else {
+            devices.push_back(dev);
         }
+
         for (auto& d : devices) {
-            if (profile->delay) {
+            InstructionTarget target{};
+            target.device = d;
+            target.point = d->findPoint(point);
+        }
+
+        value = json_get_number(json, "value");
+        arg = json_get_int(json, "arg");
+        delay = json_get_int(json, "delay");
+    }
+
+    void Execute(const std::vector<double>& argv) {
+        double val = value;
+        if (arg > 0 && arg < argv.size()) {
+            val = argv[arg];
+        }
+        for (auto& d : targets) {
+            if (delay) {
                 //setTimeout;
                 //d->Set(point, val);
             } else {

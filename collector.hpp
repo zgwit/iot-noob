@@ -2,16 +2,15 @@
 
 #include "define.hpp"
 #include "filter.hpp"
-#include "calculator.hpp"
 
 
 
-
-class CollectorProfile
+class Collector
 {
 public:
     bool enable;
 
+private:
     std::string type; // interval, clock, crontab
 
     int interval; // seconds
@@ -21,18 +20,14 @@ public:
     int address;
     int length;
 
-    bool Parse(cJSON* json);
-};
-
-
-
-class Collector
-{
-private:
-    CollectorProfile* profile;
-
+    //Filter filter;
     
 public:
     Collector(/* args */);
     ~Collector();
+
+    void Load(cJSON* json);
+
+    void Start(){}
+    void Stop(){}
 };

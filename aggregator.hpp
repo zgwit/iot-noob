@@ -3,18 +3,6 @@
 #include "define.hpp"
 #include "expression.hpp"
 
-class AggregatorProfile
-{
-public:
-    std::string device; // "$name" "@tag" "#uuid"
-    std::string query; //expr
-    std::string group; //sum count avg min max first last
-    std::string variable; //device context: var point calc
-    std::string as; //app context, variable
-
-    void Parse(cJSON* json);
-};
-
 class App;
 class Device;
 
@@ -34,10 +22,8 @@ public:
 
     Type type;
     std::vector<AggregatorItem> items;
-
     Variable* as;
 
-    Aggregator(AggregatorProfile* profile, App* app);
-
+    void Load(cJSON* json, App* app);
     void Execute();
 };

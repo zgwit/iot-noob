@@ -4,37 +4,12 @@
 #include "variable.hpp"
 #include "context.hpp"
 
-class CompareProfile
-{
-public:
-    std::string device;
-    std::string variable;
-
-    std::string type;
-
-    double value;
-
-    bool Parse(cJSON* json);
-};
-
-class ConditionProfile
-{
-public:
-    //bool both;
-    std::string type; //and or
-    std::vector<CompareProfile> compares;
-    std::vector<ConditionProfile> children;
-
-    bool Parse(cJSON* json);
-};
-
-
 class Compare
 {
 public:
-    CompareProfile* profile;
+    double value;
 
-    enum class OP
+    enum class Type
     {
         NONE = 0,
         LT,
@@ -45,7 +20,7 @@ public:
         GE,
     };
 
-    OP compare;
+    Type type;
 
     Variable* variable;
 
@@ -54,22 +29,12 @@ public:
     Compare();
     ~Compare();
 
-    bool Evaluate() {
-        switch (compare)
-        {
-        case OP::LT: return variable->value < profile->value; 
-        case OP::LE: return variable->value <= profile->value; 
-        case OP::EQ: return variable->value == profile->value; 
-        case OP::NE: return variable->value != profile->value;
-        case OP::GT: return variable->value > profile->value;
-        case OP::GE: return variable->value >= profile->value;
-        default:
-            return false;
-        }
-    }
+    void Load(cJSON* json, const Context& ctx);
+
+    bool Evaluate();
 
 private:
-    OP ParseOperator(const char* op);
+    Type ParseOperator(const char* op);
 };
 
 class Condition
@@ -80,28 +45,11 @@ public:
     std::vector<Condition*> children;
 
 public:
-    Condition(ConditionProfile* profile, const Context& ctx);
+    Condition();
     ~Condition();
 
-    bool Evaluate() {
-        if (both) {
-            for (auto& it : compares)
-                if (!it->Evaluate())
-                    return false;
-            for (auto& it : children)
-                if (!it->Evaluate())
-                    return false;
-            return true;
-        }else{
-            for (auto& it : compares)
-                if (it->Evaluate())
-                    return true;
-            for (auto& it : children)
-                if (it->Evaluate())
-                    return true;
-            return false;
-        }
-    }
+    void Load(cJSON* json, const Context& ctx);
+    bool Evaluate();
 
 private:
 

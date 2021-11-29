@@ -3,14 +3,15 @@
 #include "define.hpp"
 #include "condition.hpp"
 #include "command.hpp"
+#include "daily.hpp"
 #include "cron.hpp"
 
-class ReactorProfile
+class Reactor
 {
 public:
     bool enable;
 
-    ConditionProfile condition;
+    Condition condition;
 
     DailyRange range;
 
@@ -18,18 +19,21 @@ public:
 
     StatusReset reset;
 
-    std::vector<InvokeProfile> invokes;
+    std::vector<Invoke> invokes;
 
-    bool Parse(cJSON* json);
-};
-
-
-class Reactor {
-public:
-    ReactorProfile* profile;
 
     time_t start;
     bool reported;
+    time_t reportAt;
     unsigned int resetTimes;
+
+public:
+    Alarm();
+    ~Alarm();
+
+    void Enable(bool enable = false){}
+
+    void Load(cJSON* json, const Context& ctx);
+    void Execute();
 };
 

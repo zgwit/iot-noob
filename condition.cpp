@@ -1,33 +1,6 @@
 #include "condition.hpp"
 
 
-
-bool CompareProfile::Parse(cJSON* json)
-{
-    if (!json) return false;
-
-    json_get_string(this, json, device);
-    json_get_string(this, json, variable);
-    json_get_string(this, json, type);
-    json_get_number(this, json, value);
-
-    return true;
-}
-
-
-bool ConditionProfile::Parse(cJSON* json)
-{
-    if (!json) return false;
-    
-    json_get_string(this, json, type);
-    json_get_object_array(this, json, compares);
-    json_get_object_array(this, json, children);
-
-	return true;
-
-}
-
-
 Compare::Compare()
 {
 }
@@ -36,19 +9,92 @@ Compare::~Compare()
 {
 }
 
-Compare::OP Compare::ParseOperator(const char* op)
+void Compare::Load(cJSON* json, const Context& ctx) {
+    //std::string device = cJSON_GetStringValue(cJSON_GetObjectItem(json, "device"));
+    std::string variable = json_get_string(json, "variable");
+    this->variable = ctx.find(variable);
+    this->type = ParseOperator(json_get_string(json, "type"));
+    value = json_get_number(json, "value");
+}
+
+bool Compare::Evaluate() {
+    switch (type)
+    {
+    case Type::LT: return variable->value < value;
+    case Type::LE: return variable->value <= value;
+    case Type::EQ: return variable->value == value;
+    case Type::NE: return variable->value != value;
+    case Type::GT: return variable->value > value;
+    case Type::GE: return variable->value >= value;
+    default:
+        return false;
+    }
+}
+
+Compare::Type Compare::ParseOperator(const char* op)
 {
     if (!strcmp(op, "lt") || !strcmp(op, "<"))
-        return OP::LT;
+        return Type::LT;
     if (!strcmp(op, "le") || !strcmp(op, "<="))
-        return OP::LE;
+        return Type::LE;
     if (!strcmp(op, "eq") || !strcmp(op, "=="))
-        return OP::EQ;
+        return Type::EQ;
     if (!strcmp(op, "ne") || !strcmp(op, "!=") || !strcmp(op, "<>"))
-        return OP::NE;
+        return Type::NE;
     if (!strcmp(op, "gt") || !strcmp(op, ">"))
-        return OP::GT;
+        return Type::GT;
     if (!strcmp(op, "ge") || !strcmp(op, ">="))
-        return OP::GE;
-    return OP::NONE;
+        return Type::GE;
+    return Type::NONE;
+}
+
+Condition::Condition() {}
+
+Condition::~Condition() {
+    for (auto& it : compares) delete it;
+    for (auto& it : children) delete it;
+}
+
+void Condition::Load(cJSON* json, const Context& ctx) {
+    const char* type = json_get_string(json, "type");
+    if (!strcmpi(type, "and"))
+        both = true;
+
+    cJSON* item;
+    cJSON* arr = json_get(json, "compares");
+    cJSON_ArrayForEach(item, arr)
+    {
+        auto cmp = new Compare();
+        cmp->Load(item, ctx);
+        compares.push_back(cmp);
+    }
+
+    arr = json_get(json, "children");
+    cJSON_ArrayForEach(item, arr)
+    {
+        auto cld = new Condition();
+        cld->Load(item, ctx);
+        children.push_back(cld);
+    }
+}
+
+bool Condition::Evaluate() {
+    if (both) {
+        for (auto& it : compares)
+            if (!it->Evaluate())
+                return false;
+        for (auto& it : children)
+            if (!it->Evaluate())
+                return false;
+        return true;
+    }
+    else {
+        for (auto& it : compares)
+            if (it->Evaluate())
+                return true;
+        for (auto& it : children)
+            if (it->Evaluate())
+                return true;
+        return false;
+    }
 }
