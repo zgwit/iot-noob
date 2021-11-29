@@ -9,8 +9,8 @@ public:
 	int end;
 
 	void Parse(cJSON* json) {
-		json_get_int(this, json, start);
-		json_get_int(this, json, end);
+		json_member_get_int(this, json, start);
+		json_member_get_int(this, json, end);
 	}
 
 	bool Check(struct tm* t) {
@@ -29,7 +29,7 @@ public:
 
 	void Parse(cJSON* json) {
 		json_get_object_array(this, json, times);
-		json_get_int_array(this, json, days);
+		json_member_get_int_array(this, json, days);
 	}
 
 	bool Check(struct tm* t) {

@@ -4,15 +4,15 @@ bool DeviceProfile::Parse(cJSON* json)
 {
 	if (!json) return false;
 
-	json_get_bool(this, json, enable);
+	json_member_get_bool(this, json, enable);
 
-	json_get_string(this, json, name);
-	json_get_string_array(this, json, tags);
+	json_member_get_string(this, json, name);
+	json_member_get_string_array(this, json, tags);
 
-	json_get_string(this, json, label);
-	json_get_string(this, json, element);
+	json_member_get_string(this, json, label);
+	json_member_get_string(this, json, element);
 
-	json_get_int(this, json, slave);
+	json_member_get_int(this, json, slave);
 
 	json_get_object_array(this, json, variables);
 	json_get_object_array(this, json, points);

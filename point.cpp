@@ -4,19 +4,19 @@ bool PointProfile::Parse(cJSON* json)
 {
 	if (!json) return false;
 
-	json_get_string(this, json, name);
-	json_get_string(this, json, label);
-	json_get_string(this, json, unit);
-	json_get_number(this, json, value);
-	json_get_string(this, json, type);
-	json_get_string(this, json, crontab);
-	json_get_int(this, json, interval);
-	json_get_int(this, json, code);
-	json_get_int(this, json, address);
-	json_get_int(this, json, precision);
-	json_get_int(this, json, littleEndian);
-	json_get_int(this, json, readable);
-	json_get_int(this, json, writable);
+	json_member_get_string(this, json, name);
+	json_member_get_string(this, json, label);
+	json_member_get_string(this, json, unit);
+	json_member_get_number(this, json, value);
+	json_member_get_string(this, json, type);
+	json_member_get_string(this, json, crontab);
+	json_member_get_int(this, json, interval);
+	json_member_get_int(this, json, code);
+	json_member_get_int(this, json, address);
+	json_member_get_int(this, json, precision);
+	json_member_get_int(this, json, littleEndian);
+	json_member_get_int(this, json, readable);
+	json_member_get_int(this, json, writable);
 
 	return true;
 }

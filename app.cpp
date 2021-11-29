@@ -4,8 +4,8 @@ bool AppProfile::Parse(cJSON* json)
 {
 	if (!json) return false;
 
-	json_get_string(this, json, name);
-	json_get_string(this, json, version);
+	json_member_get_string(this, json, name);
+	json_member_get_string(this, json, version);
 
 	json_get_object_array(this, json, devices);
 	json_get_object_array(this, json, variables);

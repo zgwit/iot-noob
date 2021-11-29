@@ -33,8 +33,8 @@ struct DailyRange {
     uint16_t end;
 
     void Parse(cJSON* json) {
-        json_get_int(this, json, start);
-        json_get_int(this, json, end);
+        json_member_get_int(this, json, start);
+        json_member_get_int(this, json, end);
     }
 };
 
@@ -46,8 +46,8 @@ struct StatusReset {
     int total;
 
     void Parse(cJSON* json) {
-        json_get_int(this, json, interval);
-        json_get_int(this, json, total);
+        json_member_get_int(this, json, interval);
+        json_member_get_int(this, json, total);
     }
 };
 

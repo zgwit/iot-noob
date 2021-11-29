@@ -10,8 +10,8 @@ public:
 
     void Parse(cJSON* json)
     {
-        json_get_string(this, json, algorithm);
-        json_get_number_array(this, json, arguments);
+        json_member_get_string(this, json, algorithm);
+        json_member_get_number_array(this, json, arguments);
     }
 };
 
