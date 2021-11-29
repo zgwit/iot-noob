@@ -1,27 +1,53 @@
 #include "instruction.hpp"
+#include "app.hpp"
+#include "device.hpp"
 
-bool InstructionProfile::Parse(cJSON* json)
+Instruction::Instruction()
 {
-	if (!json)
-		return false;
-
-	json_member_get_string(this, json, device);
-	json_member_get_string(this, json, point);
-	json_member_get_number(this, json, value);
-	json_member_get_int(this, json, arg);
-
-    return true;
-}
-
-
-Instruction::Instruction(InstructionProfile* p)
-{
-	profile = p;
 	//TODO ±‡“Î±Ì¥Ô Ω
 }
 
 Instruction::~Instruction()
 {
+}
+
+void Instruction::Load(cJSON* json, App* app, Device* dev) {
+    std::string  name = json_get_string(json, "device");
+    std::string  point = json_get_string(json, "point");
+
+    std::vector<Device*> devices;
+    if (app) {
+        app->findDevice(name, devices);
+    }
+    else {
+        devices.push_back(dev);
+    }
+
+    for (auto& d : devices) {
+        InstructionTarget target{};
+        target.device = d;
+        target.point = d->findPoint(point);
+    }
+
+    value = json_get_number(json, "value");
+    arg = json_get_int(json, "arg");
+    delay = json_get_int(json, "delay");
+}
+
+void Instruction::Execute(const std::vector<double>& argv) {
+    double val = value;
+    if (arg > 0 && arg < argv.size()) {
+        val = argv[arg];
+    }
+    for (auto& d : targets) {
+        if (delay) {
+            //setTimeout;
+            //d->Set(point, val);
+        }
+        else {
+            //d->Set(point, val);
+        }
+    }
 }
 
 
