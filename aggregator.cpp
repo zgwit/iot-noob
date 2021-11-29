@@ -32,7 +32,7 @@ void Aggregator::Load(cJSON* json, App* app) {
     }
 
     //×ª»»ÀàÐÍ
-    std::transform(group.begin(), group.end(), group.begin(), std::tolower);
+    //std::transform(group.begin(), group.end(), group.begin(), std::tolower);
     auto it = aggregator_map.find(group);
     if (it != aggregator_map.end())
         type = it->second;
