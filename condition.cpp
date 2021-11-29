@@ -1,5 +1,5 @@
 #include "condition.hpp"
-
+#include "variable.hpp"
 
 Compare::Compare()
 {
@@ -11,8 +11,9 @@ Compare::~Compare()
 
 void Compare::Load(cJSON* json, const Context& ctx) {
     //std::string device = cJSON_GetStringValue(cJSON_GetObjectItem(json, "device"));
-    std::string variable = json_get_string(json, "variable");
-    this->variable = ctx.find(variable);
+    std::string var = json_get_string(json, "variable");
+    
+    this->variable = ctx.Get(var);
     this->type = ParseOperator(json_get_string(json, "type"));
     value = json_get_number(json, "value");
 }
@@ -60,17 +61,14 @@ void Condition::Load(cJSON* json, const Context& ctx) {
     if (!strcmpi(type, "and"))
         both = true;
 
-    cJSON* item;
-    cJSON* arr = json_get(json, "compares");
-    cJSON_ArrayForEach(item, arr)
+    json_array_foreach(json_get(json, "compares"), item)
     {
         auto cmp = new Compare();
         cmp->Load(item, ctx);
         compares.push_back(cmp);
     }
 
-    arr = json_get(json, "children");
-    cJSON_ArrayForEach(item, arr)
+    json_array_foreach(json_get(json, "children"), item)
     {
         auto cld = new Condition();
         cld->Load(item, ctx);

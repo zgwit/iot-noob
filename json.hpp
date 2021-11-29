@@ -121,7 +121,8 @@ inline int json_get_int(cJSON* json, const char* name) {
 #define json_is_null(json) cJSON_IsNull(json)
 
 #define json_array_size(json) cJSON_GetArraySize(json)
-#define json_array_foreach(json, item) cJSON_ArrayForEach(item, json)
+#define json_array_foreach(json, item) \
+	for(cJSON* item = (json != NULL) ? (json)->child : NULL; item != NULL; item = item->next)
 
 #define json_create() cJSON_CreateObject()
 #define json_delete(json) cJSON_Delete(json)

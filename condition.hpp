@@ -49,6 +49,7 @@ public:
     ~Condition();
 
     void Load(cJSON* json, const Context& ctx);
+
     bool Evaluate();
 
 private:
