@@ -22,16 +22,4 @@
 
 
 
-struct StatusReset {
-    int interval;
-    int total;
-
-    void Parse(cJSON* json) {
-        json_member_get_int(this, json, interval);
-        json_member_get_int(this, json, total);
-    }
-};
-
-
-
 

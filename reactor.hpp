@@ -13,19 +13,10 @@ public:
 
     Condition condition;
 
-    DailyRange range;
-
-    int delay;
-
-    StatusReset reset;
-
+    DailyChecker daily;
+    DelayChecker delay;
+    RepeatChecker repeat;
     std::vector<Invoke> invokes;
-
-
-    time_t start;
-    bool reported;
-    time_t reportAt;
-    unsigned int resetTimes;
 
 public:
     Alarm();

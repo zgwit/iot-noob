@@ -15,16 +15,9 @@ public:
 
     Condition condition;
 
-    DailyRange range;
-
-    int delay;
-
-    StatusReset reset;
-
-    time_t start;
-    bool reported;
-    time_t reportAt;
-    unsigned int resetTimes;
+    DailyChecker daily;
+    DelayChecker delay;
+    RepeatChecker repeat;
 
 public:
     Alarm();

@@ -3,7 +3,7 @@
 #include "define.hpp"
 
 
-class TimeRange {
+class TimeChecker {
 public:
 	int start;
 	int end;
@@ -13,13 +13,46 @@ public:
 	bool Check(struct tm* t);
 };
 
-class DailyRange {
+class DailyChecker {
 public:
-	std::vector<TimeRange> times; //8:00 - 10:00
+	std::vector<TimeChecker> times; //8:00 - 10:00
 	std::vector<int> days; //0-6
 
-	void Parse(cJSON* json);
+	void Load(cJSON* json);
 
-	bool Check(struct tm* t);
+	bool Check(time_t t);
+};
+
+
+
+class DelayChecker {
+public:
+    time_t start;
+    int delay;
+
+    void Load(cJSON* json);
+
+    void Reset();
+
+    bool Check(time_t now);
+};
+
+class RepeatChecker {
+public:
+    int interval;
+    int total;
+
+    bool raised;
+    time_t last;
+
+    int resetTimes;
+
+
+    void Load(cJSON* json);
+
+    void Reset();
+
+    bool Check(time_t now);
+
 };
 
