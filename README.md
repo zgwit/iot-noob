@@ -29,14 +29,11 @@
 | 定时任务 | jobs.json | type, daily, week, crontab, invokes:[command, argv] | 
 | 设备 | devices.json | id, name, slave, element |
 | 设备采集 | devices/${id}/collectors.json | type, interval, crontab, code, address, length |
+| 设备变量 | devices/${id}/variables.json | name, label, unit, value |
+| 设备点位 | devices/${id}/points.json | name, label, unit, value, code, address, type, le, precision |
+| 设备命令 | devices/${id}/commands.json | name, point, instructions:[point, value, arg] |
+| 设备报警 | devices/${id}/alarms.json |  compares, delay, reset:{interval, times} |
 | 设备定时任务 | devices/${id}/jobs.json | type, interval, crontab, invokes:[command, argv] |
-| 元件 | elements.json | id, name, slave, version, url,  |
-| 元件变量 | elements/${id}/variables.json | name, label, unit, value |
-| 元件点位 | elements/${id}/points.json | name, label, unit, value, code, address, type, le, precision |
-| 元件命令 | elements/${id}/commands.json | name, point, instructions:[point, value, arg] |
-| 元件采集 | elements/${id}/collectors.json | type, interval, crontab, code, address, length |
-| 元件报警 | elements/${id}/alarms.json |  compares, delay, reset:{interval, times} |
-| 元件定时任务 | elements/${id}/jobs.json | type, interval, crontab, invokes:[command, argv] |
 
 
 # 通讯协议（NOOB）
