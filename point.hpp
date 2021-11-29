@@ -38,7 +38,7 @@ public:
     bool writable;
 
     //滤波器
-    FilterProfile filter;
+    //Filter filter;
 
     bool Parse(cJSON* json);
 };

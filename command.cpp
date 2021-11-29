@@ -1,28 +1,7 @@
 #include "command.hpp"
 
-bool CommandProfile::Parse(cJSON* json)
-{
-    if (!json) return false;
-
-	json_member_get_string(this, json, name);
-	json_member_get_string(this, json, label);
-	json_member_get_int(this, json, argc);
-	json_get_object_array(this, json, instructions);
-
-	return true;
-}
-
-bool InvokeProfile::Parse(cJSON* json)
-{
-	if (!json) return false;
-
-	json_member_get_string(this, json, command);
-	json_member_get_number_array(this, json, argv);
-
-	return true;
-}
-
-
+#include "app.hpp"
+#include "device.hpp"
 
 Command::Command()
 {
@@ -30,4 +9,24 @@ Command::Command()
 
 Command::~Command()
 {
+	for (auto& it : instructions) delete it;
+}
+
+void Command::Load(cJSON* json, App* app, Device* dev) {
+    json_member_get_string(this, json, name);
+    json_member_get_string(this, json, label);
+    json_member_get_int(this, json, argc);
+
+    json_array_foreach(json_get(json, "instructions"), item) {
+        auto i = new Instruction();
+        i->Load(item, app, dev);
+        instructions.push_back(i);
+    }
+
+}
+
+void Command::Execute(const std::vector<double>& argv) {
+    for (auto& it : instructions) {
+        it->Execute(argv);
+    }
 }
