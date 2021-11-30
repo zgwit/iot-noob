@@ -2,13 +2,14 @@
 
 #include "cjson/cJSON.h"
 
-#define json_get(json, name) cJSON_GetObjectItem(json, name)
+#define json_get(json, name) \
+	cJSON_GetObjectItem(json, name)
 
 #define json_get_string(json, name) \
-	cJSON_GetStringValue(json_get(json, name))
+	cJSON_GetStringValue(cJSON_GetObjectItem(json, name))
 
 #define json_get_number(json, name) \
-	cJSON_GetNumberValue(json_get(json, name))
+	cJSON_GetNumberValue(cJSON_GetObjectItem(json, name))
 
 inline int json_get_int(cJSON* json, const char* name) {
 	auto item = cJSON_GetObjectItem(json, name);
@@ -18,7 +19,7 @@ inline int json_get_int(cJSON* json, const char* name) {
 }
 
 #define json_get_bool(json, name) \
-	(bool)cJSON_IsTrue(json_get(json, name))
+	(bool)cJSON_IsTrue(cJSON_GetObjectItem(json, name))
 
 #define json_member_get_int(to, json, name) {	\
 		auto item = cJSON_GetObjectItem(json, #name); \

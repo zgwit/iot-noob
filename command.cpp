@@ -17,7 +17,8 @@ void Command::Load(cJSON* json, App* app, Device* dev) {
     json_member_get_string(this, json, label);
     json_member_get_int(this, json, argc);
 
-    json_array_foreach(json_get(json, "instructions"), item) {
+    auto items = json_get(json, "instructions");
+    json_array_foreach(items, item) {
         auto i = new Instruction();
         i->Load(item, app, dev);
         instructions.push_back(i);

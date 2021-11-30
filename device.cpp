@@ -23,38 +23,45 @@ void Device::Load(cJSON* json, App* app) {
     json_member_get_string(this, json, element);
     json_member_get_int(this, json, slave);
 
-    json_array_foreach(json_get(json, "points"), item) {
+    auto items = json_get(json, "points");
+    json_array_foreach(items, item) {
         auto c = new Point();
         c->Load(item);
         points.push_back(c);
     }
-    json_array_foreach(json_get(json, "variables"), item) {
+    items = json_get(json, "variables");
+    json_array_foreach(items, item) {
         auto var = new Variable();
         var->Load(item);
         context.Set(var->name, var);
     }
-    json_array_foreach(json_get(json, "collectors"), item) {
+    items = json_get(json, "collectors");
+    json_array_foreach(items, item) {
         auto c = new Collector();
         c->Load(item);
         collectors.push_back(c);
     }
-    json_array_foreach(json_get(json, "calculators"), item) {
+    items = json_get(json, "calculators");
+    json_array_foreach(items, item) {
         auto c = new Calculator();
         c->Load(item, context);
         calculators.push_back(c);
     }
-    json_array_foreach(json_get(json, "commands"), item) {
+    items = json_get(json, "commands");
+    json_array_foreach(items, item) {
         auto c = new Command();
         c->Load(item, app, this);
         commands.push_back(c);
         commandsIndex[c->name] = c;
     }
-    json_array_foreach(json_get(json, "alarms"), item) {
+    items = json_get(json, "alarms");
+    json_array_foreach(items, item) {
         auto a = new Alarm();
         a->Load(item, context);
         alarms.push_back(a);
     }
-    json_array_foreach(json_get(json, "jobs"), item) {
+    items = json_get(json, "jobs");
+    json_array_foreach(items, item) {
         auto j = new Job();
         j->Load(item, app, this);
         jobs.push_back(j);

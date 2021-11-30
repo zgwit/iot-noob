@@ -8,10 +8,10 @@
 class Alarm
 {
 public:
-    bool enable;
+    bool enable = false;
 
     std::string message;
-    int level;
+    int level = 0;
 
     Condition condition;
 

@@ -11,8 +11,9 @@ void Job::Load(cJSON* json, App* app, Device* dev)
 	json_member_get_int(this, json, clock);
 	json_member_get_int_array(this, json, days);
 	json_member_get_string(this, json, crontab);
-	//json_get_object_array(this, json, invokes);
-	json_array_foreach(json_get(json, "invokes"), item) {
+
+	auto items = json_get(json, "invokes");
+	json_array_foreach(items, item) {
 		auto i = new Invoke();
 		i->Load(item, app, dev);
 		invokes.push_back(i);

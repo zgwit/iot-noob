@@ -14,8 +14,8 @@ bool TimeChecker::Check(tm* t) {
 }
 
 void DailyChecker::Load(cJSON* json) {
-	//json_member_get_object_array(this, json, times);
-	json_array_foreach(json_get(json, "times"), item) {
+	auto items = json_get(json, "times");
+	json_array_foreach(items, item) {
 		TimeChecker tr{};
 		tr.Load(item);
 		times.push_back(tr);

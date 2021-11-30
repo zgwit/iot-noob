@@ -61,15 +61,15 @@ void Condition::Load(cJSON* json, Context& ctx) {
     if (!strcmpi(type, "and"))
         both = true;
 
-    json_array_foreach(json_get(json, "compares"), item)
-    {
+    auto items = json_get(json, "compares");
+    json_array_foreach(items, item) {
         auto cmp = new Compare();
         cmp->Load(item, ctx);
         compares.push_back(cmp);
     }
 
-    json_array_foreach(json_get(json, "children"), item)
-    {
+    items = json_get(json, "children");
+    json_array_foreach(items, item) {
         auto cld = new Condition();
         cld->Load(item, ctx);
         children.push_back(cld);

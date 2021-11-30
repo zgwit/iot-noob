@@ -5,8 +5,8 @@
 
 class TimeChecker {
 public:
-	int start;
-	int end;
+	int start = 0;
+	int end = 0;
 
 	void Load(cJSON* json);
 
@@ -27,8 +27,8 @@ public:
 
 class DelayChecker {
 public:
-    time_t start;
-    int delay;
+    time_t start = 0;
+    int delay = 0;
 
     void Load(cJSON* json);
 
@@ -39,13 +39,13 @@ public:
 
 class RepeatChecker {
 public:
-    int interval;
-    int total;
+    int interval = 0;
+    int total = 0;
 
-    bool raised;
-    time_t last;
+    bool raised = false;
+    time_t last = 0;
 
-    int resetTimes;
+    int resetTimes = 0;
 
 
     void Load(cJSON* json);

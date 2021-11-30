@@ -19,39 +19,46 @@ App::~App()
 
 void App::Load(cJSON* json)
 {
-    json_array_foreach(json_get(json, "devices"), item) {
+    auto items = json_get(json, "devices");
+    json_array_foreach(items, item) {
         auto d = new Device();
         d->Load(item, this);
         devices.push_back(d);
         //TODO ¼ÓÔØÅäÖÃÎÄ¼þ
     }
-    json_array_foreach(json_get(json, "variables"), item) {
+    items = json_get(json, "variables");
+    json_array_foreach(items, item) {
         auto var = new Variable();
         var->Load(item);
         context.Set(var->name, var);
     }
-    json_array_foreach(json_get(json, "aggregators"), item) {
+    items = json_get(json, "aggregators");
+    json_array_foreach(items, item) {
         auto c = new Aggregator();
         c->Load(item, this);
         aggregators.push_back(c);
     }
-    json_array_foreach(json_get(json, "commands"), item) {
+    items = json_get(json, "commands");
+    json_array_foreach(items, item) {
         auto c = new Command();
         c->Load(item, this, nullptr);
         commands.push_back(c);
         commandsIndex[c->name] = c;
     }
-    json_array_foreach(json_get(json, "alarms"), item) {
+    items = json_get(json, "alarms");
+    json_array_foreach(items, item) {
         auto a = new Alarm();
         a->Load(item, context);
         alarms.push_back(a);
     }
-    json_array_foreach(json_get(json, "jobs"), item) {
+    items = json_get(json, "jobs");
+    json_array_foreach(items, item) {
         auto j = new Job();
         j->Load(item, this, nullptr);
         jobs.push_back(j);
     }
-    json_array_foreach(json_get(json, "reactors"), item) {
+    items = json_get(json, "reactors");
+    json_array_foreach(items, item) {
         auto r = new Reactor();
         r->Load(item, context);
         reactors.push_back(r);

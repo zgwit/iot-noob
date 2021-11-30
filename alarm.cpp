@@ -1,9 +1,8 @@
 #include "alarm.hpp"
 
 
-Alarm::Alarm()
+Alarm::Alarm(): enable(0), level(0), condition(), daily(), delay(), repeat()
 {
-
 }
 
 Alarm::~Alarm()
