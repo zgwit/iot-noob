@@ -12,12 +12,31 @@ const std::map<std::string, Aggregator::Type> aggregator_map = {
     {"last", Aggregator::Type::LAST},
 };
 
+Aggregator::Type Aggregator::parseType(const char* group)
+{
+    if (!strcmp(group, "sum"))
+        return Type::SUM;
+    if (!strcmp(group, "count"))
+        return Type::COUNT;
+    if (!strcmp(group, "avg"))
+        return Type::AVG;
+    if (!strcmp(group, "min"))
+        return Type::MIN;
+    if (!strcmp(group, "max"))
+        return Type::MAX;
+    if (!strcmp(group, "first"))
+        return Type::FIRST;
+    if (!strcmp(group, "last"))
+        return Type::LAST;
+    return Type::NONE;
+}
+
 void Aggregator::Load(cJSON* json, App* app) {
-    std::string device = json_get_string(json, "device");
-    std::string query = json_get_string(json, "query");
-    std::string group = json_get_string(json, "group");
-    std::string variable = json_get_string(json, "variable");
-    std::string as = json_get_string(json, "as");
+    const char* device = json_get_string(json, "device");
+    const char* query = json_get_string(json, "query");
+    const char* group = json_get_string(json, "group");
+    const char* variable = json_get_string(json, "variable");
+    const char* as = json_get_string(json, "as");
 
     //查找设备
     std::vector<Device*> devices;
@@ -26,16 +45,13 @@ void Aggregator::Load(cJSON* json, App* app) {
         AggregatorItem item{ nullptr, nullptr, nullptr };
         item.device = d;
         item.variable = d->findVariable(variable);
-        if (query.length())
+        if (query)
             item.expression = new Expression(query, d->context);
         items.push_back(item);
     }
 
     //转换类型
-    //std::transform(group.begin(), group.end(), group.begin(), std::tolower);
-    auto it = aggregator_map.find(group);
-    if (it != aggregator_map.end())
-        type = it->second;
+    type = parseType(group);
 
     //找到目标变量
     this->as = app->findVariable(as);

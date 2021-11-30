@@ -24,6 +24,8 @@ public:
     std::vector<AggregatorItem> items;
     Variable* as;
 
+    Type parseType(const char* group);
+
     void Load(cJSON* json, App* app);
     void Execute();
 };
