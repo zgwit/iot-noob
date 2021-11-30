@@ -16,6 +16,22 @@ App::~App()
 	for (auto& it : reactors) delete it;
 }
 
+void App::Start() {
+    for (auto& d : devices)
+        if (d->enable)
+            d->Start();
+    for (auto& j : jobs)
+        if (j->enable)
+            j->Start();
+}
+
+void App::Stop() {
+    for (auto& d : devices)
+        d->Stop();
+    for (auto& j : jobs)
+        j->Stop();
+}
+
 
 void App::Load(cJSON* json)
 {

@@ -46,4 +46,8 @@ public:
     Variable* findVariable(const std::string& name);
     Command* findCommand(const std::string& name) { return nullptr; }
     Point* findPoint(const std::string& name) { return nullptr; }
+
+    void Start();
+
+    void Stop();
 };

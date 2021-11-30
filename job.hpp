@@ -12,7 +12,7 @@ class Device;
 
 class Job
 {
-private:
+public:
     bool enable;
 
     std::string type; //daily, crontab
@@ -65,5 +65,13 @@ public:
         const char* error = nullptr;
         cron_parse_expr(crontab.c_str(), &cron, &error);
         return error;
+    }
+
+    void Start() {
+
+    }
+
+    void Stop() {
+
     }
 };

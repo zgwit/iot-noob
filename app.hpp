@@ -35,4 +35,8 @@ public:
     void findDevice(const std::string& name, std::vector<Device*>& devices) {}
     Variable* findVariable(const std::string& name) { return nullptr; }
     Command* findCommand(const std::string& name) { return nullptr; }
+
+    void Start();
+
+    void Stop();
 };

@@ -73,3 +73,19 @@ Variable* Device::findVariable(const std::string& name) {
 
 
 }
+
+void Device::Start() {
+    for (auto& c : collectors)
+        if (c->enable)
+            c->Start();
+    for (auto& j : jobs)
+        if (j->enable)
+            j->Start();
+}
+
+void Device::Stop() {
+    for (auto& c : collectors)
+        c->Stop();
+    for (auto& j : jobs)
+        j->Stop();
+}
