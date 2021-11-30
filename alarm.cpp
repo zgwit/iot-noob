@@ -11,7 +11,7 @@ Alarm::~Alarm()
 	//condition;
 }
 
-void Alarm::Load(cJSON* json, const Context& ctx) {
+void Alarm::Load(cJSON* json, Context& ctx) {
     enable = json_get_bool(json, "enable");
     message = json_get_string(json, "message");
     level = json_get_int(json, "level");

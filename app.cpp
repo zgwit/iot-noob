@@ -32,7 +32,7 @@ void App::Load(cJSON* json)
     }
     json_array_foreach(json_get(json, "aggregators"), item) {
         auto c = new Aggregator();
-        c->Load(item);
+        c->Load(item, this);
         aggregators.push_back(c);
     }
     json_array_foreach(json_get(json, "commands"), item) {

@@ -40,4 +40,6 @@ void Invoke::Load(cJSON* json, App* app, Device* dev) {
     else if (dev) {
         command = dev->findCommand(name);
     }
+
+    json_member_get_number_array(this, json, argv);
 }

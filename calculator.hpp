@@ -14,6 +14,6 @@ public:
         delete expression;
     }
 
-    void Load(cJSON* json, const Context& ctx);
+    void Load(cJSON* json, Context& ctx);
     void Evaluate();
 };

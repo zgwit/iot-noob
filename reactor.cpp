@@ -11,7 +11,7 @@ Reactor::~Reactor()
 	//condition;
 }
 
-void Reactor::Load(cJSON* json, const Context& ctx) {
+void Reactor::Load(cJSON* json, Context& ctx) {
     enable = json_get_bool(json, "enable");
     condition.Load(json_get(json, "condition"), ctx);
     daily.Load(json_get(json, "daily"));

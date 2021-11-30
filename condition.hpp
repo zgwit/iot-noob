@@ -29,7 +29,7 @@ public:
     Compare();
     ~Compare();
 
-    void Load(cJSON* json, const Context& ctx);
+    void Load(cJSON* json, Context& ctx);
 
     bool Evaluate();
 
@@ -49,7 +49,7 @@ public:
     Condition();
     ~Condition();
 
-    void Load(cJSON* json, const Context& ctx);
+    void Load(cJSON* json, Context& ctx);
 
     bool Evaluate();
 

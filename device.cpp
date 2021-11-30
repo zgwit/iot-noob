@@ -62,4 +62,7 @@ void Device::Load(cJSON* json, App* app) {
 }
 
 Variable* Device::findVariable(const std::string& name) {
+    return nullptr;
+
+
 }

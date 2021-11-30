@@ -14,13 +14,7 @@ public:
     Variable(/* args */);
     ~Variable();
 
-    void Load(cJSON* json) {
-        name = json_get_string(json, "name");
-        _default = json_get_number(json, "default");
-        value = _default;
-    }
+    void Load(cJSON* json);
 
-    void Reset() {
-        value = _default;
-    }
+    void Reset();
 };

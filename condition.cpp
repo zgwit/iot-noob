@@ -9,7 +9,7 @@ Compare::~Compare()
 {
 }
 
-void Compare::Load(cJSON* json, const Context& ctx) {
+void Compare::Load(cJSON* json, Context& ctx) {
     //std::string device = cJSON_GetStringValue(cJSON_GetObjectItem(json, "device"));
     std::string var = json_get_string(json, "variable");
     
@@ -56,7 +56,7 @@ Condition::~Condition() {
     for (auto& it : children) delete it;
 }
 
-void Condition::Load(cJSON* json, const Context& ctx) {
+void Condition::Load(cJSON* json, Context& ctx) {
     const char* type = json_get_string(json, "type");
     if (!strcmpi(type, "and"))
         both = true;

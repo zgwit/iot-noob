@@ -19,12 +19,12 @@ public:
     std::vector<Invoke> invokes;
 
 public:
-    Alarm();
-    ~Alarm();
+    Reactor();
+    ~Reactor();
 
     void Enable(bool enable = false){}
 
-    void Load(cJSON* json, const Context& ctx);
+    void Load(cJSON* json, Context& ctx);
     void Execute();
 };
 

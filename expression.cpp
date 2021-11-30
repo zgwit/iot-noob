@@ -7,7 +7,7 @@ Expression::~Expression()
     te_free(_expr);
 }
 
-Expression::Expression(const std::string &expr, const Context& ctx)
+Expression::Expression(const std::string &expr, Context& ctx)
 {
     int err;
     // Õ∑≈¿˙ ∑
