@@ -11,6 +11,11 @@ public:
     Device* device;
     Variable* variable;
     Expression* expression;
+
+    ~AggregatorItem() {
+        if (expression)
+            delete expression;
+    }
 };
 
 class Aggregator {

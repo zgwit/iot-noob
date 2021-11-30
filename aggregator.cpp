@@ -1,17 +1,6 @@
 #include "aggregator.hpp"
 #include "app.hpp"
 
-
-const std::map<std::string, Aggregator::Type> aggregator_map = {
-    {"sum", Aggregator::Type::SUM},
-    {"count", Aggregator::Type::COUNT},
-    {"avg", Aggregator::Type::AVG},
-    {"min", Aggregator::Type::MIN},
-    {"max", Aggregator::Type::MAX},
-    {"first", Aggregator::Type::FIRST},
-    {"last", Aggregator::Type::LAST},
-};
-
 Aggregator::Type Aggregator::parseType(const char* group)
 {
     if (!strcmp(group, "sum"))
