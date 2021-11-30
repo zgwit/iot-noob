@@ -30,15 +30,7 @@ public:
 
     Command* command;
 
-    void Load(cJSON* json, App* app, Device* dev) {
-        std::string name = json_get_string(json, "command");
-        if (app) {
-            command = app->findCommand(name);
-        }
-        else if (dev) {
-            command = dev->findCommand(name);
-        }
-    }
+    void Load(cJSON* json, App* app, Device* dev);
 
     void Execute() {
         command->Execute(argv);

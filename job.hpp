@@ -7,9 +7,12 @@
 #include "ccronexpr/ccronexpr.h"
 #include <sstream>
 
-class JobProfile
+class App;
+class Device;
+
+class Job
 {
-public:
+private:
     bool enable;
 
     std::string type; //daily, crontab
@@ -19,49 +22,48 @@ public:
 
     std::string crontab; //crontab
 
-    std::vector<InvokeProfile> invokes;
+    std::vector<Invoke*> invokes;
 
-    bool Parse(cJSON* json);
-};
-
-class Job
-{
-private:
-    JobProfile* profile;
-    Invoke* invoke;
 
     CronJob* job;
 
-    cron_expr crontab;
+    cron_expr cron;
     
 public:
     Job(/* args */);
     ~Job();
 
+    void Load(cJSON* json, App* app, Device* dev);
+
+    void Execute() {
+        for (auto& i : invokes)
+            i->Execute();
+    }
+
     const char* Parse() {
         //将 分钟表示 转成 crontab 标准表示
-        if (profile->type == "daily") {
+        if (type == "daily") {
             std::stringstream ss;
             //秒 分 时
-            ss << "* "<<profile->clock % 60 << " " << profile->clock / 60;
+            ss << "* "<<clock % 60 << " " << clock / 60;
             //日 月
             ss << " * * ";
             //周
-            if (profile->days.size() > 0) {
-                auto iter = profile->days.cbegin();
+            if (days.size() > 0) {
+                auto iter = days.cbegin();
                 ss << *iter;
                 iter++;
-                for (; iter != profile->days.cend(); iter++) {
+                for (; iter != days.cend(); iter++) {
                     ss << "," << *iter;
                 }
             } else {
                 ss << "*";
             }
-            ss >> profile->crontab;
+            ss >> crontab;
         }
 
         const char* error = nullptr;
-        cron_parse_expr(profile->crontab.c_str(), &crontab, &error);
+        cron_parse_expr(crontab.c_str(), &cron, &error);
         return error;
     }
 };

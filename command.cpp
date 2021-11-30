@@ -30,3 +30,14 @@ void Command::Execute(const std::vector<double>& argv) {
         it->Execute(argv);
     }
 }
+
+
+void Invoke::Load(cJSON* json, App* app, Device* dev) {
+    std::string name = json_get_string(json, "command");
+    if (app) {
+        command = app->findCommand(name);
+    }
+    else if (dev) {
+        command = dev->findCommand(name);
+    }
+}
