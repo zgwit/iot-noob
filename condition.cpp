@@ -14,7 +14,7 @@ void Compare::Load(cJSON* json, const Context& ctx) {
     std::string var = json_get_string(json, "variable");
     
     this->variable = ctx.Get(var);
-    this->type = ParseOperator(json_get_string(json, "type"));
+    this->type = parseType(json_get_string(json, "type"));
     value = json_get_number(json, "value");
 }
 
@@ -32,7 +32,7 @@ bool Compare::Evaluate() {
     }
 }
 
-Compare::Type Compare::ParseOperator(const char* op)
+Compare::Type Compare::parseType(const char* op)
 {
     if (!strcmp(op, "lt") || !strcmp(op, "<"))
         return Type::LT;

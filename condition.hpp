@@ -34,7 +34,8 @@ public:
     bool Evaluate();
 
 private:
-    Type ParseOperator(const char* op);
+    Type parseType(const char* op);
+
 };
 
 class Condition

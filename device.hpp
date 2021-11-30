@@ -4,67 +4,44 @@
 
 #include "job.hpp"
 #include "collector.hpp"
+#include "calculator.hpp"
 #include "command.hpp"
 #include "alarm.hpp"
 #include "variable.hpp"
 #include "point.hpp"
 #include "context.hpp"
 
-class DeviceProfile
-{
-public:
-    bool enable;
-
-    std::string name;
-    std::vector<std::string> tags;
-
-    std::string label;
-    std::string element; //uuid
-
-    int slave;
-
-    std::vector<VariableProfile> variables;
-    std::vector<PointProfile> points;
-    std::vector<CollectorProfile> collectors;
-    std::vector<CalculatorProfile> calculators;
-    std::vector<CommandProfile> commands;
-    std::vector<AlarmProfile> alarms;
-    std::vector<JobProfile> jobs;
-
-    bool Parse(cJSON* json);
-};
-
 
 
 class Device
 {
 public:
-    DeviceProfile* profile;
+    bool enable;
+    std::string name;
+    std::vector<std::string> tags;
+    //std::string label;
+    std::string element; //uuid
+
+    int slave;
 
     //TODO 上下文，采集器，定时器 等
     Context context;
 
-    std::vector<Variable*> variables;
+    //std::vector<Variable*> variables;
+    std::vector<Point*> points;
     std::vector<Collector*> collectors;
     std::vector<Calculator*> calculators;
-    //std::vector<Command*> commands;
-    std::map<std::string, Command*> commands;
+    std::vector<Command*> commands;
     std::vector<Alarm*> alarms;
     std::vector<Job*> jobs;
 
-
+    std::map<std::string, Command*> commandsIndex;
 
 public:
     Device(/* args */);
-    ~Device() {
-        for (auto& it : variables) delete it;
-        for (auto& it : collectors) delete it;
-        for (auto& it : calculators) delete it;
-        for (auto& it : commands) delete it.second;
-        for (auto& it : alarms) delete it;
-        for (auto& it : jobs) delete it;
+    ~Device();
 
-    }
+    void Load(cJSON* json, App* app);
 
-    Variable* findVariable(const std::string &name){}
+    Variable* findVariable(const std::string& name);
 };
