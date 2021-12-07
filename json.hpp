@@ -2,14 +2,17 @@
 
 #include "cjson/cJSON.h"
 
-#define json_get(json, name) \
-	cJSON_GetObjectItem(json, name)
+inline cJSON* json_get(cJSON* json, const char* name) {
+	return cJSON_GetObjectItem(json, name);
+}
 
-#define json_get_string(json, name) \
-	cJSON_GetStringValue(cJSON_GetObjectItem(json, name))
+inline const char* json_get_string(cJSON* json, const char* name) {
+	return cJSON_GetStringValue(cJSON_GetObjectItem(json, name));
+}
 
-#define json_get_number(json, name) \
-	cJSON_GetNumberValue(cJSON_GetObjectItem(json, name))
+inline double json_get_number(cJSON* json, const char* name) {
+	return cJSON_GetNumberValue(cJSON_GetObjectItem(json, name));
+}
 
 inline int json_get_int(cJSON* json, const char* name) {
 	auto item = cJSON_GetObjectItem(json, name);
@@ -18,8 +21,9 @@ inline int json_get_int(cJSON* json, const char* name) {
 	return 0;
 }
 
-#define json_get_bool(json, name) \
-	(bool)cJSON_IsTrue(cJSON_GetObjectItem(json, name))
+inline bool json_get_bool(cJSON* json, const char* name) {
+	return (bool)cJSON_IsTrue(cJSON_GetObjectItem(json, name));
+}
 
 #define json_member_get_int(to, json, name) {	\
 		auto item = cJSON_GetObjectItem(json, #name); \
@@ -122,17 +126,47 @@ inline int json_get_int(cJSON* json, const char* name) {
 #define json_is_null(json) cJSON_IsNull(json)
 
 #define json_array_size(json) cJSON_GetArraySize(json)
+
 #define json_array_foreach(json, item) \
 	for(cJSON* item = (json != NULL) ? (json)->child : NULL; item != NULL; item = item->next)
 
-#define json_create() cJSON_CreateObject()
-#define json_delete(json) cJSON_Delete(json)
+inline cJSON* json_create() {
+	return cJSON_CreateObject();
+}
 
-#define json_set_bool(json, name, value) cJSON_AddBoolToObject(json, #name, value)
-#define json_set_int(json, name, value) cJSON_AddNumberToObject(json, #name, value)
-#define json_set_number(json, name, value) cJSON_AddNumberToObject(json, #name, value)
-#define json_set_string(json, name, value) cJSON_AddStringToObject(json, #name, value)
-#define json_set_object(json, name, value) cJSON_AddObjectToObject(json, #name, value)
-#define json_set_null(json, name) cJSON_AddNullToObject(json, #name)
+inline void json_delete(cJSON* json) {
+	cJSON_Delete(json);
+}
 
+inline cJSON* json_set_bool(cJSON* json, const char* name, bool value) {
+	return cJSON_AddBoolToObject(json, name, value);
+}
+
+inline cJSON* json_set_int(cJSON* json, const char* name, int value) {
+	return cJSON_AddNumberToObject(json, name, value);
+}
+
+inline cJSON* json_set_number(cJSON* json, const char* name, bool value) {
+	return cJSON_AddNumberToObject(json, name, value);
+}
+
+inline cJSON* json_set_string(cJSON* json, const char* name, const char* value) {
+	return cJSON_AddStringToObject(json, name, value);
+}
+
+inline cJSON* json_set_object(cJSON* json, const char* name) {
+	return cJSON_AddObjectToObject(json, name);
+}
+
+inline cJSON* json_set_null(cJSON* json, const char* name) {
+	return cJSON_AddNullToObject(json, name);
+}
+
+template<class _FN>
+void json_foreach(cJSON* json, _FN fn) {
+	for (cJSON* item = (json != NULL) ? (json)->child : NULL; item != NULL; item = item->next)
+	{
+		fn(item);
+	}
+}
 
