@@ -1,7 +1,9 @@
 #include "app.hpp"
 
 
-App::App()
+App::App(): context(), devices(), 
+aggregators(), commands(), alarms(),
+jobs(), reactors(), commandsIndex()
 {
 }
 

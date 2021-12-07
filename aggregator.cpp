@@ -31,7 +31,7 @@ void Aggregator::Load(cJSON* json, App* app) {
     std::vector<Device*> devices;
     app->findDevice(device, devices);
     for (auto& d : devices) {
-        AggregatorItem item{ nullptr, nullptr, nullptr };
+        AggregatorItem item;
         item.device = d;
         item.variable = d->findVariable(variable);
         if (query)

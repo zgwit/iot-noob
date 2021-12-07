@@ -12,6 +12,10 @@ public:
     Variable* variable;
     Expression* expression;
 
+    AggregatorItem(): device(nullptr), variable(nullptr), expression(nullptr) {
+
+    }
+
     ~AggregatorItem() {
         if (expression)
             delete expression;
@@ -28,6 +32,11 @@ public:
     Type type;
     std::vector<AggregatorItem> items;
     Variable* as;
+
+    Aggregator(): type(Type::NONE), items(), as(nullptr) {}
+    ~Aggregator()
+    {
+    }
 
     Type parseType(const char* group);
 
