@@ -9,19 +9,19 @@ Point::~Point()
 }
 
 void Point::Load(cJSON* json) {
-	json_member_get_string(this, json, name);
-	value = json_get_number(json, "default");
+	this->name  = json_get_string(json, "name");
+	this->value = json_get_number(json, "default");
 	const char* tp = json_get_string(json, "type");
 	type = parseType(tp);
 
-	json_member_get_int(this, json, interval);
-	json_member_get_string(this, json, crontab);
+	this->interval  = json_get_int(json, "interval");
+	this->crontab  = json_get_string(json, "crontab");
 
-	json_member_get_int(this, json, code);
-	json_member_get_int(this, json, address);
-	json_member_get_int(this, json, precision);
+	this->code  = json_get_int(json, "code");
+	this->address  = json_get_int(json, "address");
+	this->precision  = json_get_int(json, "precision");
 
-	json_member_get_bool(this, json, littleEndian);
+	this->littleEndian  = json_get_bool(json, "littleEndian");
 
 	filter.Load(json_get(json, "filter"));
 }

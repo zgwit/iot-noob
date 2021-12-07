@@ -1,8 +1,8 @@
 #include "daily.hpp"
 
 void TimeChecker::Load(cJSON* json) {
-	json_member_get_int(this, json, start);
-	json_member_get_int(this, json, end);
+	this->start = json_get_int(json, "start");
+	this->end = json_get_int(json, "end");
 }
 
 bool TimeChecker::Check(tm* t) {
@@ -15,13 +15,17 @@ bool TimeChecker::Check(tm* t) {
 
 void DailyChecker::Load(cJSON* json) {
 	auto items = json_get(json, "times");
-	json_array_foreach(items, item) {
+	json_foreach(items, [&, this](cJSON* item) {
 		TimeChecker tr{};
 		tr.Load(item);
 		times.push_back(tr);
-	}
+		});
 
-	json_member_get_int_array(this, json, days);
+	items = json_get(json, "days");
+	json_foreach(items, [&, this](cJSON* item) {
+		//TODO json_is_number, or error
+		this->days.push_back(item->valueint);
+		});
 }
 
 bool DailyChecker::Check(time_t t) {
@@ -40,7 +44,7 @@ bool DailyChecker::Check(time_t t) {
 }
 
 void DelayChecker::Load(cJSON* json) {
-	json_member_get_int(this, json, delay);
+	this->delay = json_get_int(json, "delay");
 }
 
 void DelayChecker::Reset() {
@@ -59,8 +63,8 @@ bool DelayChecker::Check(time_t now) {
 }
 
 void RepeatChecker::Load(cJSON* json) {
-	json_member_get_int(this, json, interval);
-	json_member_get_int(this, json, total);
+	this->interval = json_get_int(json, "interval");
+	this->total = json_get_int(json, "total");
 }
 
 void RepeatChecker::Reset() {

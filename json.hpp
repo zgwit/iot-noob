@@ -25,110 +25,35 @@ inline bool json_get_bool(cJSON* json, const char* name) {
 	return (bool)cJSON_IsTrue(cJSON_GetObjectItem(json, name));
 }
 
-#define json_member_get_int(to, json, name) {	\
-		auto item = cJSON_GetObjectItem(json, #name); \
-		if (cJSON_IsNumber(item)) to->name = item->valueint; \
-	}
 
+inline bool json_is_bool(cJSON* json) {
+	return cJSON_IsBool(json);
+}
 
-#define json_member_get_number(to, json, name) {	\
-		auto item = cJSON_GetObjectItem(json, #name); \
-		if (cJSON_IsNumber(item)) to->name = item->valuedouble; \
-	}
+inline bool json_is_number(cJSON* json) {
+	return cJSON_IsNumber(json);
+}
 
-#define json_member_get_string(to, json, name) {	\
-		auto item = cJSON_GetObjectItem(json, #name); \
-		if (cJSON_IsString(item)) to->name = item->valuestring; \
-	}
+inline bool json_is_string(cJSON* json) {
+	return cJSON_IsString(json);
+}
 
-#define json_member_get_bool(to, json, name) {	\
-		auto item = cJSON_GetObjectItem(json, #name); \
-		if (cJSON_IsBool(item)) to->name = (bool)item->valueint; \
-	}
+inline bool json_is_object(cJSON* json) {
+	return cJSON_IsObject(json);
+}
 
-#define json_get_object(to, json, name) { \
-		auto item = cJSON_GetObjectItem(json, #name);\
-		if (cJSON_IsObject(item)) to->name.Parse(item); \
-	}
+inline bool json_is_array(cJSON* json) {
+	return cJSON_IsArray(json);
+}
 
-#define json_member_get_bool_array(to, json, name) { \
-		auto arr = cJSON_GetObjectItem(json, #name);\
-		if (cJSON_IsArray(arr)) { \
-			vec.resize(cJSON_GetArraySize(arr));\
-			auto iter = to->name.begin();\
-			cJSON* item; \
-			cJSON_ArrayForEach(json, item) {\
-				*iter = (bool)item->valueint;\
-				iter++;\
-			}\
-		}\
-	}
+inline bool json_is_null(cJSON* json) {
+	return cJSON_IsNull(json);
+}
 
-#define json_member_get_int_array(to, json, name) { \
-		auto arr = cJSON_GetObjectItem(json, #name);\
-		if (cJSON_IsArray(arr)) { \
-			to->name.resize(cJSON_GetArraySize(arr));\
-			auto iter = to->name.begin();\
-			cJSON* item; \
-			cJSON_ArrayForEach(item, json) {\
-				*iter = item->valueint;\
-				iter++;\
-			}\
-		}\
-	}
+inline int json_array_size(cJSON* json) {
+	return cJSON_GetArraySize(json);
+}
 
-#define json_member_get_number_array(to, json, name) { \
-		auto arr = cJSON_GetObjectItem(json, #name);\
-		if (cJSON_IsArray(arr)) { \
-			to->name.resize(cJSON_GetArraySize(arr));\
-			auto iter = to->name.begin();\
-			cJSON* item; \
-			cJSON_ArrayForEach(item, json) {\
-				*iter = item->valuedouble;\
-				iter++;\
-			}\
-		}\
-	}
-
-
-#define json_member_get_string_array(to, json, name) { \
-		auto arr = cJSON_GetObjectItem(json, #name);\
-		if (cJSON_IsArray(arr)) { \
-			to->name.resize(cJSON_GetArraySize(arr));\
-			auto iter = to->name.begin();\
-			cJSON* item; \
-			cJSON_ArrayForEach(item, json) {\
-				*iter = item->valuestring;\
-				iter++;\
-			}\
-		}\
-	}
-
-#define json_get_object_array(to, json, name) { \
-		auto arr = cJSON_GetObjectItem(json, #name);\
-		if (cJSON_IsArray(arr)) { \
-			to->name.resize(cJSON_GetArraySize(arr));\
-			auto iter = to->name.begin();\
-			cJSON* item; \
-			cJSON_ArrayForEach(item, json) {\
-				iter->Parse(item);\
-				iter++;\
-			}\
-		}\
-	}
-
-
-#define json_is_bool(json) cJSON_IsBool(json)
-#define json_is_number(json) cJSON_IsNumber(json)
-#define json_is_string(json) cJSON_IsString(json)
-#define json_is_object(json) cJSON_IsObject(json)
-#define json_is_array(json) cJSON_IsArray(json)
-#define json_is_null(json) cJSON_IsNull(json)
-
-#define json_array_size(json) cJSON_GetArraySize(json)
-
-#define json_array_foreach(json, item) \
-	for(cJSON* item = (json != NULL) ? (json)->child : NULL; item != NULL; item = item->next)
 
 inline cJSON* json_create() {
 	return cJSON_CreateObject();

@@ -6,18 +6,23 @@ void Job::Load(cJSON* json, App* app, Device* dev)
 {
 	if (!json) return;
 
-	json_member_get_bool(this, json, enable);
-	json_member_get_string(this, json, type);
-	json_member_get_int(this, json, clock);
-	json_member_get_int_array(this, json, days);
-	json_member_get_string(this, json, crontab);
+	this->enable = json_get_bool(json, "enable");
+	this->type = json_get_string(json, "type");
+	this->clock = json_get_int(json, "clock");
+	this->crontab = json_get_string(json, "crontab");
 
-	auto items = json_get(json, "invokes");
-	json_array_foreach(items, item) {
+	auto items = json_get(json, "days");
+	json_foreach(items, [&, this](cJSON* item) {
+		//TODO json_is_number, or error
+		this->days.push_back(item->valueint);
+		});
+
+	items = json_get(json, "invokes");
+	json_foreach(items, [&, this](cJSON* item) {
 		auto i = new Invoke();
 		i->Load(item, app, dev);
 		invokes.push_back(i);
-	}
+		});
 }
 
 

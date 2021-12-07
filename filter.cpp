@@ -8,7 +8,7 @@ public:
     int size = 10;
 
     void Load(cJSON* json) {
-        json_member_get_int(this, json, size);
+        this->size = json_get_int(json, "size");
     }
 
     double Push(double value) {

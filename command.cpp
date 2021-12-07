@@ -13,17 +13,16 @@ Command::~Command()
 }
 
 void Command::Load(cJSON* json, App* app, Device* dev) {
-    json_member_get_string(this, json, name);
-    json_member_get_string(this, json, label);
-    json_member_get_int(this, json, argc);
+    this->name = json_get_string(json, "name");
+    this->label = json_get_string(json, "label");
+    this->argc = json_get_int(json, "argc");
 
     auto items = json_get(json, "instructions");
-    json_array_foreach(items, item) {
+    json_foreach(items, [&, this](cJSON* item) {
         auto i = new Instruction();
         i->Load(item, app, dev);
         instructions.push_back(i);
-    }
-
+        });
 }
 
 void Command::Execute(const std::vector<double>& argv) {
@@ -42,5 +41,9 @@ void Invoke::Load(cJSON* json, App* app, Device* dev) {
         command = dev->findCommand(name);
     }
 
-    json_member_get_number_array(this, json, argv);
+    auto items = json_get(json, "argv");
+    json_foreach(items, [&, this](cJSON* item) {
+        //TODO json_is_number, or error
+        this->argv.push_back(item->valuedouble);
+        });
 }
