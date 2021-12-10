@@ -1,5 +1,5 @@
 #include "instruction.hpp"
-#include "app.hpp"
+#include "application.hpp"
 #include "device.hpp"
 
 Instruction::Instruction()
@@ -11,7 +11,7 @@ Instruction::~Instruction()
 {
 }
 
-void Instruction::Load(cJSON* json, App* app, Device* dev) {
+void Instruction::Load(cJSON* json, Application* app, Device* dev) {
     std::string  name = json_get_string(json, "device");
     std::string  point = json_get_string(json, "point");
 

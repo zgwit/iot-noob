@@ -3,7 +3,7 @@
 #include "define.hpp"
 #include "expression.hpp"
 
-class App;
+class Application;
 class Device;
 
 class AggregatorItem {
@@ -40,6 +40,6 @@ public:
 
     Type parseType(const char* group);
 
-    void Load(cJSON* json, App* app);
+    void Load(cJSON* json, Application* app);
     void Execute();
 };

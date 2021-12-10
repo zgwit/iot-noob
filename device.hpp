@@ -41,7 +41,7 @@ public:
     Device(/* args */);
     ~Device();
 
-    void Load(cJSON* json, App* app);
+    void Load(cJSON* json, Application* app);
 
     Variable* findVariable(const std::string& name);
     Command* findCommand(const std::string& name) { return nullptr; }

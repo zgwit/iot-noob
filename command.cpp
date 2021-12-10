@@ -1,6 +1,6 @@
 #include "command.hpp"
 
-#include "app.hpp"
+#include "application.hpp"
 #include "device.hpp"
 
 Command::Command()
@@ -12,7 +12,7 @@ Command::~Command()
 	for (auto& it : instructions) delete it;
 }
 
-void Command::Load(cJSON* json, App* app, Device* dev) {
+void Command::Load(cJSON* json, Application* app, Device* dev) {
     this->name = json_get_string(json, "name");
     this->label = json_get_string(json, "label");
     this->argc = json_get_int(json, "argc");
@@ -32,7 +32,7 @@ void Command::Execute(const std::vector<double>& argv) {
 }
 
 
-void Invoke::Load(cJSON* json, App* app, Device* dev) {
+void Invoke::Load(cJSON* json, Application* app, Device* dev) {
     std::string name = json_get_string(json, "command");
     if (app) {
         command = app->findCommand(name);

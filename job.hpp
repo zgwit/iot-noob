@@ -7,7 +7,7 @@
 #include "ccronexpr/ccronexpr.h"
 #include <sstream>
 
-class App;
+class Application;
 class Device;
 
 class Job
@@ -33,7 +33,7 @@ public:
     Job(/* args */);
     ~Job();
 
-    void Load(cJSON* json, App* app, Device* dev);
+    void Load(cJSON* json, Application* app, Device* dev);
 
     void Execute() {
         for (auto& i : invokes)

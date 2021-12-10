@@ -16,7 +16,7 @@ Device::~Device()
     for (auto& it : jobs) delete it;
 }
 
-void Device::Load(cJSON* json, App* app) {
+void Device::Load(cJSON* json, Application* app) {
     this->enable = json_get_bool(json, "enable");
     this->name = json_get_string(json, "name");
     auto items = json_get(json, "tags");

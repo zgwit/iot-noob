@@ -54,7 +54,7 @@
     <ClCompile Include="modbus.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="app.cpp">
+    <ClCompile Include="application.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="reactor.cpp">
@@ -134,7 +134,7 @@
     <ClInclude Include="modbus.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="app.hpp">
+    <ClInclude Include="application.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="reactor.hpp">

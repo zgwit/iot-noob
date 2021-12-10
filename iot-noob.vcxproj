@@ -165,7 +165,7 @@
     <ClCompile Include="instruction.cpp" />
     <ClCompile Include="job.cpp" />
     <ClCompile Include="modbus.cpp" />
-    <ClCompile Include="app.cpp" />
+    <ClCompile Include="application.cpp" />
     <ClCompile Include="reactor.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="tinyexpr\tinyexpr.c" />
@@ -195,7 +195,7 @@
     <ClInclude Include="job.hpp" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="modbus.hpp" />
-    <ClInclude Include="app.hpp" />
+    <ClInclude Include="application.hpp" />
     <ClInclude Include="reactor.hpp" />
     <ClInclude Include="point.hpp" />
     <ClInclude Include="tinyexpr\tinyexpr.h" />

@@ -20,7 +20,7 @@ bool Configure::Clear() {
 }
 
 bool Configure::Remove(const char* path) {
-	std::filesystem::remove(base + path);
+	return std::filesystem::remove(base + path);
 }
 
 bool Configure::Exists(const char* path) {
@@ -46,11 +46,14 @@ bool Configure::Set(const char* path, cJSON* json) {
 
 cJSON* Configure::Get(const char* path) {
 	auto filename = base + path;
+	if (!std::filesystem::exists(filename))
+		return nullptr;
 	auto size = std::filesystem::file_size(filename);
 	std::ifstream ifs(filename);
-	char* buffer = new char[size];
+	char* buffer = new char[size+1];
+	buffer[size] = '\0';
 	if (!ifs.is_open()) {
-		return false;
+		return nullptr;
 	}
 	ifs.read(buffer, size);
 	ifs.close();

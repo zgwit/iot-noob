@@ -12,7 +12,7 @@
 #include "reactor.hpp"
 
 
-class App
+class Application
 {
 private:
     Context context;
@@ -27,8 +27,8 @@ private:
 
     std::map<std::string, Command*> commandsIndex;
 public:
-    App();
-    ~App();
+    Application();
+    ~Application();
 
     void Load(cJSON* json);
 
@@ -36,7 +36,8 @@ public:
     Variable* findVariable(const std::string& name) { return nullptr; }
     Command* findCommand(const std::string& name) { return nullptr; }
 
-    void Start();
-
-    void Stop();
+    void Begin(const char* cfg = "app.json");
+    void End();
 };
+
+extern Application App;

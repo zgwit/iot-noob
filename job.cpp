@@ -1,8 +1,8 @@
 #include "job.hpp"
-#include "app.hpp"
+#include "application.hpp"
 #include "device.hpp"
 
-void Job::Load(cJSON* json, App* app, Device* dev)
+void Job::Load(cJSON* json, Application* app, Device* dev)
 {
 	if (!json) return;
 

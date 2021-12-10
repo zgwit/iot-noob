@@ -3,8 +3,12 @@
 
 #include <iostream>
 
+#include "../application.hpp";
+
 int main()
 {
+    App.Begin();
+
     std::cout << "Hello World!\n";
 }
 

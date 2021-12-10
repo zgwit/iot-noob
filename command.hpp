@@ -18,7 +18,7 @@ public:
 	Command();
 	~Command();
 
-    void Load(cJSON* json, App* app, Device* dev);
+    void Load(cJSON* json, Application* app, Device* dev);
     void Execute(const std::vector<double>& argv);
 
 };
@@ -30,7 +30,7 @@ public:
 
     Command* command;
 
-    void Load(cJSON* json, App* app, Device* dev);
+    void Load(cJSON* json, Application* app, Device* dev);
 
     void Execute() {
         command->Execute(argv);

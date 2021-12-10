@@ -1,5 +1,5 @@
 #include "aggregator.hpp"
-#include "app.hpp"
+#include "application.hpp"
 
 Aggregator::Type Aggregator::parseType(const char* group)
 {
@@ -20,7 +20,7 @@ Aggregator::Type Aggregator::parseType(const char* group)
     return Type::NONE;
 }
 
-void Aggregator::Load(cJSON* json, App* app) {
+void Aggregator::Load(cJSON* json, Application* app) {
     const char* device = json_get_string(json, "device");
     const char* query = json_get_string(json, "query");
     const char* group = json_get_string(json, "group");

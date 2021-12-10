@@ -1,13 +1,16 @@
-#include "app.hpp"
+#include "application.hpp"
+#include "configure.hpp"
 
+Application App;
 
-App::App(): context(), devices(), 
+Application::Application(): context(), devices(), 
 aggregators(), commands(), alarms(),
 jobs(), reactors(), commandsIndex()
 {
+
 }
 
-App::~App()
+Application::~Application()
 {
 	for (auto& it : devices) delete it;
 	//for (auto& it : variables) delete it;
@@ -18,7 +21,10 @@ App::~App()
 	for (auto& it : reactors) delete it;
 }
 
-void App::Start() {
+void Application::Begin(const char* cfg) {
+    auto json = Config.Get(cfg);
+    this->Load(json);
+
     for (auto& d : devices)
         if (d->enable)
             d->Start();
@@ -27,7 +33,7 @@ void App::Start() {
             j->Start();
 }
 
-void App::Stop() {
+void Application::End() {
     for (auto& d : devices)
         d->Stop();
     for (auto& j : jobs)
@@ -35,7 +41,7 @@ void App::Stop() {
 }
 
 
-void App::Load(cJSON* json)
+void Application::Load(cJSON* json)
 {
     auto items = json_get(json, "devices");
     json_foreach(items, [&, this](cJSON* item) {
