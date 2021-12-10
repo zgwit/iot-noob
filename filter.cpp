@@ -22,7 +22,7 @@ public:
 
 
 
-Filter::Filter()
+Filter::Filter(): filter(nullptr)
 {
 }
 

@@ -1,16 +1,18 @@
 #include "cron.hpp"
 
-Cron::Cron()
+Crontab Cron;
+
+Crontab::Crontab()
 {
 }
 
-Cron::~Cron()
+Crontab::~Crontab()
 {
 	for (auto& it : crons)delete it;
 
 }
 
-void Cron::loop() {
+void Crontab::loop() {
 	time_t now = time(nullptr);
 	for (auto& it : crons) {
 		if (it->tick < now) {
@@ -25,7 +27,7 @@ void Cron::loop() {
 	//crons.sort([](cron_item& a, cron_item& b) {	return a.tick < b.tick;	});
 }
 
-CronJob* Cron::Create(const char* crontab, std::function<void()> callback) {
+CronJob* Crontab::Create(const char* crontab, std::function<void()> callback) {
 	//CronJob
 	//crons.push_back()
 	auto job = new CronJob();
@@ -42,7 +44,7 @@ CronJob* Cron::Create(const char* crontab, std::function<void()> callback) {
 	return job;
 }
 
-void Cron::Cancel(CronJob* job) {
+void Crontab::Cancel(CronJob* job) {
 	crons.remove(job);
 	delete job;
 }

@@ -14,14 +14,14 @@ public:
 	std::function<void()> callback;
 };
 
-class Cron
+class Crontab
 {
 private:
 	std::list<CronJob*> crons;
 
 public:
-	Cron();
-	~Cron();
+	Crontab();
+	~Crontab();
 
 	void loop();
 
@@ -31,4 +31,4 @@ public:
 
 };
 
-//Cron cron;
+extern Crontab Cron;

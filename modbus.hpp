@@ -7,4 +7,8 @@ private:
 public:
     ModbusClient(/* args */);
     ~ModbusClient();
+
+    void loop() { };
 };
+
+extern ModbusClient Modbus;

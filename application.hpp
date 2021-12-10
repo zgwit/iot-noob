@@ -14,7 +14,7 @@
 
 class Application
 {
-private:
+public:
     Context context;
 
     std::vector<Device*> devices;
@@ -25,7 +25,11 @@ private:
     std::vector<Job*> jobs;
     std::vector<Reactor*> reactors;
 
+    //std::map<std::string, Device*> devicesIndex;
     std::map<std::string, Command*> commandsIndex;
+
+    void clean();
+
 public:
     Application();
     ~Application();

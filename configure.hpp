@@ -8,17 +8,17 @@ private:
 	std::string base;
 
 public:
-	Configure(const char* base);
+	Configure(const std::string& base);
 	~Configure();
 
 	bool Clear();
-	bool Remove(const char* path);
-	bool Exists(const char* path);
+	bool Remove(const std::string& path);
+	bool Exists(const std::string& path);
 
-	bool Set(const char* path, cJSON* json);
-	cJSON* Get(const char* path);
+	bool Put(const std::string& path, cJSON* json);
+	cJSON* Load(const std::string& path);
 
-	std::string Resolve(const char* path){}
+	std::string Resolve(const std::string& path);
 
 private:
 

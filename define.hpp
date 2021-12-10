@@ -18,7 +18,7 @@
 //#include "cjson/cJSON.h"
 
 
-#define Pointer std::shared_ptr
+//#define Pointer std::shared_ptr
 
 
 

@@ -10,7 +10,7 @@
 #include "variable.hpp"
 #include "point.hpp"
 #include "context.hpp"
-
+#include "modbus.hpp"
 
 
 class Device

@@ -4,9 +4,9 @@
 #include <fstream>
 
 
-Configure Config("config/");
+Configure Config("config");
 
-Configure::Configure(const char* base):base(base)
+Configure::Configure(const std::string& base):base(base)
 {
 }
 
@@ -19,16 +19,16 @@ bool Configure::Clear() {
 	return true;
 }
 
-bool Configure::Remove(const char* path) {
-	return std::filesystem::remove(base + path);
+bool Configure::Remove(const std::string& path) {
+	return std::filesystem::remove(this->Resolve(path));
 }
 
-bool Configure::Exists(const char* path) {
-	return std::filesystem::exists(path);
+bool Configure::Exists(const std::string& path) {
+	return std::filesystem::exists(this->Resolve(path));
 }
 
-bool Configure::Set(const char* path, cJSON* json) {
-	auto filename = base + path;
+bool Configure::Put(const std::string& path, cJSON* json) {
+	auto filename = this->Resolve(path);
 	char* text = cJSON_Print(json);
 
 	std::ofstream ofs(filename);
@@ -44,8 +44,8 @@ bool Configure::Set(const char* path, cJSON* json) {
 	return true;
 }
 
-cJSON* Configure::Get(const char* path) {
-	auto filename = base + path;
+cJSON* Configure::Load(const std::string& path) {
+	auto filename = this->Resolve(path);
 	if (!std::filesystem::exists(filename))
 		return nullptr;
 	auto size = std::filesystem::file_size(filename);
@@ -62,5 +62,9 @@ cJSON* Configure::Get(const char* path) {
 	delete[] buffer;
 
 	return json;
+}
+
+std::string Configure::Resolve(const std::string& path) {
+	return base + '\\' + path;
 }
 
