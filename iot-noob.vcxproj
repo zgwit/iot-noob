@@ -170,10 +170,12 @@
     <ClCompile Include="point.cpp" />
     <ClCompile Include="tinyexpr\tinyexpr.c" />
     <ClCompile Include="variable.cpp" />
+    <ClCompile Include="windows\configure.cpp" />
     <ClCompile Include="windows\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="condition.hpp" />
+    <ClInclude Include="configure.hpp" />
     <ClInclude Include="daily.hpp" />
     <ClInclude Include="noob.hpp" />
     <ClInclude Include="aggregator.hpp" />
