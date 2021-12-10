@@ -8,7 +8,7 @@ class Noob
 private:
   /* data */
 public:
-	Noob(/* args */);
+    Noob(/* args */);
   ~Noob();
 };
 

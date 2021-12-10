@@ -8,7 +8,7 @@ Context::Context(/* args */)
 
 Context::~Context()
 {
-	for (auto& it : _props) delete it.second;
+    for (auto& it : _props) delete it.second;
 }
 
 void Context::SetValue(const std::string& name, double value) {

@@ -47,93 +47,74 @@ void Application::End() {
 }
 
 
-static cJSON* load_child_config(cJSON* item, const std::string& base) {
-    std::string id;
-    if (json_is_string(item))
-        id = item->valuestring;
-    else if (json_is_number(item))
-        id += item->valueint;
-    else
-        return nullptr;
-
-    return Config.Load(base + "/" + id + ".json");
-}
-
-
 void Application::Load(cJSON* json)
 {
     //TODO Ãû³Æ£¬°æ±¾ºÅµÈ
     auto items = json_get(json, "devices");
     json_foreach(items, [&, this](cJSON* item) {
-        item = load_child_config(item, "devices");
+        item = Config.Load(std::string() + "devices/" + item->valuestring + ".json");
         if (item) {
             auto dev = new Device();
             dev->Load(item, this);
             devices.push_back(dev);
             context.SetModule(dev->name, &dev->context);
-        }
-        });
+        }});
         
     items = json_get(json, "variables");
     json_foreach(items, [&, this](cJSON* item) {
-        item = load_child_config(item, "variables");
+        item = Config.Load(std::string() + "variables/" + item->valuestring + ".json");
         if (item) {
             auto var = new Variable();
             var->Load(item);
             context.Set(var->name, var);
-        }
-        });
+        }});
 
     items = json_get(json, "aggregators");
     json_foreach(items, [&, this](cJSON* item) {
-        item = load_child_config(item, "aggregators");
+        item = Config.Load(std::string() + "aggregators/" + item->valuestring + ".json");
         if (item) {
             auto c = new Aggregator();
             c->Load(item, this);
             aggregators.push_back(c);
-        }
-        });
+        }});
 
     items = json_get(json, "commands");
     json_foreach(items, [&, this](cJSON* item) {
-        item = load_child_config(item, "commands");
+        item = Config.Load(std::string() + "commands/" + item->valuestring + ".json");
         if (item) {
             auto c = new Command();
             c->Load(item, this, nullptr);
             commands.push_back(c);
             commandsIndex[c->name] = c;
-        }
-        });
+        }});
 
     items = json_get(json, "alarms");
     json_foreach(items, [&, this](cJSON* item) {
-        item = load_child_config(item, "alarms");
+        item = Config.Load(std::string() + "alarms/" + item->valuestring + ".json");
         if (item) {
             auto a = new Alarm();
             a->Load(item, context);
             alarms.push_back(a);
-        }
-        });
+        }});
+
 
     items = json_get(json, "jobs");
     json_foreach(items, [&, this](cJSON* item) {
-        item = load_child_config(item, "jobs");
+        item = Config.Load(std::string() + "jobs/" + item->valuestring + ".json");
         if (item) {
             auto j = new Job();
             j->Load(item, this, nullptr);
             jobs.push_back(j);
-        }
-        });
+        }});
 
     items = json_get(json, "reactors");
     json_foreach(items, [&, this](cJSON* item) {
-        item = load_child_config(item, "reactors");
+        item = Config.Load(std::string() + "reactors/" + item->valuestring + ".json");
         if (item) {
             auto r = new Reactor();
             r->Load(item, context);
             reactors.push_back(r);
-        }
-        });
+        }});
 
 }
 

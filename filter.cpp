@@ -28,8 +28,8 @@ Filter::Filter(): filter(nullptr)
 
 Filter::~Filter()
 {
-	if (filter)
-		delete filter;
+    if (filter)
+        delete filter;
 }
 
 void Filter::Load(cJSON* json) {

@@ -8,7 +8,7 @@ Reactor::Reactor()
 
 Reactor::~Reactor()
 {
-	//condition;
+    //condition;
 }
 
 void Reactor::Load(cJSON* json, Context& ctx) {

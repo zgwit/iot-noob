@@ -9,7 +9,7 @@ Command::Command()
 
 Command::~Command()
 {
-	for (auto& it : instructions) delete it;
+    for (auto& it : instructions) delete it;
 }
 
 void Command::Load(cJSON* json, Application* app, Device* dev) {

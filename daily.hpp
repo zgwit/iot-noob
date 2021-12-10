@@ -5,22 +5,22 @@
 
 class TimeChecker {
 public:
-	int start = 0;
-	int end = 0;
+    int start = 0;
+    int end = 0;
 
-	void Load(cJSON* json);
+    void Load(cJSON* json);
 
-	bool Check(struct tm* t);
+    bool Check(struct tm* t);
 };
 
 class DailyChecker {
 public:
-	std::vector<TimeChecker> times; //8:00 - 10:00
-	std::vector<int> days; //0-6
+    std::vector<TimeChecker> times; //8:00 - 10:00
+    std::vector<int> days; //0-6
 
-	void Load(cJSON* json);
+    void Load(cJSON* json);
 
-	bool Check(time_t t);
+    bool Check(time_t t);
 };
 
 

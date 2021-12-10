@@ -17,10 +17,9 @@ class Device
 {
 public:
     bool enable;
+    std::string id;
     std::string name;
     std::vector<std::string> tags;
-    //std::string label;
-    std::string element; //uuid
 
     int slave;
 

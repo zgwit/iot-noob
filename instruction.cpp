@@ -4,7 +4,7 @@
 
 Instruction::Instruction()
 {
-	//TODO 编译表达式
+    //TODO 编译表达式
 }
 
 Instruction::~Instruction()

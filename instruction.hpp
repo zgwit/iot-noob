@@ -35,8 +35,8 @@ private:
     std::vector<InstructionTarget> targets;
 
 public:
-	Instruction();
-	~Instruction();
+    Instruction();
+    ~Instruction();
 
     void Load(cJSON* json, Application* app, Device* dev);
 

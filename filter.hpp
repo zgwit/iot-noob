@@ -19,8 +19,8 @@ public:
     FilterInterface* filter;
 
 public:
-	Filter();
-	~Filter();
+    Filter();
+    ~Filter();
 
     void Load(cJSON* json);
 

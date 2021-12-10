@@ -15,8 +15,8 @@ public:
     std::vector<Instruction*> instructions;
 
 public:
-	Command();
-	~Command();
+    Command();
+    ~Command();
 
     void Load(cJSON* json, Application* app, Device* dev);
     void Execute(const std::vector<double>& argv);
