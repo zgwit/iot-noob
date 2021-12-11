@@ -24,7 +24,7 @@ void Crontab::loop() {
     }
 
     //∞¥’’ ±º‰≈≈–Ú
-    //crons.sort([](cron_item& a, cron_item& b) {    return a.tick < b.tick;    });
+    //crons.sort([](cron_item& a, cron_item& b) {    return a.tick < b.tick;    };
 }
 
 CronJob* Crontab::Create(const char* crontab, std::function<void()> callback) {

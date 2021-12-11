@@ -18,11 +18,11 @@ void Command::Load(cJSON* json, Application* app, Device* dev) {
     this->argc = json_get_int(json, "argc");
 
     auto items = json_get(json, "instructions");
-    json_foreach(items, [&, this](cJSON* item) {
+    json_array_foreach(items, item) {
         auto i = new Instruction();
         i->Load(item, app, dev);
         instructions.push_back(i);
-        });
+    }
 }
 
 void Command::Execute(const std::vector<double>& argv) {
@@ -42,8 +42,8 @@ void Invoke::Load(cJSON* json, Application* app, Device* dev) {
     }
 
     auto items = json_get(json, "argv");
-    json_foreach(items, [&, this](cJSON* item) {
+    json_array_foreach(items, item) {
         //TODO json_is_number, or error
         this->argv.push_back(item->valuedouble);
-        });
+    }
 }

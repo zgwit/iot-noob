@@ -12,17 +12,17 @@ void Job::Load(cJSON* json, Application* app, Device* dev)
     this->crontab = json_get_string(json, "crontab");
 
     auto items = json_get(json, "days");
-    json_foreach(items, [&, this](cJSON* item) {
+    json_array_foreach(items, item) {
         //TODO json_is_number, or error
         this->days.push_back(item->valueint);
-        });
+    }
 
     items = json_get(json, "invokes");
-    json_foreach(items, [&, this](cJSON* item) {
+    json_array_foreach(items, item) {
         auto i = new Invoke();
         i->Load(item, app, dev);
         invokes.push_back(i);
-        });
+    }
 }
 
 

@@ -15,17 +15,17 @@ bool TimeChecker::Check(tm* t) {
 
 void DailyChecker::Load(cJSON* json) {
     auto items = json_get(json, "times");
-    json_foreach(items, [&, this](cJSON* item) {
+    json_array_foreach(items, item) {
         TimeChecker tr{};
         tr.Load(item);
         times.push_back(tr);
-        });
+    }
 
     items = json_get(json, "days");
-    json_foreach(items, [&, this](cJSON* item) {
+    json_array_foreach(items, item) {
         //TODO json_is_number, or error
         this->days.push_back(item->valueint);
-        });
+    }
 }
 
 bool DailyChecker::Check(time_t t) {

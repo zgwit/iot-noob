@@ -62,18 +62,18 @@ void Condition::Load(cJSON* json, Context& ctx) {
         both = true;
 
     auto items = json_get(json, "compares");
-    json_foreach(items, [&ctx, this](cJSON* item) {
+    json_array_foreach(items, item) {
         auto cmp = new Compare();
         cmp->Load(item, ctx);
         compares.push_back(cmp);
-        });
+    }
 
     items = json_get(json, "children");
-    json_foreach(items, [&ctx, this](cJSON* item) {
+    json_array_foreach(items, item) {
         auto cld = new Condition();
         cld->Load(item, ctx);
         children.push_back(cld);
-        });
+    }
 }
 
 bool Condition::Evaluate() {

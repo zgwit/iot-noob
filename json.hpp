@@ -87,11 +87,15 @@ inline cJSON* json_set_null(cJSON* json, const char* name) {
     return cJSON_AddNullToObject(json, name);
 }
 
+
+//使用Lambda函数，徒增代码量，丑，不方便（C++闭包真难受）
 template<class _FN>
 void json_foreach(cJSON* json, _FN fn) {
     for (cJSON* item = (json != NULL) ? (json)->child : NULL; item != NULL; item = item->next)
-    {
         fn(item);
-    }
 }
+
+
+//#define json_array_foreach(items, item) cJSON_ArrayForEach(item, items)
+#define json_array_foreach(items, item) for (cJSON* item = (items != nullptr) ? (items)->child : nullptr; item != nullptr; item = item->next)
 
