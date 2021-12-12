@@ -8,10 +8,13 @@ int main()
 
     
     while (true) {
-        //TODO cron.loop modbus.loop 
-
+        //定时任务
         Cron.loop();
+        
+        //周期任务
+        Wheel.loop();
 
+        //Modbus
         Modbus.loop();
 
         Sleep(10);

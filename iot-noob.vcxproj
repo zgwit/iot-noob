@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="condition.cpp" />
     <ClCompile Include="daily.cpp" />
+    <ClCompile Include="wheel.cpp" />
     <ClCompile Include="noob.cpp" />
     <ClCompile Include="aggregator.cpp" />
     <ClCompile Include="alarm.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="condition.hpp" />
     <ClInclude Include="configure.hpp" />
     <ClInclude Include="daily.hpp" />
+    <ClInclude Include="wheel.hpp" />
     <ClInclude Include="noob.hpp" />
     <ClInclude Include="aggregator.hpp" />
     <ClInclude Include="alarm.hpp" />

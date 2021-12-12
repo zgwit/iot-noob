@@ -2,8 +2,8 @@
 #include "configure.hpp"
 
 
-Device::Device(/* args */)
-{
+Device::Device(const std::string& id) {
+	this->id = id;
 }
 
 Device::~Device()

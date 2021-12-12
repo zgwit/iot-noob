@@ -99,6 +99,9 @@
     <ClCompile Include="windows\configure.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="wheel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="noob.hpp">
@@ -177,6 +180,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="configure.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="wheel.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

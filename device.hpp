@@ -37,7 +37,7 @@ public:
     std::map<std::string, Command*> commandsIndex;
 
 public:
-    Device(/* args */);
+    Device(const std::string& id);
     ~Device();
 
     void Load(cJSON* json, Application* app);

@@ -52,9 +52,10 @@ void Application::Load(cJSON* json)
     //TODO Ãû³Æ£¬°æ±¾ºÅµÈ
     auto items = json_get(json, "devices");
     json_array_foreach(items, item) {
-        item = Config.Load(std::string() + "devices/" + item->valuestring + ".json");
+        std::string id = item->valuestring;
+        item = Config.Load(std::string() + "devices/" + id + ".json");
         if (item) {
-            auto dev = new Device();
+            auto dev = new Device(id);
             dev->Load(item, this);
             devices.push_back(dev);
             context.SetModule(dev->name, &dev->context);

@@ -10,7 +10,7 @@
 #include "alarm.hpp"
 #include "job.hpp"
 #include "reactor.hpp"
-
+#include "wheel.hpp"
 
 class Application
 {

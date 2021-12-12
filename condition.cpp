@@ -1,7 +1,7 @@
 #include "condition.hpp"
 #include "variable.hpp"
 
-Compare::Compare()
+Compare::Compare(): type(Type::NONE), variable(nullptr), value(0)
 {
 }
 
@@ -49,7 +49,9 @@ Compare::Type Compare::parseType(const char* op)
     return Type::NONE;
 }
 
-Condition::Condition() {}
+Condition::Condition(): both(false)
+{
+}
 
 Condition::~Condition() {
     for (auto& it : compares) delete it;
