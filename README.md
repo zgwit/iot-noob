@@ -1,10 +1,3 @@
-- [物联小白](#%E7%89%A9%E8%81%94%E5%B0%8F%E7%99%BD)
-- [项目配置](#%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE)
-- [上位机通讯协议](#%E4%B8%8A%E4%BD%8D%E6%9C%BA%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE)
-  * [包结构](#%E5%8C%85%E7%BB%93%E6%9E%84)
-  * [消息类型](#%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B)
-  * [消息状态](#%E6%B6%88%E6%81%AF%E7%8A%B6%E6%80%81)
-
 
 
 # 物联小白
@@ -21,13 +14,14 @@
 
 | 配置 | 文件路径 | 内容 |
 |----|----|----|
-| 应用 | app.json | name, version, enable |
-| 变量 | variables.json | name, type, label, unit, value |
-| 命令 | commands.json | name, label, argc, instructions:[device, point, value, arg] |
-| 报警 | alarms.json | compares, dailyRanges, weekRange, delay, reset:{interval, times} |
-| 策略 | reactors.json | variable, compares, invokes:[command, argv] |
-| 定时任务 | jobs.json | type, daily, week, crontab, invokes:[command, argv] | 
-| 设备 | devices.json | id, name, slave, element |
+| 应用 | app.json | name, version, enable, devices, variables, command, alarms, jobs, reactors, aggregators|
+| 变量 | variables/${id}.json | name, type, label, unit, value |
+| 命令 | commands/${id}.json | name, label, argc, instructions:[device, point, value, arg] |
+| 报警 | alarms/${id}.json | compares, dailyRanges, weekRange, delay, reset:{interval, times} |
+| 策略 | reactors/${id}.json | variable, compares, invokes:[command, argv] |
+| 定时任务 | jobs/${id}.json | type, daily, week, crontab, invokes:[command, argv] | 
+| 设备 | devices/${id}.json | id, name, slave, element, points, variables, collectors, calculators, command, alarms, jobs |
+| 聚合器 | aggregators/${id}.json | device, query, group, variable, as |
 | 设备采集 | devices/${id}/collectors.json | type, interval, crontab, code, address, length |
 | 设备变量 | devices/${id}/variables.json | name, label, unit, value |
 | 设备点位 | devices/${id}/points.json | name, label, unit, value, code, address, type, le, precision |
@@ -35,56 +29,4 @@
 | 设备报警 | devices/${id}/alarms.json |  compares, delay, reset:{interval, times} |
 | 设备定时任务 | devices/${id}/jobs.json | type, interval, crontab, invokes:[command, argv] |
 
-
-# 通讯协议（NOOB）
-
-物联小白与上位机（服务器）通讯原计划使用MQTT协议，但MQTT并不是一个好的物联网协议（1.总线不安全，2.topic冗余，3.不适合高并发），所以根据以往项目经验重新设计了一个二进制和JSON结合的协议，暂时定名为NOOB。NOOB协议使用1个字节作为包头，包体最长支持30KB（但是建议在1KB以内，因为有些网络有限制数据包体积）。数据内容支持加密传输，默认AES（AES有硬件加速，ESP32、STM32、服务器CPU都支持）。
-
-
-## 包结构
-
-包头 1字节
-
-|消息类型|设备状态|数据加密|包体标识|
-|----|----|----|----|
-|4bit|2bit|1bit|1bit|
-
-包体 2~32676
-
-|长包标识|内容长度|[扩展长度]|内容|
-|----|----|----|----|
-|1bit|7bit|[8bit]|1~32676 byte|
-
-*长包标识为1时，使用扩展长度表示长度大于127的包*
-
-
-## 消息类型
-
-| 序号 | 类型 | 方向 | 类型 | 内容 |
-|----|----|----|----|----|
-| 0 | NONE | - | - | - |
-| 1 | CONNECT | 上行 | 鉴权 | json |
-| 2 | HEARTBEAT | 上行 | 心跳 |-|
-| 3 | QUERY | 下行 | 查询 |json|
-| 4 | UPDATE | 下行 | 修改 |json|
-| 5 | CONTROL | 下行 | 控制命令 |json|
-| 6 | REPORT | 上行 | 上报状态 |json|
-| 7 | EVENT | 上行 | 事件 |json|
-| 8 | ALARM | 上行 | 报警 |json|
-| 9 | LOG | 上行 | 日志 |string|
-| 10 | APP | 下行 | 应用管理 |json|
-| 11 | FS | 下行 | 文件管理 |json|
-| 12 | SYSTEM | 下行 | 系统设置 |json|
-| 13 | DATA | 双向 | 数据 |binary|
-| 14 | FINISH | 下行 | 结束 | - |
-| 15 | DISCONNECT | 双向 | 断开 |[string]|
-
-## 消息状态
-
-| 序号 | 类型 | 说明 |
-|----|----|----|
-| 0 | NORMAL | - |
-| 1 | BUSY | 忙 |
-| 2 | ERROR | 错误 |
-| 3 | UNSUPPORTED | 不支持 |
 
