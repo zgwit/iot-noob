@@ -9,6 +9,7 @@
 
 void setup(){
 
+  App.Begin();
 }
 
 void loop() {
