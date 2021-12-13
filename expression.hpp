@@ -2,7 +2,7 @@
 
 #include "define.hpp"
 
-#include "tinyexpr/tinyexpr.h"
+#include "tinyexpr.h"
 
 #include "variable.hpp"
 #include "context.hpp"

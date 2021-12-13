@@ -4,7 +4,7 @@
 #include "command.hpp"
 #include "cron.hpp"
 
-#include "ccronexpr/ccronexpr.h"
+#include "ccronexpr.h"
 #include <sstream>
 
 class Application;

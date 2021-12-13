@@ -5,17 +5,16 @@
 * jason@zgwit.com
 *
 */
-
-#include "fs.hpp"
-#include "wifi.hpp"
+#include "application.hpp"
 
 void setup(){
-  fs_init();
-  WiFi_Init();
 
 }
 
 void loop() {
-
+  Modbus.loop();
+  Cron.loop();
+  Wheel.loop();
+  
 
 }

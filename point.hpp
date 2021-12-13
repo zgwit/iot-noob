@@ -42,25 +42,25 @@ private:
     Filter filter;
 
     Type parseType(const char* op) {
-        if (!strcmpi(op, "bit"))
+        if (!strcasecmp(op, "bit"))
             return Type::BIT;
-        if (!strcmpi(op, "byte") || !strcmpi(op, "char"))
+        if (!strcasecmp(op, "byte") || !strcasecmp(op, "char"))
             return Type::BYTE;
-        if (!strcmpi(op, "word") || !strcmpi(op, "uint16"))
+        if (!strcasecmp(op, "word") || !strcasecmp(op, "uint16"))
             return Type::UINT16;
-        if (!strcmpi(op, "dword") || !strcmpi(op, "uint32"))
+        if (!strcasecmp(op, "dword") || !strcasecmp(op, "uint32"))
             return Type::UINT32;
-        if (!strcmpi(op, "qword") || !strcmpi(op, "uint64"))
+        if (!strcasecmp(op, "qword") || !strcasecmp(op, "uint64"))
             return Type::UINT64;
-        if (!strcmpi(op, "int16"))
+        if (!strcasecmp(op, "int16"))
             return Type::INT16;
-        if (!strcmpi(op, "int32"))
+        if (!strcasecmp(op, "int32"))
             return Type::INT32;
-        if (!strcmpi(op, "int64"))
+        if (!strcasecmp(op, "int64"))
             return Type::INT64;
-        if (!strcmpi(op, "float") || !strcmpi(op, "float32"))
+        if (!strcasecmp(op, "float") || !strcasecmp(op, "float32"))
             return Type::FLOAT;
-        if (!strcmpi(op, "double") || !strcmpi(op, "float64"))
+        if (!strcasecmp(op, "double") || !strcasecmp(op, "float64"))
             return Type::DOUBLE;
         return Type::NONE;
     }

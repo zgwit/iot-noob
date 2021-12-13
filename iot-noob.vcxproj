@@ -147,15 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ccronexpr.c" />
+    <ClCompile Include="cJSON.c" />
     <ClCompile Include="condition.cpp" />
     <ClCompile Include="daily.cpp" />
+    <ClCompile Include="tinyexpr.c" />
     <ClCompile Include="wheel.cpp" />
     <ClCompile Include="noob.cpp" />
     <ClCompile Include="aggregator.cpp" />
     <ClCompile Include="alarm.cpp" />
     <ClCompile Include="calculator.cpp" />
-    <ClCompile Include="ccronexpr\ccronexpr.c" />
-    <ClCompile Include="cjson\cJSON.c" />
     <ClCompile Include="collector.cpp" />
     <ClCompile Include="command.cpp" />
     <ClCompile Include="context.cpp" />
@@ -169,22 +170,24 @@
     <ClCompile Include="application.cpp" />
     <ClCompile Include="reactor.cpp" />
     <ClCompile Include="point.cpp" />
-    <ClCompile Include="tinyexpr\tinyexpr.c" />
     <ClCompile Include="variable.cpp" />
     <ClCompile Include="windows\configure.cpp" />
     <ClCompile Include="windows\main.cpp" />
+    <ClCompile Include="windows\rs485.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ccronexpr.h" />
+    <ClInclude Include="cJSON.h" />
     <ClInclude Include="condition.hpp" />
     <ClInclude Include="configure.hpp" />
     <ClInclude Include="daily.hpp" />
+    <ClInclude Include="rs485.hpp" />
+    <ClInclude Include="tinyexpr.h" />
     <ClInclude Include="wheel.hpp" />
     <ClInclude Include="noob.hpp" />
     <ClInclude Include="aggregator.hpp" />
     <ClInclude Include="alarm.hpp" />
     <ClInclude Include="calculator.hpp" />
-    <ClInclude Include="ccronexpr\ccronexpr.h" />
-    <ClInclude Include="cjson\cJSON.h" />
     <ClInclude Include="collector.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="context.hpp" />
@@ -200,7 +203,6 @@
     <ClInclude Include="application.hpp" />
     <ClInclude Include="reactor.hpp" />
     <ClInclude Include="point.hpp" />
-    <ClInclude Include="tinyexpr\tinyexpr.h" />
     <ClInclude Include="variable.hpp" />
   </ItemGroup>
   <ItemGroup>

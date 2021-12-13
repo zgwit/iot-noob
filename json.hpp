@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cjson/cJSON.h"
+#include "cJSON.h"
 
 inline cJSON* json_get(cJSON* json, const char* name) {
     return cJSON_GetObjectItem(json, name);

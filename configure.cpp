@@ -1,9 +1,9 @@
 #include "configure.hpp"
 
 
-Configure Config;
+Configure Config("config");
 
-Configure::Configure()
+Configure::Configure(const std::string& base):base(base)
 {
 }
 
@@ -13,22 +13,34 @@ Configure::~Configure()
 
 bool Configure::Clear() {
 
+    return false;
 }
 
-bool Configure::Remove(const char* key) {
+bool Configure::Remove(const std::string& path) {
 	
+	return false;
 }
 
-bool Configure::Exists(const char* key) {
-
+bool Configure::Exists(const std::string& path) {
+	return false;
 }
 
-bool Configure::Set(const char* path, cJSON* json) {
+bool Configure::Put(const std::string& path, cJSON* json) {
 
+
+    return false;
 }
 
-cJSON* Configure::Get(const char* path) {
 
 
+cJSON* Configure::Load(const std::string& path) {
+
+
+
+    return NULL;
+}
+
+std::string Configure::Resolve(const std::string& path) {
+    return base + '\\' + path;
 }
 

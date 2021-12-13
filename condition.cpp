@@ -60,7 +60,7 @@ Condition::~Condition() {
 
 void Condition::Load(cJSON* json, Context& ctx) {
     const char* type = json_get_string(json, "type");
-    if (!strcmpi(type, "and"))
+    if (!strcasecmp(type, "and"))
         both = true;
 
     auto items = json_get(json, "compares");
