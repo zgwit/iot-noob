@@ -7,8 +7,14 @@
 */
 #include "application.hpp"
 
+#include <WiFi.h>
+
 void setup(){
 
+  WiFi.begin();
+
+  Serial.begin(115200);
+  
   App.Begin();
 }
 
