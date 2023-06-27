@@ -40,21 +40,21 @@ local client
 local _msgQueue = {}
 
 -- 要订阅的主题
-local topics = {
-    ["down/gateway/" .. imei .. "/#"] = 0
-}
+local topics = {["down/gateway/" .. imei .. "/#"] = 0}
 
+local commandTopic = "up/gateway/" .. imei .. "/command"
+
+--- 发布消息
 function Publish(topic, payload, cb)
     log.info(TAG, "publish", topic, payload)
     table.insert(_msgQueue, {t = topic, p = payload, q = 0, c = cb})
     sys.publish("APP_SOCKET_SEND_DATA") -- 终止接收等待，处理发送
 end
 
+-- 订阅消息 TODO 添加callback
 function Subscribe(topic, qos)
     topics[topic] = qos
-    if ready then
-        return client:subscribe({[topic]=qos})
-    end
+    if ready then return client:subscribe({[topic] = qos}) end
 end
 
 local function send_messages()
@@ -78,9 +78,11 @@ local function receive_messages()
             local ts = string.split(data.topic, "/")
             if ts[1] == "down" then
                 if ts[2] == "gateway" then
-                    handleGateway(ts[4], data.payload)
+                    if ts[4] == "command" then
+                        handleGateway(ts[4], data.payload)
+                    end
                 elseif ts[2] == "property" then
-                    --TODO 数据怎么回传
+                    -- TODO 数据怎么回传
                 end
             end
         else
@@ -145,19 +147,22 @@ sys.taskInit(function()
     end
 end)
 
-function handleGateway(cmd, payload)
-    log.info(TAG, "handle", cmd, payload)
-    -- local data = json.decode(payload)
-    if cmd == "broker" then
+local function handleCommand(payload)
+    log.info(TAG, "handleCommand", payload)
+    local msg = json.decode(payload)
+
+    if msg.cmd == "set-broker" then
         -- 设置服务器
         io.writeFile(CFG, payload, "w")
-    elseif cmd == "debug" then
+        Publish("up/gateway" .. imei .. "/command",
+                json.encode({cmd = msg.cmd, mid = msg.mid, ret = "ok"}))
+    elseif msg == "debug" then
         -- 数据透传
-    elseif cmd == "product" then
+    elseif msg == "product" then
         -- 下载产品
-    elseif cmd == "device" then
+    elseif msg == "device" then
         -- 下载设备
-    elseif cmd == "connect" then
+    elseif msg == "connect" then
         -- 下载连接配置
     end
 end
