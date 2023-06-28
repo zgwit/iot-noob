@@ -44,6 +44,17 @@ local topics = {["down/gateway/" .. imei .. "/#"] = 0}
 
 
 
+    -- 设置服务器
+function set_noob(msg)
+    io.writeFile(CFG, json.encode(msg.data), "w")
+    replyCommand(msg, {ret = "ok"})
+    client:close() -- 关闭连接，使其重连，未测试
+end
+
+--- 发布消息
+function Close()
+    client:close()
+end
 
 --- 发布消息
 function Publish(topic, payload, cb)
@@ -152,7 +163,7 @@ local function replyCommand(req, data)
     local body = data or {}
     body.cmd = req.cmd
     body.mid = req.mid
-    
+
     local topic = "up/gateway" .. imei .. "/command"
     local payload = json.encode(body)
     -- Publish(topic, payload)
@@ -164,28 +175,20 @@ local function handleCommand(payload)
     local msg = json.decode(payload)
 
     if msg.cmd == "set-noob" then
-        -- 设置服务器
-        io.writeFile(CFG, json.encode(msg.data), "w")
-        replyCommand(msg, {ret="ok"})
-        client:close() --关闭连接，使其重连，未测试
-
+        set_noob(msg)
     elseif msg == "get-noob" then
         -- 获取服务器
-        replyCommand(msg, {data=cfg})
-
+        replyCommand(msg, {data = cfg})
     elseif msg == "start-debug" then
         -- 数据透传
 
     elseif msg == "stop-debug" then
 
-
     elseif msg == "product" then
         -- 下载产品
 
-
     elseif msg == "device" then
         -- 下载设备
-
 
     elseif msg == "set-connect" then
         -- 下载连接配置
