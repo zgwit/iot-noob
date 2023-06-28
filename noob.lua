@@ -42,7 +42,8 @@ local _msgQueue = {}
 -- 要订阅的主题
 local topics = {["down/gateway/" .. imei .. "/#"] = 0}
 
-local commandTopic = "up/gateway/" .. imei .. "/command"
+
+
 
 --- 发布消息
 function Publish(topic, payload, cb)
@@ -184,7 +185,7 @@ local function handleCommand(payload)
 
     elseif msg == "device" then
         -- 下载设备
-        
+
 
     elseif msg == "set-connect" then
         -- 下载连接配置
