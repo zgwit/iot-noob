@@ -65,7 +65,14 @@ read = io.readFile
 readPart = io.readStream
 
 -- 写入文件
-write = io.writeFile
+function write(path, content)
+    return io.writeFile(path, content, "w+b")
+end
+
+-- 写入文件
+function writeAppend(path, content)
+    return io.writeFile(path, content, "a+b")
+end
 
 -- 写入文件（掉电保护）
 writeSafe = io.write_sfile

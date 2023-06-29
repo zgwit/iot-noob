@@ -42,9 +42,7 @@ local _msgQueue = {}
 -- 要订阅的主题
 local topics = {["down/gateway/" .. imei .. "/#"] = 0}
 
-
-
-    -- 设置服务器
+-- 设置服务器
 function set_noob(msg)
     io.writeFile(CFG, json.encode(msg.data), "w")
     replyCommand(msg, {ret = "ok"})
@@ -52,9 +50,7 @@ function set_noob(msg)
 end
 
 --- 发布消息
-function Close()
-    client:close()
-end
+function Close() client:close() end
 
 --- 发布消息
 function Publish(topic, payload, cb)
@@ -91,7 +87,7 @@ local function receive_messages()
             if ts[1] == "down" then
                 if ts[2] == "gateway" then
                     if ts[4] == "command" then
-                        handleGateway(ts[4], data.payload)
+                        handleCommand(data.payload)
                     end
                 elseif ts[2] == "property" then
                     -- TODO 数据怎么回传
@@ -159,39 +155,25 @@ sys.taskInit(function()
     end
 end)
 
-local function replyCommand(req, data)
-    local body = data or {}
-    body.cmd = req.cmd
-    body.mid = req.mid
 
-    local topic = "up/gateway" .. imei .. "/command"
-    local payload = json.encode(body)
-    -- Publish(topic, payload)
-    table.insert(_msgQueue, {t = topic, p = payload, q = 0})
-end
+require "command"
 
 local function handleCommand(payload)
     log.info(TAG, "handleCommand", payload)
     local msg = json.decode(payload)
 
-    if msg.cmd == "set-noob" then
-        set_noob(msg)
-    elseif msg == "get-noob" then
-        -- 获取服务器
-        replyCommand(msg, {data = cfg})
-    elseif msg == "start-debug" then
-        -- 数据透传
+    local ret
 
-    elseif msg == "stop-debug" then
-
-    elseif msg == "product" then
-        -- 下载产品
-
-    elseif msg == "device" then
-        -- 下载设备
-
-    elseif msg == "set-connect" then
-        -- 下载连接配置
-
+    local fn = command[msg.cmd]
+    if fn == nil then
+        log.info("noob", "unkown command", msg.cmd)
+        ret = command.reply(msg, {ret = 0, error = "unkown command"})
+    else
+        ret = fn(msg)
     end
+
+    local topic = "up/gateway" .. imei .. "/command"
+    local payload = json.encode(body)
+    -- Publish(topic, payload)
+    table.insert(_msgQueue, {t = topic, p = payload, q = 0})
 end
