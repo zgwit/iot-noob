@@ -23,7 +23,7 @@ function modbus:read(slave, code, addr, len)
     -- return unpack(string.sub(ret, 4), points)
 end
 
--- 写入 1->5 3->6，仅支持单值写入
+-- 写指令，1->5 3->6
 function modbus:write(slave, code, addr, data)
     if code == 1 then
         code = 5
