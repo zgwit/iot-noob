@@ -4,14 +4,20 @@
 -- @license GPLv3
 -- @copyright zgwit
 -- @release 2023.06.30
-
 local TAG = "RS485"
-local CFG = "rs485"
+
+require "config"
+
+local uarts = {[1] = {rs485 = true, pin = pio.P0_0}, [2] = {}, [3] = {}}
+(function()
+    local ok, res = config.load("uarts")
+    if ok then uarts = res end
+end)()
 
 local UART_ID = 1 -- 某些板为2，3
 local RS485_EN = pio.P0_0 -- 某些板为pio.P0_23
 
-cfg = {
+local cfg = {
     -- 波特率
     baud = 9600,
     -- 字长
@@ -19,7 +25,7 @@ cfg = {
     -- 校验，0 none 无校验, 1 odd 奇校验, 2 even 偶校验
     parity = 0,
     -- 结束符 1, 2, 0.5=>0xf0, 1.5=>0xf1
-    stop = 1,
+    stop = 1
     -- 读超时
     -- timeout = 2000
 }
@@ -65,7 +71,7 @@ sys.taskInit(function()
                 end
             else
                 -- TODO 有没有必要？？
-                buf = buf .. s    
+                buf = buf .. s
             end
         else
             buf = buf .. s

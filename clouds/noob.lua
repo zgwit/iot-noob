@@ -161,7 +161,7 @@ sys.taskInit(function()
 end)
 
 
-require "command"
+require "..command"
 -- 处理命令
 local function handleCommand(payload)
     log.info(TAG, "handleCommand", payload)
