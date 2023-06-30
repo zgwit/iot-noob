@@ -1,3 +1,10 @@
+--- 物联小白，基于Air724模组实现的边缘计算网关，主要用于采集数据
+-- @module main
+-- @author 杰神
+-- @license GPLv3
+-- @copyright zgwit
+-- @release 2023.06.30
+
 PROJECT = "iot-noob"
 VERSION = "1.0.0"
 
@@ -25,7 +32,9 @@ update.request()
 
 
 -- 加载网关程序
-
+require "product"
+require "noob"
+require "rs485"
 
 
 -- 启动系统框架
