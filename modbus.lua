@@ -1,3 +1,10 @@
+--- 模块功能：ModbusRTU协议支持
+-- @module modbus
+-- @author 杰神
+-- @license GPLv3
+-- @copyright zgwit
+-- @release 2023.06.30
+
 module(..., package.seeall)
 
 local TAG = "MODBUS"

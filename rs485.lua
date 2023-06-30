@@ -1,6 +1,9 @@
-module(..., package.seeall)
-
-require "config"
+--- 模块功能：RS485操作
+-- @module rs485
+-- @author 杰神
+-- @license GPLv3
+-- @copyright zgwit
+-- @release 2023.06.30
 
 local TAG = "RS485"
 local CFG = "rs485"

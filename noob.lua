@@ -1,3 +1,10 @@
+--- 模块功能：物联小白云平台连接
+-- @module noob
+-- @author 杰神
+-- @license GPLv3
+-- @copyright zgwit
+-- @release 2023.06.30
+
 module(..., package.seeall)
 -- 连接云平台
 

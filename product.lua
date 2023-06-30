@@ -1,9 +1,16 @@
+--- 模块功能：产品管理
+-- @module product
+-- @author 杰神
+-- @license GPLv3
+-- @copyright zgwit
+-- @release 2023.06.30
+
 module(..., package.seeall)
 
 require "files"
 
 local TAG = "PRODUCT"
-local root = "/noob/project/"
+local root = "/noob/product/"
 
 -- 产品配置文件根目录
 if not files.exists(root) then
