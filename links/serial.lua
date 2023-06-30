@@ -20,7 +20,8 @@ local uarts = {
     if ok then uarts = res end
 end)()
 
-local Serial = {}
+--串口类
+Serial = {}
 
 function Serial:new(args)
     local obj = args or {}
