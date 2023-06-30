@@ -1,5 +1,7 @@
 module(..., package.seeall)
 
+local TAG = "MODBUS"
+
 local modbus = {}
 modbus.__index = modbus
 
@@ -18,23 +20,55 @@ function modbus:read(slave, code, addr, len)
     local ret = self.link.read(self.timeout)
     if ret == "" or ret == nil then return false end
     return string.sub(ret, 4) -- 删掉：从站，功能码，字数
+    -- return unpack(string.sub(ret, 4), mappers)
 end
 
--- 写入 1->5 3->6 
+-- 写入 1->5 3->6，仅支持单值写入
 function modbus:write(slave, code, addr, data)
+    if code == 1 then
+        code = 5
+        if data then
+            data = 0xFF00
+        else
+            data = 0x0000
+        end
+    elseif code == 3 then
+        if #data > 2 then
+            code = 16 -- 写多个寄存器
+        else
+            code = 6 -- 写单个寄存器
+        end
+    end
+
     local data = pack.pack("b2>H", slave, code, addr) .. data
     local crc = pack.pack('<H', crypto.crc16("MODBUS", data))
     self.link.write(msg)
     local ret = self.link.read(self.timeout)
     if ret == "" or ret == nil then return false end
-
     -- 判断成功与否
-    if ret[2] > 0x80 then return false end
+    local _, s, c = pack.unpack(ret, "b2")
+    if c > 0x80 then
+        log.info(TAG, "error")
+        return false
+    end
     return true
 end
 
+function modbus:poll(slave, poller)
+    local data = self.read(slave, poller.code, poller.addr, poller.length)
+    if not data then return false end
+    return parse(poller.code, data, poller.mappers)
+end
+
+function modbus:put(slave, name, value, pollers)
+    local ret, code, addr, data = lookup(name, value, pollers)
+    if not ret then return false end
+    return self.write(slave, code, addr, data)
+end
+
+
 -- 数据类型
-local types = {
+local unpackTypes = {
     --    bit = '',
     float = 'f',
     double = 'd',
@@ -50,7 +84,7 @@ local types = {
 }
 
 -- 解析数据
-function modbus:unpack(code, data, mappers)
+function parse(code, data, mappers)
     local result = {}
     if code == 1 or code == 2 then
         -- 取线圈或触点
@@ -66,7 +100,7 @@ function modbus:unpack(code, data, mappers)
             -- {offset = 0, be = true, type = "uint16", name = "temp", rate = 0.1， adjust = 0}
             local str = string.sub(data, m.offset * 2)
             -- 拼接格式
-            local fmt = (m.be and '>' or '<') .. types[m.type]
+            local fmt = (m.be and '>' or '<') .. unpackTypes[m.type]
             local _, v = pack.unpack(str, fmt)
             -- 倍率
             if m.rate ~= 0 and m.rate ~= 1 then v = v * m.rate end
@@ -76,8 +110,37 @@ function modbus:unpack(code, data, mappers)
             result[m.name] = v
         end
     else
+        log.info(TAG, "unpack unsupport code")
         ---
     end
 
     return result
+end
+
+-- 定位数据 
+function lookup(name, value, pollers)
+    for i, p in ipairs(pollers) do
+        if p.code == 1 then
+            -- 写线圈
+            for i, m in ipairs(p.mappers) do
+                if m.name == name then
+                    return true, p.code, p.addr + m.offset, value
+                end
+            end
+        elseif p.code == 3 then
+            -- 写寄存器
+            for i, m in ipairs(p.mappers) do
+                if m.name == name then
+                    -- if m.adjust ~= 0 then value = value - m.adjust end
+                    if m.rate ~= 0 and m.rate ~= 1 then
+                        value = value / m.rate
+                    end
+                    local fmt = (m.be and '>' or '<') .. unpackTypes[m.type]
+                    return true, p.code, p.addr + m.offset,
+                           pack.pack(fmt, value)
+                end
+            end
+        end
+    end
+    return false
 end
