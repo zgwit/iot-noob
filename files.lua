@@ -30,11 +30,7 @@ function list(dir, skip, limit)
             if type == nil then
                 break
             else
-                table.insert({
-                    type = fileType(type),
-                    name = name,
-                    size = size
-                })
+                table.insert({type = fileType(type), name = name, size = size})
             end
         end
         io.closedir(dir)
@@ -47,16 +43,16 @@ end
 rename = os.rename
 
 -- 删除
-remove=os.remove
+remove = os.remove
 
 -- 删除目录
-removeDir=rtos.remove_dir
+removeDir = rtos.remove_dir
 
 -- 创建目录
-makeDir=rtos.make_dir
+makeDir = rtos.make_dir
 
 -- 文件存在
-exists=io.exists
+exists = io.exists
 
 -- 读取文件
 read = io.readFile
@@ -65,14 +61,10 @@ read = io.readFile
 readPart = io.readStream
 
 -- 写入文件
-function write(path, content)
-    return io.writeFile(path, content, "w+b")
-end
+function write(path, content) return io.writeFile(path, content, "w+b") end
 
 -- 写入文件
-function writeAppend(path, content)
-    return io.writeFile(path, content, "a+b")
-end
+function writeAppend(path, content) return io.writeFile(path, content, "a+b") end
 
 -- 写入文件（掉电保护）
 writeSafe = io.write_sfile

@@ -3,9 +3,10 @@ module(..., package.seeall)
 
 require "misc"
 require "mqtt"
+require "config"
 
 local TAG = "NOOB"
-local CFG = "noob.json"
+local CFG = "noob"
 
 -- TODO 添加备份服务器
 local imei = misc.getImei()
@@ -19,19 +20,21 @@ cfg = {
     port = 1883
 }
 
-function Load()
-    if not io.exists(CFG) then return end
-    local data = io.readFile(CFG)
-    if #data > 0 then cfg = json.decode(data) end
-end
 
 -- 加载配置
-Load()
+local ok, res = config.load(CFG)
+if ok then
+    cfg = res
+else
+    config.store(CFG, cfg) -- 生成默认文件
+end
+
+
 
 -- MQTT Broker 参数配置
 local ready = false
 
-function IsReady() return ready end
+function isReady() return ready end
 
 -- 客户端
 local client
@@ -42,25 +45,18 @@ local _msgQueue = {}
 -- 要订阅的主题
 local topics = {["down/gateway/" .. imei .. "/#"] = 0}
 
--- 设置服务器
-function set_noob(msg)
-    io.writeFile(CFG, json.encode(msg.data), "w")
-    replyCommand(msg, {ret = "ok"})
-    client:close() -- 关闭连接，使其重连，未测试
-end
+--- 发布消息
+function close() client:close() end
 
 --- 发布消息
-function Close() client:close() end
-
---- 发布消息
-function Publish(topic, payload, cb)
+function publish(topic, payload, cb)
     log.info(TAG, "publish", topic, payload)
     table.insert(_msgQueue, {t = topic, p = payload, q = 0, c = cb})
     sys.publish("APP_SOCKET_SEND_DATA") -- 终止接收等待，处理发送
 end
 
 -- 订阅消息 TODO 添加callback
-function Subscribe(topic, qos)
+function subscribe(topic, qos)
     topics[topic] = qos
     if ready then return client:subscribe({[topic] = qos}) end
 end
@@ -91,6 +87,8 @@ local function receive_messages()
                     end
                 elseif ts[2] == "property" then
                     -- TODO 数据怎么回传
+
+
                 end
             end
         else
@@ -157,7 +155,7 @@ end)
 
 
 require "command"
-
+-- 处理命令
 local function handleCommand(payload)
     log.info(TAG, "handleCommand", payload)
     local msg = json.decode(payload)
@@ -173,7 +171,7 @@ local function handleCommand(payload)
     end
 
     local topic = "up/gateway" .. imei .. "/command"
-    local payload = json.encode(body)
+    local payload = json.encode(ret)
     -- Publish(topic, payload)
     table.insert(_msgQueue, {t = topic, p = payload, q = 0})
 end
