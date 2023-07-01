@@ -62,6 +62,7 @@ function Modbus:write(slave, code, addr, data)
     return true
 end
 
+--轮询接口
 function Modbus:poll(device, mapper)
     local data =
         self.read(device.slave, mapper.code, mapper.addr, mapper.length)
@@ -69,6 +70,7 @@ function Modbus:poll(device, mapper)
     return parse(mapper.code, data, mapper.points)
 end
 
+--写入变量
 function Modbus:put(device, name, value, mappers)
     local ret, code, addr, data = lookup(name, value, mappers)
     if not ret then return false end
