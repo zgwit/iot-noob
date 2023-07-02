@@ -8,27 +8,19 @@ module(..., package.seeall)
 
 local TAG = "LINK"
 
-local types = {}
+--[[
+Link {
+    open(): bool
+    close(): void
+    write(data): bool
+    read(timeout): string
+}
+]]
 
-function register(id, factory)
-    types[id] = factory
-end
-
+-- 构造器
+local factories = {
+    serial = require("links.serial").Serial.new,
+    tcpclient = require("links.tcpclient").TcpClient.new,
+}
 
 local links = {}
-
-Link = {}
-
-function Link:new(id, args)
-    local obj = args or {}
-    setmetatable(obj, self)
-    self.__index = self
-    links[id] = obj
-    return obj
-end
-
--- 打开连接
-function Link:open()
-
-end
-

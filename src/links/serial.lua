@@ -76,7 +76,7 @@ function Serial:open()
     end)
 end
 
-function Serial:close(timeout) self.opened = false end
+function Serial:close() self.opened = false end
 
 function Serial:read(timeout)
     return sys.waitUntil("UART_DATA_" .. self.uart, timeout)
