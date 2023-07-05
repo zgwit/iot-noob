@@ -9,9 +9,9 @@ function info()
     return {
         version = rtos.get_version(),
         hardware = rtos.get_hardware(),
-        PROJECT = PROJECT,
-        VERSION = VERSION,
-        PRODUCT_KEY = PRODUCT_KEY
+        -- project = PROJECT,
+        -- VERSION = VERSION,
+        -- PRODUCT_KEY = PRODUCT_KEY
     }
 end
 
@@ -30,8 +30,9 @@ end
 function usage()
     return {
         cpu = rtos.get_env_usage(),
+        -- 内存
         memory = {
-            usage = collectgarbage("count"),
+            free = 1360 - collectgarbage("count"),
             total = 1360 -- Air724内存
         },
         -- 内部
