@@ -23,6 +23,22 @@ end)()
 --串口类
 Serial = {}
 
+-- 配置模板
+local _template = {
+    -- 串口号 1 2 3
+    uart = 1,
+    -- 波特率
+    baud = 9600,
+    -- 字长
+    bits = 8,
+    -- 校验，0 none 无校验, 1 odd 奇校验, 2 even 偶校验
+    parity = 0,
+    -- 结束符 1, 2, 0.5=>0xf0, 1.5=>0xf1
+    stop = 1
+    -- 读超时
+    -- timeout = 2000
+}
+
 function Serial:new(args)
     local obj = args or {}
     self.__index = self
@@ -84,18 +100,3 @@ end
 
 function Serial:write(data) return uart.write(self.uart, data) end
 
--- 配置模板
-local cfg = {
-    -- 串口号 1 2 3
-    uart = 1,
-    -- 波特率
-    baud = 9600,
-    -- 字长
-    bits = 8,
-    -- 校验，0 none 无校验, 1 odd 奇校验, 2 even 偶校验
-    parity = 0,
-    -- 结束符 1, 2, 0.5=>0xf0, 1.5=>0xf1
-    stop = 1
-    -- 读超时
-    -- timeout = 2000
-}
