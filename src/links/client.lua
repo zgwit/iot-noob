@@ -38,6 +38,7 @@ sys.taskInit(function()
     -- 打开链路层网络类型
     sys.wait(5000)
     link.openNetwork(link.CH395, cfg)
+    --TODO 此处会把4G网络替代掉
 end)
 
 -- 串口类
