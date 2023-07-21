@@ -60,7 +60,7 @@ function Client:open()
     elseif self.type == "tcp" then
         self.client = socket.tcp()
     else
-        log.info(TAG, "unsupport", self.type)
+        log.info(MOD, "unsupport", self.type)
     end
 
     if socket.isReady() and self.client:connect(self.ip, self.port) then

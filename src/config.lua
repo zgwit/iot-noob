@@ -7,6 +7,7 @@
 
 module(..., package.seeall)
 
+local MOD = "CONFIG"
 
 require "fs"
 

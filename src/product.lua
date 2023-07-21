@@ -7,14 +7,16 @@
 
 module(..., package.seeall)
 
-require "files"
+local MOD = "PRODUCT"
 
-local TAG = "PRODUCT"
+require "fs"
+
+local MOD = "PRODUCT"
 local root = "/noob/product/"
 
 -- 产品配置文件根目录
-if not files.exists(root) then
-    files.makeDir(root) -- 自动创建
+if not fs.exists(root) then
+    fs.makeDir(root) -- 自动创建
 end
 
 local products = {}
@@ -22,10 +24,10 @@ local products = {}
 -- 加载产品
 function load()
     product = {} -- 清空
-    local fs = files.list(root, 0, 9999)
+    local fs = fs.list(root, 0, 9999)
     for i, f in ipairs(fs) do
         if f.type ~= "folder" then
-            local content = files.read(root .. f.name)
+            local content = fs.read(root .. f.name)
             products[f.name] = json.decode(content)
         end
     end

@@ -7,14 +7,14 @@
 module(..., package.seeall)
 
 
-local TAG = "存储"
+local MOD = "STORAGE"
 
 -- 启动存储服务
 sys.taskInit(function()
     -- 挂载TF卡
     local ret = io.mount(io.SDCARD)
     if not ret then
-        log.error(TAG, "挂载错误")
+        log.error(MOD, "挂载错误")
         return
     end
 

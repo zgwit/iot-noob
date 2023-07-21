@@ -7,6 +7,7 @@
 -- 系统信息
 module(..., package.seeall)
 
+local MOD = "SYSTEM"
 
 function info()
     return {

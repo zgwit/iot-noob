@@ -7,9 +7,10 @@
 
 module(..., package.seeall)
 
+local MOD = "KEYPAD"
+
 
 -- TODO 定义按键表，按键码
-
 
 
 

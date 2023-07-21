@@ -6,7 +6,7 @@
 -- @release 2023.06.30
 module(..., package.seeall)
 
-local TAG = "LINK"
+local MOD = "PROTOCOL"
 
 local protocols = {
     require("protocols.modbus").modbus

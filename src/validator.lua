@@ -6,3 +6,6 @@
 -- @release 2023.07.22
 module(..., package.seeall)
 
+local MOD = "VALIDATOR"
+
+

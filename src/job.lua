@@ -6,6 +6,8 @@
 -- @release 2023.06.30
 module(..., package.seeall)
 
+local MOD = "JOB"
+
 local timers = {}
 
 -- 创建一个任务

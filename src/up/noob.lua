@@ -12,12 +12,12 @@ require "misc"
 require "mqtt"
 require "config"
 
-local TAG = "NOOB"
+local MOD = "NOOB"
 local CFG = "noob"
 
 -- TODO 添加备份服务器
 local imei = misc.getImei()
-log.info(TAG, "imei", imei)
+log.info(MOD, "imei", imei)
 
 cfg = {
     clientId = imei, -- 默认使用IMEI号
@@ -57,7 +57,7 @@ function close() client:close() end
 
 --- 发布消息
 function publish(topic, payload, cb)
-    log.info(TAG, "publish", topic, payload)
+    log.info(MOD, "publish", topic, payload)
     table.insert(_msgQueue, {t = topic, p = payload, q = 0, c = cb})
     sys.publish("APP_SOCKET_SEND_DATA") -- 终止接收等待，处理发送
 end
@@ -84,7 +84,7 @@ local function receive_messages()
         -- 接收到数据
         ok, data = client:receive(60000, "APP_SOCKET_SEND_DATA")
         if ok then
-            log.info(TAG, "message", data.topic, data.payload)
+            log.info(MOD, "message", data.topic, data.payload)
 
             local ts = string.split(data.topic, "/")
             if ts[1] == "down" then
@@ -130,11 +130,11 @@ sys.taskInit(function()
                 -- 循环处理接收和发送的数据
                 while true do
                     if not receive_messages(client) then
-                        log.error(TAG, "receive error")
+                        log.error(MOD, "receive error")
                         break
                     end
                     if not send_messages(client) then
-                        log.error(TAG, "send error")
+                        log.error(MOD, "send error")
                         break
                     end
                 end
@@ -164,7 +164,7 @@ end)
 require "..command"
 -- 处理命令
 local function handleCommand(payload)
-    log.info(TAG, "handleCommand", payload)
+    log.info(MOD, "handleCommand", payload)
     local msg = json.decode(payload)
 
     local ret

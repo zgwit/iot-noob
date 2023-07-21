@@ -6,7 +6,7 @@
 -- @release 2023.06.30
 module(..., package.seeall)
 
-local TAG = "MODBUS"
+local MOD = "MODBUS"
 
 Modbus = {}
 
@@ -56,7 +56,7 @@ function Modbus:write(slave, code, addr, data)
     -- 判断成功与否
     local _, s, c = pack.unpack(ret, "b2")
     if c > 0x80 then
-        log.info(TAG, "error")
+        log.info(MOD, "error")
         return false
     end
     return true
@@ -120,7 +120,7 @@ function parse(code, data, points)
             result[m.name] = v
         end
     else
-        log.info(TAG, "unpack unsupport code")
+        log.info(MOD, "unpack unsupport code")
         ---
     end
 

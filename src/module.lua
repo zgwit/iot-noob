@@ -7,4 +7,5 @@
 
 module(..., package.seeall)
 
+local MOD = "MODULE"
 

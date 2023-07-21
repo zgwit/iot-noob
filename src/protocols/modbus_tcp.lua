@@ -6,7 +6,7 @@
 -- @release 2023.06.30
 module(..., package.seeall)
 
-local TAG = "MODBUS-TCP"
+local MOD = "MODBUS-TCP"
 
 
 --TODO 继承 RTU

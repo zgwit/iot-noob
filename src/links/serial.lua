@@ -4,7 +4,7 @@
 -- @license GPLv3
 -- @copyright zgwit
 -- @release 2023.06.30
-local TAG = "SERIAL"
+local MOD = "SERIAL"
 
 require "config"
 

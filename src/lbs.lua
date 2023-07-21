@@ -4,7 +4,8 @@
 -- @license GPLv3
 -- @copyright zgwit
 -- @release 2023.06.30
-
 module(..., package.seeall)
 
+
+local MOD = "LBS"
 
