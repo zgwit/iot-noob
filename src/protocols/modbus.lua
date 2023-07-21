@@ -56,7 +56,7 @@ function Modbus:write(slave, code, addr, data)
     -- 判断成功与否
     local _, s, c = pack.unpack(ret, "b2")
     if c > 0x80 then
-        log.info(MOD, "error")
+        log.info(MOD, "error") --TODO 错误码
         return false
     end
     return true
@@ -65,7 +65,7 @@ end
 --轮询接口
 function Modbus:poll(device, mapper)
     local data =
-        self.read(device.slave, mapper.code, mapper.addr, mapper.length)
+        self.read(device.slave, mapper.code, mapper.addr, mapper.size)
     if not data then return false end
     return parse(mapper.code, data, mapper.points)
 end

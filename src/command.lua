@@ -66,7 +66,7 @@ end
 
 -- 读取文件（部分内容）
 function readPart(msg)
-    local ret = fs.readPart(msg.path, msg.offset, msg.length)
+    local ret = fs.readPart(msg.path, msg.offset, msg.size)
     return reply(msg, {ret = ret})
 end
 
