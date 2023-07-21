@@ -5,6 +5,9 @@
 -- @copyright zgwit
 -- @release 2023.07.03
 -- 系统信息
+module(..., package.seeall)
+
+
 function info()
     return {
         version = rtos.get_version(),
@@ -17,12 +20,14 @@ end
 
 function network()
     return {
-        imsi = misc.getImsi(),
-        iccid = misc.getIccid(),
-        mcc = misc.getMcc(),
-        mnc = misc.getMnc(),
-        status = misc.getStatus(),
-        number = misc.getNumber()
+        rssi = net.getRssi(),
+        imei = misc.getImei(),
+        imsi = sim.getImsi(),
+        iccid = sim.getIccid(),        
+        mcc = net.getMcc(),
+        mnc = net.getMnc(),
+        status = net.getState(),
+        number = sim.getNumber()
     }
 end
 

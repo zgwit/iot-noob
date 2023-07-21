@@ -10,5 +10,6 @@ local TAG = "MODBUS-TCP"
 
 
 --TODO 继承 RTU
+require "modbus"
 
 
