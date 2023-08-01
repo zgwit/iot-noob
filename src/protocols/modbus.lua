@@ -27,7 +27,17 @@ function Modbus:read(slave, code, addr, len)
     self.link.write(msg)
     local ret = self.link.read(self.timeout)
     if ret == "" or ret == nil then return false end
-    return string.sub(ret, 4) -- 删掉：从站，功能码，字数
+
+    --判断接收的长度，解决拆包问题
+    local _, _, _, n = pack.unpack("b3")
+    while #ret < n+5 do
+        local r = self.link.read(self.timeout)
+        if r == "" or r == nil then return false end
+        ret = ret .. r
+    end
+
+    -- 删掉：从站，功能码，字数 (以及最后的校验位？)
+    return string.sub(ret, 4)
     -- return unpack(string.sub(ret, 4), points)
 end
 
